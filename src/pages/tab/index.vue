@@ -2,13 +2,12 @@
   <div class="viewpage view">
     <router-view></router-view>
     <app-footer></app-footer>
-	1111
   </div>
 </template>
 
 <script>
-  import AppHeader from "../../components/base/app-header.vue"
-  import AppFooter from "../../components/base/app-footer.vue"
+  import AppHeader from "../../components/business/app-header.vue"
+  import AppFooter from "../../components/business/app-footer.vue"
   export default {
     data() {
       return {};
