@@ -1,0 +1,23 @@
+export default{
+    state:{
+        title:"",
+        backSrc:"",
+        bookHosId:"",
+        isAppt:false,
+        bookDeptId:""
+    }
+    ,
+    mutations:{
+        changeHeader(state,payload){
+            state.title=payload.title;
+            state.backSrc=payload.backSrc;
+        },
+        setHos(state,payload){
+            state.bookHosId=payload.id;
+            state.isAppt=payload.isAppt;
+        },
+        setDept(state,payload){
+            state.bookDeptId=payload.bookDeptId;
+        }
+    }
+}
