@@ -5,7 +5,7 @@
         <div class="icon">
           <font class="font"></font>
         </div>
-        <div class="text">首页</div>
+        <div class="text">fff首页</div>
       </li>
       <li class="tac">
         <div class="icon">
