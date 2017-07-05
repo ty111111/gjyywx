@@ -70,7 +70,7 @@
             localStorage.setItem('token',req.token)
             this.$router.push('online')
           }else {
-            alert('账号或者密码错误')
+            alert('账号或者密码错误11111')
           }
         })
 
