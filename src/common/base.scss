@@ -1,0 +1,57 @@
+@import "font";
+* {
+  font-size: 0.875rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li{
+  list-style: none;
+}
+select,button{
+  -webkit-appearance: none;
+}
+/******class******/
+.tac{
+  text-align: center;
+}
+.tal{
+  text-align: left;
+}
+.tar{
+  text-align: right;
+}
+
+/******字体大小设置******/
+$fontZize: (
+        smaller: .625rem,
+        small:.75rem,
+        normal:.875rem,
+        big:1rem,
+        bigger:1.125rem
+);
+@each $key,$value in $fontZize{
+  .#{$key}{
+    font-size: $value;
+  }
+}
+
+/******字体颜色设置******/
+$colors:(
+  main:#09BB07,
+  bg:#f8f8f8,
+  border:#e5e5e5
+);
+@each $k,$v in $colors{
+  .color-#{$k}{
+    color: $v;
+  }
+}
+
+/******定位******/
+$position:fixed,relative,absolute;
+@each $p in $position{
+  .#{$p}{
+    position: $p;
+  }
+}
