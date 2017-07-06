@@ -21,6 +21,9 @@
             </a>
         </div>
     </div>
+	<app-footer class="footer">
+		
+	</app-footer>
     <div class="background" v-show="isShown" >
         <div class="option weui-panel weui-panel_access">
             <div class="weui-panel__bd">
@@ -56,6 +59,7 @@
 
 <script>
     import api from "../../lib/api.js";
+	import AppFooter from "../../components/business/app-footer";
   export default {
       data()
       {
@@ -116,6 +120,9 @@
               console.log("failed");
           })
       },
+	  components:{
+		AppFooter
+	  },
       beforeDestroy(){
           this.$emit("hasRight");
           window.localStorage["isAppt"]=this.isAppt;
@@ -144,5 +151,10 @@
         height:30%;
         box-shadow: 2px 5px 5px lighten(black,40%);
         
+    }
+    .footer{
+        position:fixed;
+        bottom:0px;
+        width:100%;
     }
 </style>
