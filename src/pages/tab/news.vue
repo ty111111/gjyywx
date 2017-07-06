@@ -3,6 +3,7 @@
     <app-header>
       <div class="middle big">健康资讯</div>
     </app-header>
+
       <div class="horiScroller">
       <div class="nav">
           <div v-for="(item,index) in typeList">
@@ -28,14 +29,14 @@
     </my-panel>
     </div>
     </scroll-fresh>
+
   </div>
 </template>
 <script>
   import Api from "../../lib/api"
   import AppHeader from "../../components/business/app-header.vue"
   import IscrollView from "../../components/business/iscroll-view.vue"
-  import ScrollFresh from "../../components/business/scroll-fresh.vue";
-  import MyPanel from '../../components/business/panel';
+
   export default {
     data() {
       return {
@@ -55,12 +56,15 @@
     },
     components: {
       AppHeader,
+
       IscrollView,
         ScrollFresh,
         MyPanel},
+
     mounted() {
         let lastIndex=window.localStorage['chosedIndex'];
         this._getData();
+
         Api("nethos.system.information.type.list",{})
         .then((val)=>{
             this.typeList=val.list;
@@ -70,10 +74,12 @@
             setTimeout(()=>{this.update();},100);
         })
 
+
     },
     beforeDestroy() {
     },
     methods: {
+
         getDetail(item){
             window.localStorage["chosedIndex"]=this.chosedIndex;
             this.$router.push("/tab/detail/"+item.newId);
@@ -118,6 +124,7 @@
                     this.isCompleted=false;
                 },100);
             }
+
         }
     }
   };

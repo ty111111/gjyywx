@@ -19,7 +19,7 @@
 
 <script>
   import Api from "../../lib/api"
-  import AppHeader from "./app-header.vue"
+  import AppHeader from "../../components/business/app-header.vue"
   export default {
     data() {
       return {
@@ -56,7 +56,7 @@
     mounted() {
         this.update();
     },
-      created(){ 
+      created(){
       },
     beforeDestroy() {
 
@@ -72,7 +72,7 @@
             }
         },
         getLocalTime(nS) {
-            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');     
+            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
         },
         recommend(){
 //            Api("nethos.system.information.top",{newId:this.info.articleId,top:true,token:window.localStorage['token']})
@@ -97,7 +97,7 @@
     }
     .page__hd{
         text-align:center;
-        
+
     }
     .page__desc{
         color:#CCCCCC;

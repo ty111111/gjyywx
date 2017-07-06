@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   //import WeuiForVue from "weui-for-vue"
   import {Msg, Loading, Toast} from "weui-for-vue"
 
@@ -21,9 +21,10 @@
       Msg, Loading, Toast
     },
     mounted(){
+
       setTimeout((res) => {
-        this.show = true;
-      }, 10000)
+        this.show = true;    }, 10000)
+
     },
     watch: {},
     methods: {}
