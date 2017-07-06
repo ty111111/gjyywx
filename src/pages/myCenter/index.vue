@@ -27,7 +27,7 @@
         </div>
         <div class="project">
           <div class="weui-cells">
-            <a class="weui-cell weui-cell_access" href="javascript:;">
+            <a class="weui-cell weui-cell_access" href="javascript:;" @click="goInquiry">
               <div class="weui-cell__bd">
                 <p>我的问诊</p>
               </div>
@@ -199,6 +199,11 @@
         },
         about(){
           this.$router.push('about')
+        },
+        goInquiry(){
+          this.$router.push({
+            name:'inquiry'
+          })
         }
       }
     }
