@@ -5,13 +5,17 @@ import Vuex from 'vuex'
 import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
-
 import "weui/dist/style/weui.min.css"
-
 import Bus from "./lib/bus"
+import weui from "./lib/wejs"
 import Directive from "./lib/directive"
+import VueScroller from 'vue-scroller'
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
+Vue.use(VueScroller)
 Vue.use(Bus)
 Vue.use(Directive)
+Vue.use(weui)
 
 import "babel-polyfill";
 

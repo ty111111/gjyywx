@@ -10,33 +10,36 @@ for (let i = 0; i < 4; i++) {
 }
 
 
+
 let base = {
   channel: 4,
   format: "JSON",
   oper: "127.0.0.1",
   spid: spid,
-  random: random,
+
+  random: random
+
  // sign: sign
 };
 
 
 export default function (service, options) {
-  /*if (typeof options.showloading == "undefined") {
-    options.showloading = true;
-  }
-  if (options.showloading) {
-    bus.$emit("loading", {status: 'start'});
-  }*/
-    let obj ={
-        ...base,service,...options
-    }
-    let sign = hex_md5(hex_md5("aAr9MVS9j1") + JSON.stringify(obj));
-    let config = {
-  headers: {    
+
+  // if (typeof options.showloading == "undefined") {
+  //   options.showloading = true;
+  // }
+  // if (options.showloading) {
+  //   bus.$emit("loading", {status: 'start'});
+  // }
+  let obj = {...base,service,...options};
+  let sign = hex_md5(hex_md5("aAr9MVS9j1") + JSON.stringify(obj));
+  let config = {
+    headers: {
       "sign":sign,
       "Content-Type": "application/json"
-  },
-}
+    },
+  }
+
   return axios.post(url, obj, config)
     .then((res) => {
       bus.$emit("loading", {status: 'stop'});
@@ -47,4 +50,5 @@ export default function (service, options) {
       }
     });
 }
+
 
