@@ -31,7 +31,7 @@
           }
           setTimeout(()=>{
               that.load();
-              document.addEventListener("touchmove",(e)=>{e.preventDefault()},false)
+              document.addEventListener("touchmove",(e)=>{e.preventDefault()},false);
           },20);
 
       },
