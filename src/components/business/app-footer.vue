@@ -5,7 +5,8 @@
         <div class="icon">
           <font class="font"></font>
         </div>
-          <div class="text"><img src="../../../static/img/u4088.png" class="icon"><p>首页</p></div>
+          <div class="text"><img src="../../../static/img/u4088.png" class="icon" @click="goOnlineDoc"><p>首页</p></div>
+
       </li>
       <li class="tac">
         <div class="icon">
@@ -26,7 +27,8 @@
         <div class="icon">
           <font class="font"></font>
         </div>
-          <div class="text"><img src="../../../static/img/u4088.png" class="icon"><p>我的</p></div>
+          <div class="text"><img src="../../../static/img/u4088.png" class="icon" @click="goMyCenter"><p>我的</p></div>
+
       </li>
     </ul>
 
@@ -60,6 +62,12 @@
 		toInfo(){
 			this.$router.push("/tab/news");
 		}
+      goMyCenter(){
+        this.$router.push('myCenter')
+      },
+      goOnlineDoc(){
+        this.$router.push('online')
+      }
 
 
     }

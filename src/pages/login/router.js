@@ -234,7 +234,7 @@ export default [{
     require(['../myCenter/about'], resolve)
   }
 }, {
-  path: '/docArticle/:id',
+  path: '/docArticle/:docId',
   name:'docArticle',
   component: resolve => {
     require(['../onlineDoc/docArticle.vue'], resolve)

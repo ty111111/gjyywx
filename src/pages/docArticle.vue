@@ -12,7 +12,7 @@
                           <p>{{item.title}}</p>
                           <p class="weui-msg__desc"><span v-show="item.isGrade" class="recTag">推荐</span> {{item.readTimes}}阅读 {{item.createTime}} | {{docName}}</p>
     </div>
-                          
+
     </a>
     </div>
     </scroll-fresh>
@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
     import ScrollFresh from '../components/business/scroll-fresh';
     import AppHeader from '../components/business/app-header';
     import api from '../lib/api.js';
@@ -29,7 +29,8 @@
       return {
           isCompleted:false,
           articleList:[],
-          docName:""
+          docName:"",
+          docId:""
       };
     },
     computed:{
@@ -39,6 +40,7 @@
         ScrollFresh
     },
     mounted() {
+      console.log(this.$route.params.docId,898989)
         this.update();
     },
     beforeDestroy() {
@@ -50,14 +52,17 @@
             this.$router.push("/user/articleDetail/"+item.articleId);
         },
         update(){
-            api("nethos.doc.card",{docId:"5909299a84aed2ed98b58c9c"})
+
+          this.$set(this.$data,'docId',this.$route.params.docId)
+
+            api("nethos.doc.card",{docId:this.docId})
             .then((val)=>{
                 this.docName=val.obj.sysDoc.docName;
                 this.articleList=val.obj.docArticleList||[];
                 this.articleList.forEach((item)=>{
                     item.createTime=this.getLocalTime(item.createTime);
                 })
-                
+
                 setTimeout(()=>{this.isCompleted=true},20);
                 setTimeout(()=>{this.isCompleted=false},100);
             })
@@ -67,7 +72,7 @@
         },
         getLocalTime(time){
             time/=1000;
-            
+
             var date=new Date(time*1000);
             return new Date(time * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
         }
