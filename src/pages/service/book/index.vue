@@ -1,7 +1,7 @@
 <template>
   <div class="viewpage">
       <app-header>
-          <div slot="left"><router-link :to="src" ><img class="arrow" src="../../../../static/img/u436.png"></router-link></div>
+          <div slot="left"><router-link :to="src" ><p style="padding-left:0.5rem;color:black">返回</p></router-link></div>
           <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">{{title}}</div>
           <div slot="right" v-show="isShown" class="appointl" @click="getMyScheme">我的挂号</div>
     </app-header>

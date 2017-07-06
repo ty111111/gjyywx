@@ -66,7 +66,7 @@
         this.$router.push('/myCenter')
       },
       goOnlineDoc(){
-        this.$router.push('/online')
+        this.$router.push('/online');
       }
 
 
