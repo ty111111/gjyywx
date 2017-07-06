@@ -102,16 +102,21 @@
 
         </div>
       </div>
+      <div class="bottom">
+        <foot></foot>
+      </div>
     </div>
 </template>
 <script type="text/ecmascript-6">
     import top from '../../components/business/app-header.vue'
+    import foot from '../../components/business/app-footer.vue'
     import Api from '../../lib/api'
     import ajax from '../../lib/ajax'
     var token = localStorage.getItem('token');
     export default{
         components: {
-            top
+            top,
+           foot
         },
         data(){
             return {
@@ -229,5 +234,12 @@
   }
   #upload_img{
     display: none;
+  }
+  .bottom{
+    width: 100%;
+    background: white;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
   }
 </style>

@@ -5,7 +5,7 @@
         <div class="icon">
           <font class="font"></font>
         </div>
-        <div class="text">首页</div>
+        <div class="text" @click="goOnlineDoc">首页</div>
       </li>
       <li class="tac">
         <div class="icon">
@@ -26,7 +26,7 @@
         <div class="icon">
           <font class="font"></font>
         </div>
-        <div class="text">我的</div>
+        <div class="text" @click="goMyCenter">我的</div>
       </li>
     </ul>
   </footer>
@@ -55,7 +55,13 @@
         toService(){
             console.log("toService");
             this.$router.push({path:'/service/book'});
-        }
+        },
+      goMyCenter(){
+        this.$router.push('myCenter')
+      },
+      goOnlineDoc(){
+        this.$router.push('online')
+      }
 
 
     }
