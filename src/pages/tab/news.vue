@@ -3,44 +3,178 @@
     <app-header>
       <div class="middle big">健康资讯</div>
     </app-header>
-    <iscroll-view @iscroll_pulldown="pulldown">
-      <ul>
-        <li v-for="i in 10">{{i}}</li>
-      </ul>
-    </iscroll-view>
+
+      <div class="horiScroller">
+      <div class="nav">
+          <div v-for="(item,index) in typeList">
+              <div><a class="small"@click="setChosedItem(index)" :class="{'Chosed':chosedIndex==index}">{{item.typeName}}</a></div>
+    </div>
+    </div>
+    </div>
+        <div class="weui-loadmore" v-show="!Got">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+        </div>
+    <scroll-fresh  @pullDown="pulldown" @pullUp="pullup":isCompleted="isCompleted" height="50"v-show="Got">
+        <div slot="containing">
+
+        <my-panel v-for="item in list[chosedIndex]" :key="item.newId" class="panel" @activate="getDetail(item)" >
+            <img slot="picture" :src="item.imgUrl" style="height:70px">
+            <div slot="article" class="article">
+                <h3>{{item.title}}</h3>
+                <div style="overflow:hidden ;height:2.5rem;text-overflow:ellipsis;">
+                <p>{{item.content}}</p>
+    </div>
+    </div>
+    </my-panel>
+    </div>
+    </scroll-fresh>
+
   </div>
 </template>
 <script>
   import Api from "../../lib/api"
   import AppHeader from "../../components/business/app-header.vue"
   import IscrollView from "../../components/business/iscroll-view.vue"
+
   export default {
     data() {
-      return {};
+      return {
+          typeList:[],
+          isCompleted:false,
+          chosedIndex:0,
+          list:{},
+          Got:false 
+      };
     },
-    computed: {},
+    watch:{
+        chosedIndex(){
+            this.setInfo();
+        }
+    },
+    computed: {
+    },
     components: {
       AppHeader,
-      IscrollView},
+
+      IscrollView,
+        ScrollFresh,
+        MyPanel},
+
     mounted() {
+        let lastIndex=window.localStorage['chosedIndex'];
         this._getData();
-      console.log(weui.alert('11111'))
-    },
-    beforeDestroy() {
+
+        Api("nethos.system.information.type.list",{})
+        .then((val)=>{
+            this.typeList=val.list;
+            if(lastIndex && this.typeList[lastIndex]){
+                this.chosedIndex=lastIndex;
+            }
+            setTimeout(()=>{this.update();},100);
+        })
+
 
     },
+    beforeDestroy() {
+    },
     methods: {
+
+        getDetail(item){
+            window.localStorage["chosedIndex"]=this.chosedIndex;
+            this.$router.push("/tab/detail/"+item.newId);
+        },
+        setChosedItem(index){
+            this.chosedIndex=index;
+        },
         async _getData(){
           let data=await Api("nethos.system.web.pat.index",{})
-          console.log(data);
+          //console.log(data);
         },
         pulldown(){
-            alert(1);
+            this.update();
+        },
+        update(){
+            Api("nethos.system.information.list",{typeId:this.typeList[this.chosedIndex].id})
+            .then((val)=>{
+                this.list[this.chosedIndex]=val.list;
+                this.Got=true;
+                this.isCompleted=true;
+                setTimeout(()=>{
+                    this.isCompleted=false;
+                },100);
+            })
+        },
+        pullup(){
+            this.update();
+        },
+        setInfo(){
+            if(!this.list[this.chosedIndex]){
+                this.Got=false;
+                this.update();
+            }
+            else{
+                this.Got=true;
+//                this.Got=false;
+//                this.isCompleted=true;
+                setTimeout(()=>{this.isCompleted=true;},10);
+//                setTimeout(()=>{this.isCompleted=true;},300);
+                setTimeout(()=>{
+//                    this.Got=true;
+                    this.isCompleted=false;
+                },100);
+            }
+
         }
     }
   };
 </script>
 
 <style scoped lang="scss">
-
+    .nav{
+        display:flex;
+        flex-direction:row;  
+        padding-top:10px;
+        height:50px;
+        div{
+            padding-top:10px;
+            min-width:100px;
+            height:30px;
+            text-align: center;
+            color:#999999;
+            font-size:0.77rem;
+            flex:1 1 auto;
+            display:flex;
+            flex-direction:column-reverse;
+/*            vertical-align:bottom;*/
+/*            position:relative;*/
+/*            bottom:-10px;*/
+            a{
+                display:inline;
+            }
+        }
+    }
+    .horiScroller{
+        background-color:white;
+        border:1px solid silver;
+        height:50px;
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        overflow-x:scroll;
+    }
+    .panel{
+        border:1px solid silver;
+        background-color:white;
+        img.div{
+            max-height:70px;
+        }
+    }
+    .article{
+        margin-left:0.5rem;
+    }
+    .Chosed{
+        font-size:0.875rem;
+        color:black;
+    }
 </style>

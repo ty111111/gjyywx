@@ -6,12 +6,13 @@ import Vuex from 'vuex';
 import news from "../pages/news/store"
 import user from "../pages/ucenter/store"
 import consult from "../pages/consult/store"
+import service from "../pages/service/store"
 
 Vue.use(Vuex);
 
 
 export default new Vuex.Store({
   modules: {
-    news, consult, user
+    news, consult, user,service
   }
 })

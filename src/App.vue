@@ -21,9 +21,10 @@
       Msg, Loading, Toast
     },
     mounted(){
-//      setTimeout((res) => {
-//        this.show = true;
-//      }, 10000)
+
+      setTimeout((res) => {
+        this.show = true;    }, 10000)
+
     },
     watch: {},
     methods: {}

@@ -2,11 +2,13 @@
   <div class="view iscroll viewpage">
     <slot name="pullup">
       <div class="pullup tac">
+
         <font class="font"></font>
         <span class="normal">松开刷新</span>
       </div>
     </slot>
     <div ref="iscroll" class="wrapper view">
+
       <slot></slot>
     </div>
     <slot name="pulldown">
@@ -16,13 +18,16 @@
 </template>
 
 
+
 <script type="text/ecmascript-6">
   import "iscroll";
   export default {
+
     data() {
       return {
         pullup: false,
         pulldown: false,
+
       };
     },
     computed: {},
@@ -32,12 +37,14 @@
         this.iscroll = new IScroll(this.$refs.iscroll, {
           mouseWheel: true,
           probeType: 2,
+
           click: true,
           HWCompositing: false
         });
         this._scroll();
         this._scrollEnd();
       }, 20)
+
     },
     beforeDestroy() {
 
@@ -59,6 +66,14 @@
         this.iscroll.on('scrollEnd', (res) => {
         })
       }
+
+    },
+      
+    watch:{
+        data(){
+            this.iscroll&&this.iscroll.refresh()
+        }
+
     }
   };
 </script>
@@ -73,5 +88,11 @@
       right: 0;
       height: 45px;
     }
+
+      .wrapper{
+          touch-action:none;
+        
+      }
+
   }
 </style>

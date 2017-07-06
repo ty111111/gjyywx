@@ -1,7 +1,9 @@
 <template>
   <header>
     <slot name="left">
+
       <div class="left" @click="back"><font>返回</font></div>
+
     </slot>
     <slot></slot>
     <slot name="right">
@@ -10,7 +12,9 @@
   </header>
 </template>
 
+
 <script type="text/ecmascript-6">
+
   export default {
     props: {},
     data() {
@@ -24,11 +28,13 @@
     beforeDestroy() {
 
     },
+
     methods: {
       back(){
         this.$router.go(-1)
       }
     }
+
   };
 </script>
 
@@ -40,6 +46,7 @@
     line-height: 45px;
     background-color: white;
     display: flex;
+
    z-index:999;
     >.left,.right{
       text-align: center;
@@ -50,8 +57,10 @@
       text-align: center;
     }
   }
+
   .right{
     padding-right: 5px;
     color: #3CC51F;
   }
+
 </style>

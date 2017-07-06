@@ -16,12 +16,15 @@ let base = {
   format: "JSON",
   oper: "127.0.0.1",
   spid: spid,
+
   random: random
+
  // sign: sign
 };
 
 
 export default function (service, options) {
+
   // if (typeof options.showloading == "undefined") {
   //   options.showloading = true;
   // }
@@ -36,6 +39,7 @@ export default function (service, options) {
       "Content-Type": "application/json"
     },
   }
+
   return axios.post(url, obj, config)
     .then((res) => {
       bus.$emit("loading", {status: 'stop'});

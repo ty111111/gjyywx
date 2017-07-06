@@ -11,7 +11,10 @@
         <div class="icon">
           <font class="font"></font>
         </div>
-        <div class="text">服务</div>
+
+        <div class="text" @click="toService">服务</div>
+
+
       </li>
       <li class="tac">
         <div class="icon">
@@ -48,6 +51,12 @@
 
     },
     methods: {
+
+        toService(){
+            console.log("toService");
+            this.$router.push({path:'/service/book'});
+        }
+
 
     }
   };
