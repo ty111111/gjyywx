@@ -35,7 +35,8 @@
 <script>
   import Api from "../../lib/api"
   import AppHeader from "../../components/business/app-header.vue"
-  import IscrollView from "../../components/business/iscroll-view.vue"
+  import ScrollFresh from "../../components/business/scroll-fresh.vue"
+  import MyPanel from "../../components/business/panel";
 
   export default {
     data() {
@@ -57,7 +58,6 @@
     components: {
       AppHeader,
 
-      IscrollView,
         ScrollFresh,
         MyPanel},
 
