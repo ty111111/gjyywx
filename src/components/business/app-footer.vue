@@ -61,12 +61,12 @@
         },
 		toInfo(){
 			this.$router.push("/tab/news");
-		}
+		},
       goMyCenter(){
-        this.$router.push('myCenter')
+        this.$router.push('/myCenter')
       },
       goOnlineDoc(){
-        this.$router.push('online')
+        this.$router.push('/online')
       }
 
 
