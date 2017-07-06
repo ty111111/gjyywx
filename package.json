@@ -1,6 +1,6 @@
 {
     "name": "gjyywx",
-    "version": "1.0.49",
+    "version": "1.0.59",
     "description": "gjyywx",
     "author": "lmw",
     "private": true,
@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "babel-polyfill": "^6.23.0",
+        "extract-text-webpack-plugin": "^2.1.2",
         "iscroll": "^5.2.0",
         "panel": "^0.10.0",
         "vue": "^2.3.3",

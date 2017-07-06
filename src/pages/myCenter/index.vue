@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="onlinepage">
         <top>
             <div class="middle big">我的</div>
         </top>
@@ -209,10 +209,21 @@
     }
 </script>
 <style scoped>
+  #onlinepage{
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
   .detail{
     display: flex;
     box-sizing: border-box;
     padding: 10px;
+  }
+  .wrap{
+    overflow: auto;
+    flex: 1;
+    margin-bottom: 70px;
   }
   .patImg{
     width: 50px;

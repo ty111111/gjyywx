@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="onlinepage">
         <top>
             <div class="middle big">常用就诊人</div>
             <span slot="right" class="step" @click="goAddUser">添加</span>
@@ -74,6 +74,16 @@
     }
 </script>
 <style scoped>
+  #onlinepage{
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrap{
+    flex: 1;
+    overflow: auto;
+  }
     .step {
         padding-right: 5px;
         color: #3CC51F;

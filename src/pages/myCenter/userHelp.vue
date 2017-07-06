@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="onlinepage">
         <top>
             <div class="middle big">使用说明</div>
         </top>
@@ -130,5 +130,15 @@
     }
 </script>
 <style scoped>
-
+  #onlinepage{
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrap{
+    overflow: auto;
+    flex: 1;
+    margin-bottom: 10px;
+  }
 </style>
