@@ -1,7 +1,7 @@
 <template>
   <div>
     <top>
-      <div class="middle big">常用就诊人</div>
+      <div class="middle big">个人信息</div>
       <span slot="right" class="step"@click="saveEdit">保存修改</span>
     </top>
     <div class="wrap">
