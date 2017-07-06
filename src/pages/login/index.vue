@@ -66,8 +66,10 @@
           patMobile:this.patMobile,
           patPassword:this.patPassword
         }).then(req=>{
+          console.log(req)
           if(req.succ){
             localStorage.setItem('token',req.token)
+            localStorage.setItem('myId',req.obj.patId)
             this.$router.push('online')
           }else {
             alert('账号或者密码错误')
