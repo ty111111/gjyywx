@@ -29,7 +29,10 @@
           {
               document.getElementById("pullUp").style.height=this.bottom+'px';
           }
-          setTimeout(that.load,20);
+          setTimeout(()=>{
+              that.load();
+              document.addEventListener("touchmove",(e)=>{e.preventDefault()},false);
+          },20);
 
       },
       data()

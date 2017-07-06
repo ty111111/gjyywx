@@ -95,7 +95,8 @@
           recordDis:false,
           msg:"",
           Got:false,
-          failure:false
+          failure:false,
+          patList:[]
       };
     },
     computed:{
@@ -112,6 +113,9 @@
 
     },
     methods: {
+        setPat(){
+            this.$router.push("/service/setPat/");
+        },
         bind(){
 //            console.log(this.patInfo);
             this.$router.push("/service/bind/"+this.patInfo.compatId);
@@ -155,12 +159,28 @@
             this.patInfo=pat;
         }
         ,
-        setPat(){
-            alert("切换就诊人");
-        },
         setHeight(){
             let screenHeight=document.documentElement.clientHeight;
             this.$refs.main.style.height=screenHeight-45 + 'px';
+        },
+        generateQR(){
+              api("nethos.book.captcha.generate",{
+                  compatId:this.patInfo.compatId,
+                  bookHosId:this.bookHosId,
+                  bookNumId:this.bookNumId,
+                  token:this.token
+                                                 })
+              .then((val)=>{
+                  this.Got=true;
+                  this.imgSrc=val.obj.captcha;
+                  this.imgSrc.replace(/[\r\n]/g,"");
+                  document.getElementById('au').setAttribute("src","data:image/png;base64,"+this.imgSrc);
+                  console.log(val.obj);
+              },
+                   ()=>{
+                  this.failure=true;
+                  this.Got=true;
+              })
         }
 
     },
@@ -185,37 +205,26 @@
           this.reserveInfo=temp;
           var backSrc=storage['last']||"/";
           this.$emit("headerInfo",{title:"就诊信息确认",backSrc:backSrc});
-          api("nethos.pat.login",{patMobile:"13522365145",patPassword:"123456"})
-          .then((val)=>{
-              window.localStorage['token']=val.token;
-              this.token=val.token;
+          this.token=window.localStorage['token'];
+          var item={}
+          if(window.localStorage['compatInfo']!=undefined){
+              item=JSON.parse(window.localStorage['compatInfo']);
+              this.getPat(item.compatName,item.compatIdcard,item.compatMobile,item.compatRecord,item.compatId);
+              this.generateQR();              
+          }
+          else{
               api("nethos.pat.compat.list",{token:this.token})
               .then((val)=>{
+                  this.patList=val.list;
                   var item=val.list[0];
                   this.getPat(item.compatName,item.compatIdcard,item.compatMobile,item.compatRecord,item.compatId);
-                  api("nethos.book.captcha.generate",{
-                      compatId:this.patInfo.compatId,
-                      bookHosId:this.bookHosId,
-                      bookNumId:this.bookNumId,
-                      token:this.token
-                                                     })
-                  .then((val)=>{
-                      this.Got=true;
-                      this.imgSrc=val.obj.captcha;
-                      this.imgSrc.replace(/[\r\n]/g,"");
-                      document.getElementById('au').setAttribute("src","data:image/png;base64,"+this.imgSrc);
-                      console.log(val.obj);
-                  },
-                       ()=>{
-                      this.failure=true;
-                      this.Got=true;
-                  })
+                  this.generateQR();
               },
                    ()=>{
                   this.failure=true;
                   this.Got=true;
               })
-          })
+          }
           
       }
   };
@@ -238,4 +247,5 @@
             font-size:0.77rem;
         }
     }
+
 </style>
