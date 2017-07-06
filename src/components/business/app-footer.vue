@@ -61,7 +61,7 @@
         },
 		toInfo(){
 			this.$router.push("/tab/news");
-		}
+		},
       goMyCenter(){
         this.$router.push('myCenter')
       },
