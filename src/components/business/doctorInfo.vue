@@ -27,7 +27,7 @@
           <MySelect :options="deptList" @update="update"></MySelect>
           <div class="weui-cell" style="display:flex;flex-direction:row" v-for="scheme in filteredSchemeList">
               <div >
-                    {{scheme.time}}
+                    {{scheme.time|getMyDay}}
                       {{scheme.Ampm}}
                       {{scheme.week}}
     </div>
@@ -71,7 +71,7 @@
                     <span class="weui-loadmore__tips">网络错误</span>
                 </div>
                 <div v-show="Got&!failure" class="popUp">
-                    <p class="small">{{chosedItem.time}}  {{chosedItem.week}}  {{chosedItem.Ampm}}</p>
+                    <p class="small">{{chosedItem.time | getMyDay}}  {{chosedItem.week}}  {{chosedItem.Ampm}}</p>
                     
                     <p class="weui-msg__desc small">号源时段以医院实际情况为准</p>
                     <ul>
@@ -90,6 +90,7 @@
     import MySelect from './select';
     import MyPanel from './panel';
     import api from '../../lib/api.js';
+    import {getMyDay} from "../../lib/filter.js";
   export default {
     data() {
       return {
@@ -109,6 +110,9 @@
           Got:false,
           failure:false
       };
+    },
+    filters:{
+        getMyDay
     },
     created(){
         let tempList=this.$route.params.id.split('&');
@@ -153,7 +157,7 @@
             var list=[]
             for(let i=0;i<this.bookList.length;i++){
                 var newNode=new Object();
-                var date=new Date(this.bookList[i].numTime);
+                var date=new Date(this.bookList[i].numTime.replace(/\-/g, "/"));
                 newNode.hour=("0" + (date.getHours())).slice(-2);
                 newNode.minute=("0" + (date.getMinutes())).slice(-2);
                 date.setMinutes(date.getMinutes()+20);
@@ -239,7 +243,7 @@
                     let list=this.deptSchemeList[i].schemeList;
                     for(let j=0;j<list.length;j++){
                         var temp=new Object();
-                        temp.time=this.getTime(list[j].schemeDate);
+                        temp.time=list[j].schemeDate;
                         temp.Ampm=list[j].schemeAmpm=="am"?"上午":"下午";
                         temp.week=weekList[list[j].weekNo-1];
                         temp.status=statusList[list[j].schemeStats];

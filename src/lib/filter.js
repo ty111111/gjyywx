@@ -39,6 +39,14 @@ const getDay = (time)=>{
   	let day = time.getDate()
   	return year + '年' + month + '月' + day + '日'
 }
+const getMyDay = (oldTime)=>{
+    var time = oldTime.replace(/\-/g, "/");
+    let date=new Date(time);
+    let month= ("0" + (date.getMonth() + 1)).slice(-2);
+    let day=("0" + (date.getDate())).slice(-2);
+    let year=date.getFullYear();
+    return Number(year)+"-"+Number(month)+"-"+Number(day);
+}
 var goodTime = function(unixTime){
   let str = parseInt( unixTime )
   var now = new Date().getTime(),
@@ -68,4 +76,4 @@ var goodTime = function(unixTime){
   return result;
 }
 
-export {Todate,getWeek,getDay,goodTime}
+export {Todate,getWeek,getDay,goodTime,getMyDay}

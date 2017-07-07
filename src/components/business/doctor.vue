@@ -162,7 +162,7 @@
             var list=[]
             for(let i=0;i<this.bookList.length;i++){
                 var newNode=new Object();
-                var date=new Date(this.bookList[i].numTime);
+                var date=new Date(this.bookList[i].numTime.replace(/\-/g, "/"));
                 newNode.hour=("0" + (date.getHours())).slice(-2);
                 newNode.minute=("0" + (date.getMinutes())).slice(-2);
                 date.setMinutes(date.getMinutes()+20);
