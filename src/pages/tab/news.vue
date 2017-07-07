@@ -5,7 +5,7 @@
     </app-header>
 
       <div class="horiScroller">
-      <div class="nav">
+      <div class="nav scroller">
           <div v-for="(item,index) in typeList">
               <div><a class="small"@click="setChosedItem(index)" :class="{'Chosed':chosedIndex==index}">{{item.typeName}}</a></div>
     </div>

@@ -19,8 +19,8 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
-  import ScrollFresh from '../../lib/templete/scroll-fresh.vue';
+<script >
+  import ScrollFresh from '../../components/business/scroll-fresh.vue';
   import AppHeader from "../../components/business/app-header";
   import api from "../../lib/api";
   export default {
@@ -54,11 +54,16 @@
             api("nethos.doc.card",{docId:this.docId})
             .then((val)=>{
                 this.docName=val.obj.sysDoc.docName;
-                this.articleList=val.obj.docArticleList||[];
+                this.articleList.push(...val.obj.docArticleList);
                 console.log(this.articleList);
-                this.articleList.forEach((item)=>{
+                for(let i=0;i<this.articleList.length;i++){
+                    var item=this.articleList[i];
+                    console.log(item);
                     item.createTime=this.getLocalTime(item.createTime);
-                })
+                }
+//                this.articleList.forEach((item)=>{
+//                    item.createTime=this.getLocalTime(item.createTime);
+//                })
           this.isCompleted=true;
           setTimeout(()=>{this.isCompleted=false},100);
             })

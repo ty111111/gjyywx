@@ -9,7 +9,7 @@
     </div>
   <div class="view" id="module" v-if="Got&&!failure">
 
-      <div class="sidebar" id="sidebar">
+      <div class="sidebar scroller" id="sidebar">
         <ul>
             <li v-for="(item,index) in departmentFilter" @click="changeDepartment(index)" :class="{'isChosed':checkIfChosed(index)}">
 
@@ -23,7 +23,7 @@
     </li>
     </ul>
     </div>
-      <div class="main" id="main">
+      <div class="main scroller" id="main">
           <ul>
               <li v-for="item in subDepartment" :class="{'li-disabled':!item.hasScheme}">
     <a class="weui-cell weui-cell_access" href="javascript:;" @click="next(item)">
