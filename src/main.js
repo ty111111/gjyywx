@@ -11,11 +11,13 @@ import weui from "./lib/wejs"
 import Directive from "./lib/directive"
 import VueScroller from 'vue-scroller'
 import Vuelidate from 'vuelidate'
+
 Vue.use(Vuelidate)
 Vue.use(VueScroller)
 Vue.use(Bus)
 Vue.use(Directive)
 Vue.use(weui)
+
 
 import "babel-polyfill";
 

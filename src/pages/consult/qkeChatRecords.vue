@@ -198,7 +198,7 @@
   }
 
   .wrap{
-    flex: 1;
+    -webkit-overflow-scrolling: touch;
     overflow: auto;
     padding-top: 15px;
   }

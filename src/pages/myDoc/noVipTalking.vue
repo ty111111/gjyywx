@@ -4,29 +4,32 @@
       <div class="middle big">{{name}}</div>
     </top>
     <div class="wrap">
-      <div  class="talk-detail" >
-        <div class="rightMsg" v-for="item of msgList">
-          <div class="floatImg">
-            <img class="title" src="../../assets/logo.png" alt="">
-          </div>
-          <div class="floatRight">
-            <div class="comment">
-              {{item.msgText}}
+
+        <div  class="talk-detail" >
+          <div class="rightMsg" v-for="item of msgList">
+            <div class="floatImg">
+              <img class="title" src="../../assets/logo.png" alt="">
+            </div>
+            <div class="floatRight">
+              <div class="comment">
+                {{item.msgText}}
+              </div>
             </div>
           </div>
+
+          <div class="leftMsg" >
+            <div class="otherImg">
+              <img class="otherTitle" src="../../assets/logo.png" alt="">
+            </div>
+            <div class="floatLeft">
+              <div class="com">谢谢你的关注</div>
+            </div>
+          </div>
+
+
         </div>
 
-        <div class="leftMsg" >
-          <div class="otherImg">
-            <img class="otherTitle" src="../../assets/logo.png" alt="">
-          </div>
-          <div class="floatLeft">
-            <div class="com">谢谢你的关注</div>
-          </div>
-        </div>
 
-
-      </div>
       <div class="bottom">
         您暂时无法向医生发消息
       </div>
@@ -88,15 +91,17 @@
   .talk-detail{
     margin-top: 15px;
     overflow: auto;
-    flex: 1;
+    -webkit-overflow-scrolling: touch;
   }
 
 
   .rightMsg{
     overflow: hidden;
+    margin-bottom: 10px;
   }
   .leftMsg{
     overflow: hidden;
+    margin-bottom: 10px;
   }
   .floatRight{
     float: right;
@@ -107,22 +112,24 @@
   }
   .floatImg{
     float: right;
+    height: 30px;
   }
   .otherImg{
     float: left;
+    height: 30px;
   }
   .title{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 15px;
     padding-left: 5px;
   }
   .otherTitle{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 15px;
     padding-right: 5px;
   }
 
@@ -145,9 +152,11 @@
   }
   .comment {
     width: 150px;
+    min-height: 30px;
+    line-height: 30px;
     height: auto;
     position: relative;
-    background: #f8ac09;
+    background: lawngreen;
     border-radius: 5px;
     word-wrap:break-word;
     word-break:break-all;
@@ -161,14 +170,16 @@
     top: 5px;
     right: -16px;
     border: solid 8px;
-    border-color: transparent transparent transparent #f8ac09;
+    border-color: transparent transparent transparent lawngreen;
     font-size: 0;
   }
   .com {
     width: 150px;
+    min-height: 30px;
+    line-height: 30px;
     height: auto;
     position: relative;
-    background: #f8ac09;
+    background: lawngreen;
     border-radius: 5px;
     word-wrap:break-word;
     word-break:break-all;
@@ -182,7 +193,7 @@
     top: 5px;
     left: -16px;
     border: solid 8px;
-    border-color:  transparent #f8ac09 transparent transparent;
+    border-color:  transparent lawngreen transparent transparent;
     font-size: 0;
   }
   .bottom{

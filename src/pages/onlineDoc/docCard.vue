@@ -4,7 +4,8 @@
           <div class="middle big">医生名片</div>
           <span slot="right" class="step" @click="attentionDoc">{{docObj.follow?'取消关注':'关注医生'}}</span>
         </top>
-      <div class="wrapContain">
+
+        <div class="wrapContain">
           <div class="docDetail">
             <div class="docHeader">
               <div class="docImg docTitle">
@@ -60,7 +61,7 @@
             <div class="arrows" @click="introduceSpread"><span class="arrowLt">&lt;</span></div>
           </div>
 
-         <div class="docEssay">
+          <div class="docEssay">
             <div class="docStrong">医生文章  <div class="more" @click="goEssay(docObj.docId)">更多</div></div>
 
             <div >
@@ -74,14 +75,16 @@
             </div>
           </div>
 
-         <div class="code">
-           <p>扫二维码，关注我</p>
-           <p class="codeImg">
-             <img :src="docObj.docQrcodeUrl" alt="">
-           </p>
-         </div>
+          <div class="code">
+            <p>扫二维码，关注我</p>
+            <p class="codeImg">
+              <img :src="docObj.docQrcodeUrl" alt="">
+            </p>
+          </div>
 
-      </div>
+        </div>
+
+
 
     </div>
 </template>
@@ -200,7 +203,7 @@
   }
   .wrapContain{
     overflow: auto;
-    flex: 1;
+    -webkit-overflow-scrolling: touch;
   }
   .docHeader{
     padding: 10px 0;

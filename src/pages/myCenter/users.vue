@@ -81,7 +81,7 @@
     flex-direction: column;
   }
   .wrap{
-    flex: 1;
+    -webkit-overflow-scrolling: touch;
     overflow: auto;
   }
     .step {

@@ -50,7 +50,7 @@
   }
 .wrap{
   overflow: auto;
-  flex: 1;
+  -webkit-overflow-scrolling: touch;
   margin-top: 10px;
   box-sizing: border-box;
   padding-bottom: 10px;
