@@ -6,14 +6,14 @@
           <a slot="right" class="chaxun" @click="query">查询</a>
     </app-header>
       <div class="weui-cells">
-          <my-panel>
+          <my-panel @activate="setPat">
               <p slot="picture" style="color:#666666">就诊人信息</p>
-              <p slot="ft" class="small" style="color:#3399cc">切换就诊人</p>
+              <p slot="ft" class="small" style="color:#3399cc" >切换就诊人</p>
     </my-panel>
           <div class="weui-cell weui-msg__desc small" >
-              姓名： {{patInfo.patName}}<br>
-              手机号：{{patInfo.patMobile}}<br>
-              身份证号：{{patInfo.patIdcard}}<br>
+              姓名： {{patInfo.compatName}}<br>
+              手机号：{{patInfo.compatMobile}}<br>
+              身份证号：{{patInfo.compatIdcard}}<br>
               病案号： {{patInfo.compatMedicalRecord}}
     </div>
     </div>
@@ -50,17 +50,29 @@
               alert("请先登录");
           }
           else{
-              api("nethos.pat.info.get",{token:window.localStorage['token']})
-              .then((val)=>{
-                  console.log(val);
-                  this.patInfo=val.obj;
+              var item={};
+              if (window.localStorage['compatInfo']!=undefined){
+                  item=window.localStorage['compatInfo'];
+                  this.patInfo=JSON.parse(item);
                   if(!this.patInfo.compatMedicalRecord){
-                    this.patInfo.compatMedicalRecord="暂无绑定病案号";
+                      this.patInfo.compatMedicalRecord="暂未绑定病案号";
                   }
-              })
+              }
+              else{
+                 api("nethos.pat.compat.list",{'token':window.localStorage['token']})
+                 .then((val)=>{
+                     this.patInfo=val.list[0];
+                  if(!this.patInfo.compatMedicalRecord){
+                      this.patInfo.compatMedicalRecord="暂未绑定病案号";
+                  }
+                 })
+              }
           }
       },
       methods:{
+          setPat(){
+             this.$router.push("/service/setPat/"); 
+          },
           query(){
               if (this.patInfo.compatMedicalRecord=="暂无绑定病案号"){
                   this.recordDis=true;

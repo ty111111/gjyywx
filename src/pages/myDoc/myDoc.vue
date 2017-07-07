@@ -14,38 +14,41 @@
             </div>
           </div>
         </div>
-        <div class="contain">
-          <div v-show="showAttention" class="list" v-for="item of attentionList" @click="goDocCard(item.sysDoc.docId)">
-            <div class="itemImg">
-              <img :src="item.sysDoc.docAvatar" alt="">
-            </div>
-            <div class="itemContain">
-              <ul>
-                <li>{{item.sysDoc.docName}} &nbsp; &nbsp;&nbsp;<span class="fontCol">{{item.sysDoc.docTitle}}</span></li>
-                <li><span class="fontCol">{{item.sysDoc.docDeptName}}</span></li>
-                <li><span class="fontCol">{{item.sysDoc.docPicConsultStatus?'图文问诊':''}} &nbsp; &nbsp;&nbsp;{{item.sysDoc.docVideoConsultStatus?'视频问诊':''}}</span></li>
-              </ul>
-            </div>
-            <div class="itemXing"><span class="fontCol">
+
+          <div class="contain">
+            <div v-show="showAttention" class="list" v-for="item of attentionList" @click="goDocCard(item.sysDoc.docId)">
+              <div class="itemImg">
+                <img :src="item.sysDoc.docAvatar" alt="">
+              </div>
+              <div class="itemContain">
+                <ul>
+                  <li>{{item.sysDoc.docName}} &nbsp; &nbsp;&nbsp;<span class="fontCol">{{item.sysDoc.docTitle}}</span></li>
+                  <li><span class="fontCol">{{item.sysDoc.docDeptName}}</span></li>
+                  <li><span class="fontCol">{{item.sysDoc.docPicConsultStatus?'图文问诊':''}} &nbsp; &nbsp;&nbsp;{{item.sysDoc.docVideoConsultStatus?'视频问诊':''}}</span></li>
+                </ul>
+              </div>
+              <div class="itemXing"><span class="fontCol">
               &gt;</span>
+              </div>
+            </div>
+            <div v-show="showTalk" class="talkList" v-for="talkItem of talkList" @click="goTalking(talkItem.followDocpat.followId,talkItem.followDocpat.patVip)">
+              <div class="talkImg">
+                <img :src="talkItem.sysDoc.docAvatar" alt="">
+                <span v-show="talkItem.unReadCount>0" class="weui-badge" style="position: absolute;top: 3px;right: 5px;">{{talkItem.unReadCount}}</span>
+              </div>
+              <div class="talkDetail">
+                <ul>
+                  <li>{{talkItem.sysDoc.docName}} &nbsp; <span class="fontCol">{{talkItem.sysDoc.docTitle}}</span></li>
+                  <li class="message" v-if="talkItem.followMessage">{{talkItem.followMessage.msgText.substring(0,8)+'......'}}</li>
+                </ul>
+              </div>
+              <div class="date" v-if="talkItem.followMessage">
+                {{talkItem.followMessage.createTime | Todate}}
+              </div>
             </div>
           </div>
-          <div v-show="showTalk" class="talkList" v-for="talkItem of talkList" @click="goTalking(talkItem.followDocpat.followId,talkItem.followDocpat.patVip)">
-            <div class="talkImg">
-              <img :src="talkItem.sysDoc.docAvatar" alt="">
-              <span v-show="talkItem.unReadCount>0" class="weui-badge" style="position: absolute;top: 3px;right: 5px;">{{talkItem.unReadCount}}</span>
-            </div>
-            <div class="talkDetail">
-              <ul>
-                <li>{{talkItem.sysDoc.docName}} &nbsp; <span class="fontCol">{{talkItem.sysDoc.docTitle}}</span></li>
-                <li class="message" v-if="talkItem.followMessage">{{talkItem.followMessage.msgText}}</li>
-              </ul>
-            </div>
-            <div class="date" v-if="talkItem.followMessage">
-              {{talkItem.followMessage.createTime | Todate}}
-            </div>
-          </div>
-        </div>
+
+
       </div>
     </div>
 </template>
@@ -160,7 +163,7 @@
 
 .contain{
   overflow:auto;
-  flex: 1;
+  -webkit-overflow-scrolling: touch;
 }
 
 .list{

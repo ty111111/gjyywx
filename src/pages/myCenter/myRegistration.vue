@@ -1,34 +1,34 @@
 <template>
     <div id="onlinepage">
-        <top>
+        <top class="head">
             <div class="middle big">我的挂号</div>
         </top>
-      <div class="wrap">
-        <div class="content" v-for="detail of list">
-          <div class="registrationDetail">
-            <p>{{detail.bookTime}}&nbsp;&nbsp;{{detail.bookAmpm=='am'?'上午':'下午'}} <span class="current" v-show="detail.orderState=='1'">实时挂号</span></p>
-            <p>医院 : {{detail.hosName}}</p>
-            <p>科室 : {{detail.deptName}}</p>
-            <p>医生 : {{detail.docName}}</p>
-            <p>预估就诊时间 : {{detail.gotoTime}}</p>
-            <p>支付方式 : {{detail.hosName}}</p>
-            <p>挂号费 : {{detail.bookFee}}</p>
-            <p>取号密码 : {{detail.numPassword}}</p>
-          </div>
-          <div class="patDetail">
-            <p>患者 : {{detail.patientName}}</p>
-            <p>身份证号 : {{detail.compatIdcard}}</p>
-            <p>手机号 : {{detail.compatMobile}}</p>
-          </div>
-          <div class="state" v-if="detail.orderState=='0'">
-            <a @click="cancel(detail.orderId)" href="javascript:;" v-show="Date.parse(new Date())-Date.parse(new Date(detail.bookTime))<0">取消预约</a>
-            <a @click="evaluate" href="javascript:;" v-show="Date.parse(new Date())-Date.parse(new Date(detail.bookTime))>0">评价医生</a>
-          </div>
-          <div class="state" v-if="detail.orderState=='3'">
-            <a href="javascript:;">已取消</a>
+        <div class="wrap">
+          <div class="content" v-for="detail of list">
+            <div class="registrationDetail">
+              <p>{{detail.bookTime}}&nbsp;&nbsp;{{detail.bookAmpm=='am'?'上午':'下午'}} <span class="current" v-show="detail.orderState=='1'">实时挂号</span></p>
+              <p>医院 : {{detail.hosName}}</p>
+              <p>科室 : {{detail.deptName}}</p>
+              <p>医生 : {{detail.docName}}</p>
+              <p>预估就诊时间 : {{detail.gotoTime}}</p>
+              <p>支付方式 : {{detail.hosName}}</p>
+              <p>挂号费 : {{detail.bookFee}}</p>
+              <p>取号密码 : {{detail.numPassword}}</p>
+            </div>
+            <div class="patDetail">
+              <p>患者 : {{detail.patientName}}</p>
+              <p>身份证号 : {{detail.compatIdcard}}</p>
+              <p>手机号 : {{detail.compatMobile}}</p>
+            </div>
+            <div class="state" v-if="detail.orderState=='0'">
+              <a @click="cancel(detail.orderId)" href="javascript:;" v-show="Date.parse(new Date())-Date.parse(new Date(detail.bookTime))<0">取消预约</a>
+              <a @click="evaluate" href="javascript:;" v-show="Date.parse(new Date())-Date.parse(new Date(detail.bookTime))>0">评价医生</a>
+            </div>
+            <div class="state" v-if="detail.orderState=='3'">
+              <a href="javascript:;">已取消</a>
+            </div>
           </div>
         </div>
-      </div>
     </div>
 </template>
 <script type="text/ecmascript-6">
@@ -87,9 +87,11 @@
     display: flex;
     flex-direction: column;
   }
+
   .wrap{
-    flex: 1;
+    -webkit-overflow-scrolling: touch;
     overflow: auto;
+    margin-top: 20px;
 
   }
 

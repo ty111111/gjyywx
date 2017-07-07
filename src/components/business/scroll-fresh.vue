@@ -5,7 +5,7 @@
               <div id="pullDown" style="display:flex;flex-direction:row;justify-content:center;align-items:center"><div>下拉刷新</div></div>
     </slot>
           <slot name="containing"></slot>
- 
+
           <div ref="supplement" style="height:0px;background-color:#F8F8F8" id="supplement"></div>
           <slot name="pullUp" v-if="hasRight">
               <div id="pullUp" ref="pullUp" style="text-align:center;" >正在加载</div>
@@ -52,6 +52,7 @@
           document.body.addEventListener('touchmove',this.myFun);
           setTimeout(that.load,20);
 
+
       },
       data()
       {
@@ -92,7 +93,7 @@
               required:false
           }
           ,
-          
+
           height:{
               type:String,
               default:"50",
@@ -113,6 +114,7 @@
       {
           isCompleted()
           {
+
               if(this.isCompleted){
                   if(this.step==1)
                   {
@@ -121,6 +123,7 @@
                   }
                   else
                   {
+
                       if(this.nothingMore)
                       {
                           this.$refs.pullUp.innerHTML="无更多内容";
@@ -157,6 +160,7 @@
                   var pullUp=document.getElementById("pullUp");
                   var pullDown = document.getElementById('pullDown');
                   pullDown.style.height=this.height+'px';
+
                   this.pullDownOffset=-parseInt(this.height);
                   this.myScroll = new IScroll('#wrapper', {
                        useTranstion:true,
@@ -191,6 +195,7 @@
                   
                   
 
+
           }
       }
   }
@@ -199,35 +204,35 @@
 <style scoped lang="scss">
 
 #wrapper {
-    position: absolute;  
+    position: absolute;
     z-index: 1;
-    bottom: 50px;  
-    left: 0;  
-    width: 100%;  
-    background: rgb(248, 248, 248);  
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    background: rgb(248, 248, 248);
     overflow: auto;
 }
 
 #scroller {
     background-color:rgb(248, 248, 248);
-    position: absolute;  
-    z-index: 1;  
-    -webkit-tap-highlight-color: rgba(0,0,0,0);  
-    width: 100%;  
-    -webkit-transform: translateZ(0);  
-    -moz-transform: translateZ(0);  
-    -ms-transform: translateZ(0);  
-    -o-transform: translateZ(0);  
-    transform: translateZ(0);  
-    -webkit-touch-callout: none;  
-    -webkit-user-select: none;  
-    -moz-user-select: none;  
-    -ms-user-select: none;  
-    user-select: none;  
-    -webkit-text-size-adjust: none;  
-    -moz-text-size-adjust: none;  
-    -ms-text-size-adjust: none;  
-    -o-text-size-adjust: none;  
-    text-size-adjust: none; 
+    position: absolute;
+    z-index: 1;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none;
 }
 </style>

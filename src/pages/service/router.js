@@ -75,4 +75,11 @@ export default [{
     component: resolve => {
       require(['./bind.vue'], resolve)
     }
-  }]
+  },
+               {
+                   path:'/service/setPat/',
+                   component:resolve=>{
+                       require(['./book/setPat.vue'],resolve);
+                   }
+               }
+               ]

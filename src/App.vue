@@ -23,7 +23,7 @@
     mounted(){
 
       setTimeout((res) => {
-        this.show = true;    }, 10000)
+        this.show = true;    }, 100)
 
     },
     watch: {},
