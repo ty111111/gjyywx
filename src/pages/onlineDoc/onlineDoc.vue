@@ -261,11 +261,12 @@
   .wrap{
     display: flex;
     flex: 1;
+    overflow: auto;
     flex-direction: column;
   }
   .contain{
     overflow:auto;
-    flex: 1;
+    -webkit-overflow-scrolling: touch;
   }
   .header{
     display: flex;

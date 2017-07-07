@@ -46,7 +46,7 @@
     line-height: 45px;
     background-color: white;
     display: flex;
-
+flex: none;
    z-index:999;
     >.left,.right{
       text-align: center;

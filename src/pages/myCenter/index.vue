@@ -1,107 +1,110 @@
 <template>
-    <div>
+    <div id="onlinepage">
         <top>
             <div class="middle big">我的</div>
         </top>
-      <div class="wrap">
-        <div class="weui-cells">
-          <a class="weui-cell weui-cell_access" href="javascript:;" >
-            <div class="weui-cell__bd">
-             <div class="detail">
-               <div class="patImg">
-                 <label for="upload_img" class="label_img"> <img :src="patDetail.patAvatar" alt=""></label>
-                 <input  @change.stop="upLoad" type="file" id="upload_img" >
-               </div>
 
-               <div class="name">
-                 <ul>
-                   <li>{{patDetail.patName}}</li>
-                   <li class="sex">{{patDetail.patGender=='M'?'男':'女'}}  {{patDetail.age}}</li>
-                 </ul>
-               </div>
-             </div>
+        <div class="wrap">
+          <div class="weui-cells">
+            <a class="weui-cell weui-cell_access" href="javascript:;" >
+              <div class="weui-cell__bd">
+                <div class="detail" >
+                  <div class="patImg">
+                    <label for="upload_img" class="label_img"> <img :src="patDetail.patAvatar" alt=""></label>
+                    <input  @change.stop="upLoad" type="file" id="upload_img" >
+                  </div>
+
+                  <div class="name" @click="goMyMsg(patDetail)">
+                    <ul>
+                      <li>{{patDetail.patName}}</li>
+                      <li class="sex">{{patDetail.patGender=='M'?'男':'女'}}  {{patDetail.age}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="weui-cell__ft" >
+              </div>
+            </a>
+          </div>
+          <div class="project">
+            <div class="weui-cells">
+              <a class="weui-cell weui-cell_access" href="javascript:;" @click="goInquiry">
+                <div class="weui-cell__bd">
+                  <p>我的问诊</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+              </a>
+              <a class="weui-cell weui-cell_access" href="javascript:;" @click="goUsers">
+                <div class="weui-cell__bd">
+                  <p>常用就诊人</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+              </a>
+              <a class="weui-cell weui-cell_access" href="javascript:;" @click="goMyRegistration(patDetail.patId)">
+                <div class="weui-cell__bd">
+                  <p>我的挂号</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+              </a>
             </div>
-            <div class="weui-cell__ft" @click.stop="goMyMsg(patDetail)">
+
+          </div>
+          <div class="health">
+            <div class="weui-cells">
+              <a class="weui-cell weui-cell_access" href="javascript:;">
+                <div class="weui-cell__bd">
+                  <p>健康档案</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+              </a>
             </div>
-          </a>
-        </div>
-        <div class="project">
-          <div class="weui-cells">
-            <a class="weui-cell weui-cell_access" href="javascript:;" @click="goInquiry">
-              <div class="weui-cell__bd">
-                <p>我的问诊</p>
-              </div>
-              <div class="weui-cell__ft">
-              </div>
-            </a>
-            <a class="weui-cell weui-cell_access" href="javascript:;" @click="goUsers">
-              <div class="weui-cell__bd">
-                <p>常用就诊人</p>
-              </div>
-              <div class="weui-cell__ft">
-              </div>
-            </a>
-            <a class="weui-cell weui-cell_access" href="javascript:;" @click="goMyRegistration(patDetail.patId)">
-              <div class="weui-cell__bd">
-                <p>我的挂号</p>
-              </div>
-              <div class="weui-cell__ft">
-              </div>
-            </a>
-          </div>
 
-        </div>
-        <div class="health">
-          <div class="weui-cells">
-            <a class="weui-cell weui-cell_access" href="javascript:;">
-              <div class="weui-cell__bd">
-                <p>健康档案</p>
-              </div>
-              <div class="weui-cell__ft">
-              </div>
-            </a>
           </div>
+          <div class="consume">
+            <div class="weui-cells">
+              <a class="weui-cell weui-cell_access" href="javascript:;" @click="goExpenseHistory">
+                <div class="weui-cell__bd">
+                  <p>消费记录</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+              </a>
+            </div>
 
-        </div>
-        <div class="consume">
-          <div class="weui-cells">
-            <a class="weui-cell weui-cell_access" href="javascript:;" @click="goExpenseHistory">
-              <div class="weui-cell__bd">
-                <p>消费记录</p>
-              </div>
-              <div class="weui-cell__ft">
-              </div>
-            </a>
           </div>
+          <div class="account">
+            <div class="weui-cells">
+              <a class="weui-cell weui-cell_access" href="javascript:;" @click="goAccount">
+                <div class="weui-cell__bd">
+                  <p>账户相关</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+              </a>
+              <a class="weui-cell weui-cell_access" href="javascript:;" @click="goUserHelp">
+                <div class="weui-cell__bd">
+                  <p>使用帮助</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+              </a>
+              <a class="weui-cell weui-cell_access" href="javascript:;" @click="about">
+                <div class="weui-cell__bd">
+                  <p>关于</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+              </a>
+            </div>
 
-        </div>
-        <div class="account">
-          <div class="weui-cells">
-            <a class="weui-cell weui-cell_access" href="javascript:;" @click="goAccount">
-              <div class="weui-cell__bd">
-                <p>账户相关</p>
-              </div>
-              <div class="weui-cell__ft">
-              </div>
-            </a>
-            <a class="weui-cell weui-cell_access" href="javascript:;" @click="goUserHelp">
-              <div class="weui-cell__bd">
-                <p>使用帮助</p>
-              </div>
-              <div class="weui-cell__ft">
-              </div>
-            </a>
-            <a class="weui-cell weui-cell_access" href="javascript:;" @click="about">
-              <div class="weui-cell__bd">
-                <p>关于</p>
-              </div>
-              <div class="weui-cell__ft">
-              </div>
-            </a>
           </div>
-
         </div>
-      </div>
+
+
       <div class="bottom">
         <foot></foot>
       </div>
@@ -209,15 +212,29 @@
     }
 </script>
 <style scoped>
+  #onlinepage{
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
   .detail{
     display: flex;
     box-sizing: border-box;
     padding: 10px;
+    position: relative;
+  }
+  .wrap{
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 70px;
   }
   .patImg{
-    width: 50px;
+    position: absolute;
+    width: 80px;
     height: 50px;
     border-radius: 25px;
+
   }
   .patImg img{
     width: 50px;
@@ -226,7 +243,8 @@
   }
   .name{
     box-sizing: border-box;
-    padding-left: 15px;
+    padding-left: 65px;
+    width: 100%;
   }
   .sex{
     color: gray;

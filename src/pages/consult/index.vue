@@ -3,46 +3,49 @@
     <top>
       <div class="middle big">我的问诊</div>
     </top>
-    <div class="wrap">
-      <div class="tab">
-        <div class="tabGround">
-          <div :class="{tabItem:true,bak:current=='all'}" @click="all">
-            全部
-          </div>
-          <div :class="{tabItem:true,bak:current=='wait'}" @click="wait">
-            待付款
-          </div>
-          <div :class="{tabItem:true,bak:current=='going'}" @click="going">
-            进行中
-          </div>
-          <div :class="{tabItem:true,bak:current=='evaluate'}" @click="evaluate">
-            待评价
-          </div>
-          <div :class="{tabItem:true,bak:current=='yetEvaluate'}" @click="yetEvaluate">
-            已评价
-          </div>
-          <div :class="{tabItem:true,bak:current=='cancel'}" @click="cancel">
-            已取消
-          </div>
-        </div>
 
-      </div>
-      <div class="contain">
-        <div class="list" v-for="item of inquiryList" @click="goMessage(item.consultId,item.consultTypeName,item.consultStatusDescription)">
-          <div class="itemHeader">
-            <div class="title">{{item.consultTypeName}}</div>
-            <div class="date">{{item.payTime?item.payTime:item.createTime | Todate}}</div>
+      <div class="wrap">
+        <div class="tab">
+          <div class="tabGround">
+            <div :class="{tabItem:true,bak:current=='all'}" @click="all">
+              全部
+            </div>
+            <div :class="{tabItem:true,bak:current=='wait'}" @click="wait">
+              待付款
+            </div>
+            <div :class="{tabItem:true,bak:current=='going'}" @click="going">
+              进行中
+            </div>
+            <div :class="{tabItem:true,bak:current=='evaluate'}" @click="evaluate">
+              待评价
+            </div>
+            <div :class="{tabItem:true,bak:current=='yetEvaluate'}" @click="yetEvaluate">
+              已评价
+            </div>
+            <div :class="{tabItem:true,bak:current=='cancel'}" @click="cancel">
+              已取消
+            </div>
           </div>
-          <div class="itemContain">
-            {{item.consultContent}}
-          </div>
-          <div class="itemState">
-            <div class="name" v-show="item.docName">{{item.docName}}</div>
-            <div class="state">{{item.consultStatusDescription}}</div>
+
+        </div>
+        <div class="contain">
+          <div class="list" v-for="item of inquiryList" @click="goMessage(item.consultId,item.consultTypeName,item.consultStatusDescription)">
+            <div class="itemHeader">
+              <div class="title">{{item.consultTypeName}}</div>
+              <div class="date">{{item.payTime?item.payTime:item.createTime | Todate}}</div>
+            </div>
+            <div class="itemContain">
+              {{item.consultContent}}
+            </div>
+            <div class="itemState">
+              <div class="name" v-show="item.docName">{{item.docName}}</div>
+              <div class="state">{{item.consultStatusDescription}}</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+
   </div>
 </template>
 
@@ -215,11 +218,11 @@
     background: yellowgreen;
   }
   .contain{
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
     width: 100%;
     box-sizing: border-box;
     padding: 5px;
-    overflow: auto;
-    flex: 1;
     margin-bottom: 50px;
   }
   .list{

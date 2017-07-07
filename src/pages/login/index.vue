@@ -91,8 +91,8 @@
 
 <style scoped lang="scss">
 .title{
-  height: 200px;
-  line-height: 200px;
+  height: 150px;
+  line-height: 150px;
   text-align: center;
 }
   .bg-white{
@@ -100,9 +100,7 @@
   }
   .bottom{
     width: 100%;
-    position: fixed;
-    left: 0px;
-    bottom: 15px;
+    margin-top: 20px;
     text-align: center;
   }
   .regis{

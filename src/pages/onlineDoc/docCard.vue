@@ -4,7 +4,8 @@
           <div class="middle big">医生名片</div>
           <span slot="right" class="step" @click="attentionDoc">{{docObj.follow?'取消关注':'关注医生'}}</span>
         </top>
-      <div class="wrapContain">
+
+        <div class="wrapContain">
           <div class="docDetail">
             <div class="docHeader">
               <div class="docImg docTitle">
@@ -60,29 +61,30 @@
             <div class="arrows" @click="introduceSpread"><span class="arrowLt">&lt;</span></div>
           </div>
 
-         <div class="docEssay">
+          <div class="docEssay">
             <div class="docStrong">医生文章  <div class="more" @click="goEssay(docObj.docId)">更多</div></div>
 
-            <div :class="{essayContain:essayHeight}">
+            <div >
               <ul>
-                <li class="essay" v-for="item of essayList">
-                  <span class="essayTitle">{{item.title}}&nbsp;&nbsp;&nbsp;</span>
-                  <span class="essayNum"> {{item.readTimes}} 阅读 &nbsp;&nbsp;&nbsp;</span>
-                  <span class="essayDate">{{item.createTime | Todate}}</span>
+                <li class="essay" >
+                  <span class="essayTitle">{{essayList.title}}&nbsp;&nbsp;&nbsp;</span>
+                  <span class="essayNum"> {{essayList.readTimes}} 阅读 &nbsp;&nbsp;&nbsp;</span>
+                  <span class="essayDate">{{essayList.createTime | Todate}}</span>
                 </li>
               </ul>
             </div>
-            <div class="arrows" @click="essaySpread"><span class="arrowLt">&lt;</span></div>
           </div>
 
-         <div class="code">
-           <p>扫二维码，关注我</p>
-           <p class="codeImg">
-             <img :src="docObj.docQrcodeUrl" alt="">
-           </p>
-         </div>
+          <div class="code">
+            <p>扫二维码，关注我</p>
+            <p class="codeImg">
+              <img :src="docObj.docQrcodeUrl" alt="">
+            </p>
+          </div>
 
-      </div>
+        </div>
+
+
 
     </div>
 </template>
@@ -102,7 +104,7 @@
               docIntroduce:true,
               essayHeight:true,
               docObj:{},
-              essayList:[]
+              essayList:{}
             }
         },
       filters:{
@@ -138,7 +140,7 @@
             if(req.succ){
               console.log(req,999)
               this.$set(this.$data,'docObj',req.obj.sysDoc)
-              this.$set(this.$data,'essayList',req.obj.docArticleList)
+              this.$set(this.$data,'essayList',req.obj.docArticleList[0])
             }
           })
         },
@@ -201,7 +203,7 @@
   }
   .wrapContain{
     overflow: auto;
-    flex: 1;
+    -webkit-overflow-scrolling: touch;
   }
   .docHeader{
     padding: 10px 0;
@@ -254,17 +256,19 @@
     padding: 10px;
   }
   .strongContain{
-    height: 56px;
+    height: 50px;
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     word-break: break-all;
     transition: height 1s;
+    font-size: 16px;
   }
   .autoHeight{
     height: auto;
     transition: height 1s;
+    font-size: 16px;
   }
   .arrows{
     color: gainsboro;
@@ -275,26 +279,30 @@
     transform:rotate(270deg);
   }
   .docIntroduce{
-    height: 56px;
+    height: 50px;
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     word-break: break-all;
     transition: height 1s;
+    font-size: 16px;
   }
   .essayContain{
-    height: 56px;
+    height: 50px;
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     word-break: break-all;
     transition: height 1s;
+    font-size: 16px;
   }
   .autoIntroduce{
     height: auto;
     transition: height 1s;
+    word-break: break-all;
+    font-size: 16px;
   }
   .introduce{
     background: white;
