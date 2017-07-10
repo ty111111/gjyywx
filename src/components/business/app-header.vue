@@ -1,13 +1,13 @@
 <template>
-  <header>
-    <slot name="left">
+  <header style="display:flex;flex-direction:row">
+    <slot name="left" >
 
-      <div class="left" @click="back"><font>返回</font></div>
+      <div class="left" @click="back" style="flex:0 0 auto;width:4rem"><font>返回</font></div>
 
     </slot>
-    <slot></slot>
-    <slot name="right">
-      <div class="right"></div>
+    <slot style="flex:1 1 auto"></slot>
+    <slot name="right" >
+      <div class="right"style="flex:0 0 auto;width:4rem"></div>
     </slot>
   </header>
 </template>

@@ -1,9 +1,9 @@
 <template>
   <div class="viewpage">
-      <app-header>
-          <div slot="left"><router-link :to="src" ><span id="arrow">&#xe600;</span></router-link></div>
-          <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">{{title}}</div>
-          <div slot="right" v-show="isShown" class="appointl" @click="getMyScheme">我的挂号</div>
+      <app-header style="display:flex;flex-direction:row">
+          <div slot="left" style="flex:0 0 auto; width:4rem"><router-link :to="src" ><span id="arrow">&#xe600;</span></router-link></div>
+          <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">{{title}}</div>
+          <div slot="right"  class="appointl" @click="getMyScheme" style="0 0 auto;width:4rem;"><p v-show="isShown">我的挂号</p></div>
     </app-header>
       <router-view @headerInfo="check" @hasRight="setRight"></router-view>
   </div>
