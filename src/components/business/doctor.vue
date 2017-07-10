@@ -24,7 +24,7 @@
     <a v-for="item in normalAppoint"class="weui-cell weui-cell_access" href="javascript:;" @click="next(item)">
         <div class="weui-cell__hd">
             <div style="background-image:url(./../../../static/img/u6883.png)" class="img">
-                普通<br>门诊
+                <p>普通<br>门诊</p>
     </div>
     </div>
         <div class="weui-cell__bd">

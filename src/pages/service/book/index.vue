@@ -1,7 +1,7 @@
 <template>
   <div class="viewpage">
       <app-header>
-          <div slot="left"><router-link :to="src" ><p style="padding-left:0.5rem;color:black">返回</p></router-link></div>
+          <div slot="left"><router-link :to="src" ><span id="arrow">&#xe600;</span></router-link></div>
           <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">{{title}}</div>
           <div slot="right" v-show="isShown" class="appointl" @click="getMyScheme">我的挂号</div>
     </app-header>
@@ -71,5 +71,19 @@ $info:  #3399FF;
     .appointl{
         color:$info;
         padding-right:5px;
+    }
+    @font-face {
+      font-family: 'iconfont';
+      src: url('//at.alicdn.com/t/font_33qiq29sp5y7gb9.woff') format('woff'),
+    }
+    #arrow{
+        
+      font-family: 'iconfont';
+      font-size: 18px;
+        padding-left:1rem;
+        color:black;
+    }
+    p, span{
+        font-family:宋体
     }
 </style>

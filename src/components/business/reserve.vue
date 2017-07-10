@@ -13,21 +13,21 @@
               <div>
                   <span class="big">预约信息</span><br><br>
              <div class="containing" style="font-size:0.77rem">
-                医院: {{reserveInfo.hosName}}<br><br>
-                科室: {{reserveInfo.deptName}}<br><br>
-                 医生: {{reserveInfo.name}}<br><br>
-                 就诊日期: {{reserveInfo.date}}  {{reserveInfo.Ampm}}<br><br>
-                 <p >预估就诊时间: {{reserveInfo.time}}  <span class="weui-msg__desc" style="font-size:0.77rem">(以医院实际情况为准)</span></p><br>
-              支付方式: 现场支付<br><br>
-              挂号费: <span style="color:#FFCC00;font-size:0.77rem">{{reserveInfo.bookFee}}.0元</span>
+                 <p>医院: {{reserveInfo.hosName}}</p>
+                 <p>科室: {{reserveInfo.deptName}}</p>
+                 <p>医生: {{reserveInfo.name}}</p>
+                 <p>就诊日期: {{reserveInfo.date}}  {{reserveInfo.Ampm}}</p>
+                 <p >预估就诊时间: {{reserveInfo.time}}  <span class="weui-msg__desc" style="font-size:0.77rem">(以医院实际情况为准)</span></p>
+                 <p>支付方式: 现场支付</p>
+                 <p>挂号费: <span style="color:#FFCC00;font-size:0.77rem">{{reserveInfo.bookFee}}.0元</span></p>
     </div>
     </div>
               
     </div>
     </div>
-
       <div class="weui-cells">
-          <div class="weui-cell pat-header">
+          <div class="weui-cell">
+              <div style="width:100%">
               <div class="patInfo">
                   <div style="text-align:left;width:40%">
                       <p class="big">就诊人信息</p>
@@ -35,15 +35,18 @@
                   <div style="color:#3399ff;width:60%;text-align:right" @click="setPat">
                       切换就诊人>
     </div>
-    </div><br>
-    <div class="containing">姓名: {{patInfo.name}}<br><br>
-    手机号: {{patInfo.phone}}<br><br>
-    身份证号: {{patInfo.id}}<br><br>
-    病案号: {{patInfo.compatRecord}}
+    </div>
+    <div class="containing" style="font-size:0.77rem">
+    <p>姓名: {{patInfo.name}}</p>
+    <p>手机号: {{patInfo.phone}}</p>
+    <p>身份证号: {{patInfo.id}}</p>
+    <p>病案号: {{patInfo.compatRecord}}</p>
+    </div>
+    </div>
+              
     </div>
     </div>
 
-    </div>
       <div class="weui-cells" v-show="Got">
       <my-nav title="验证码" :hasRight="hasRight" placeholder="请输入验证码" @update="updateVal">
           <div slot="right"><img src="" id="au" style="height:30px;width:60px;"></div>
@@ -245,6 +248,8 @@
         font-size:0.77rem;
         p{
             font-size:0.77rem;
+            padding:1rem 0;
+            font-family: 宋体;
         }
     }
 

@@ -15,7 +15,7 @@
                     <a :href="item.picture"><img class="weui-media-box__thumb" :src="item.hosPic" alt="" style="border-radius:50%; height:100%"></a>
                 </div>
                 <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">{{item.hosName}}</h4>
+                    <p class="weui-media-box__title">{{item.hosName}}</p>
                     <p class="weui-media-box__desc">{{item.hosLevel}}<br>{{item.hosAddress}}</p>
                 </div>
             </a>
@@ -32,7 +32,7 @@
                 <img class="weui-media-box__thumb" src="../../../images/u4088.png" alt="" >
             </div>
            <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">预约挂号</h4>
+                <p class="weui-media-box__title">预约挂号</p>
                 <p class="weui-media-box__desc">七天内普通号、专家号预约</p>
             </div>
     </a>
