@@ -71,6 +71,18 @@ export default [{
     }
   },
     {
+    path: '/service/baogao/report',
+    component: resolve => {
+      require(['./baogao/report.vue'], resolve)
+    }
+  },
+    {
+    path: '/service/baogao/reportInfo',
+    component: resolve => {
+      require(['./baogao/reportInfo.vue'], resolve)
+    }
+  },
+    {
     path: '/service/bind/:id',
     component: resolve => {
       require(['./bind.vue'], resolve)
