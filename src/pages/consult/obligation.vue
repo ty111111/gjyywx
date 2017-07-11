@@ -1,6 +1,7 @@
 <template>
+<div style="flex:1 1 auto;display:flex;flex-direction:column">
   <div id="onlinepage">
-    <top >
+    <top  id="header">
       <div class="middle big">{{consult.docName}}</div>
       <span slot="right" class="step" @click="cancelApply">{{msg}}</span>
     </top>
@@ -12,10 +13,7 @@
       <!--<div class="comment">-->
         <!--{{consult.consultContent}}-->
         <!--<div class="ImgBox" v-for="item of attaList" @click="showImg(item.url)">-->
-          <!--<img  class="inquiryImg" :src="item.url" alt="">-->
-        <!--</div>-->
-
-      <!--</div>-->
+          <!--<img  class="inquiryImg" :src="item.url
     <!--</div>-->
     <!--<div v-else class="wrap" ref="talking">-->
       <!--<div class="leftMsg" >-->
@@ -98,18 +96,24 @@
       <!--</div>-->
     <!--</div >&ndash;&gt;-->
     <div class="test" >
-      <chat  :message ='obj' :id="consultId" v-on:send="getData">
+      <chat  :message ='obj' :id="consultId" v-on:send="getData" ref="containing">
         <!--<div slot="inputTalk"></div>-->
       </chat>
 
+    </div>
+      <div class="input">
+      <input type="text" @focus="setHeight(true)"@blur="setHeight(false)">
     </div>
 
     <div class="btn" v-show="consult.consultStatus=='NEEDPAY'">
       <a href="javascript:;" class="weui-btn weui-btn_primary">付款</a>
     </div>
-  </div>
+    </div>
+<div id="supplement">
+    </div>
+    </div>
 </template>
-<script type="text/ecmascript-6">
+<script >
   import top from '../../components/business/app-header.vue'
   import Api from '../../lib/api'
   import editDiv from '../../lib/templete/editDiv.vue'
@@ -138,10 +142,28 @@
     },
     mounted(){
       this.$set(this.$data,'consultId',this.$route.params.consultId);
-      this.getData()
+      this.getData();
+//    window.onscroll=this.scroll_ad;
+
 
     },
     methods:{
+        
+        setHeight(flag){
+            if(flag){
+            document.getElementById("supplement").style.height=300+"px";
+            document.documentElement.scrollTop=0+'px';
+            document.body.scrollTop=0+'px';
+            document.documentElement.style.overflow="hidden";
+            console.log(document.body.offsetHeight);
+//            this.$refs.containing.style.overflow="hidden";
+//            document.documentElement.scrollTop=document.documentElement.scrollHeight-document.documentElement.offsetHeight+20+"px";
+            }
+            else{
+                document.getElementById("supplement").style.height=0+'px';
+                
+            }
+        },
       getData(){
         Api('nethos.consult.info.detail',{
           token:token,
@@ -255,6 +277,15 @@
   }
 </script>
 <style scoped>
+    #supplement{
+        
+        flex:0 0 auto;
+        height:0px;
+        width:100%; 
+    }
+    #header{
+        flex:0 0 auto;
+    }
   .step {
     padding-right: 5px;
     color: #3CC51F;
@@ -264,7 +295,7 @@
     overflow: auto;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1 1 auto;
   }
   .test{
     overflow: auto;
@@ -272,6 +303,15 @@
     flex-direction: column;
     flex: 1;
   }
+/*
+    .test2{
+        overflow:auto;
+        display:flex;
+        flex-direction:column;
+        flex
+        
+    }
+*/
   .titleHeader{
     border-bottom: 1px solid gainsboro;
     border-top: 1px solid gainsboro;
@@ -279,7 +319,7 @@
     padding: 5px;
     background: white;
     text-align: center;
-    flex: none;
+    flex: 0 0 auto;
   }
   /*.contain{*/
   /*margin-top: 20px;*/
@@ -550,6 +590,11 @@
   /*text-align: center;*/
   /*border: 1px solid darkgray;*/
   /*}*/
-
+    .input{
+        height:80px;
+        width:100%;
+        background:blue;
+        flex: 0 0 auto;
+    }
 
 </style>

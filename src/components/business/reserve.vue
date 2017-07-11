@@ -103,6 +103,9 @@
       };
     },
     computed:{
+        key(){
+            return (new Date()).valueOf();  
+        }
 
     },
     components:{
@@ -117,11 +120,11 @@
     },
     methods: {
         setPat(){
-            this.$router.push("/service/setPat/");
+            this.$router.push({path:"/service/setPat/",query:{key:this.key}});
         },
         bind(){
 //            console.log(this.patInfo);
-            this.$router.push("/service/bind/"+this.patInfo.compatId);
+            this.$router.push({path:"/service/bind/"+this.patInfo.compatId,query:{key:this.key}});
         },
         updateVal(val){
             this.auVal=val;
@@ -144,7 +147,7 @@
                         this.isShown=true;
                     }
                     if(val.succ){
-                    this.$router.push("/service/book/info/"+"1");
+                    this.$router.push({path:"/service/book/info/"+"1",query:{key:this.key}});
                     }
                 },
                      ()=>{
@@ -195,7 +198,7 @@
           var temp=new Object();
           if(!storage['hosName']||!storage['deptName']||!storage['name']||!storage['date']||!storage['date']||!storage['time']||!storage['Ampm'] ||!storage['bookFee']){
               alert("填写内容不完整，请重新填写");
-              this.$router.push("/service/book");
+              this.$router.push({path:"/service/book",query:{key:this.key}});
           }
           temp.hosName=storage["hosName"];
           temp.deptName=storage['deptName'];

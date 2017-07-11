@@ -81,7 +81,7 @@
                   storage["deptIndex"]=this.isChosed;
 //                  storage["deptList"]=JSON.stringify(this.subDepartment);
                   let path="/service/book/doctor/"+item.bookDeptId;
-                  this.$router.push({path:path});
+                  this.$router.push({path:path,query:{key:this.key}});
 
               }
               else{
@@ -95,6 +95,9 @@
             return department.filter((item)=>{
                 return item.deptList&&item.deptList.length>0
             });
+        },
+        key(){
+            return (new Date()).valueOf();
         }
       },
       created(){
@@ -185,7 +188,8 @@
     .main{
         height:100%;
         flex: 1;
-        overflow-y: auto;
+        overflow-y: scroll;
+/*        -webkit-overflow-scrolling: touch;  */
         max-width: 13rem;
         border:1px solid #CCCCCC;
 

@@ -91,7 +91,7 @@
               this.isAppt=id;
               setTimeout(()=>{that.isShown=false;},1000);
               let path="/service/book/department/"+this.hospitalId;
-              this.$router.push({path:path});
+              this.$router.push({path:path,query:{key:this.key}});
           }
 
       },
@@ -102,6 +102,11 @@
                 backSrc:"/"
             })
             this.$emit("hasRight");
+      },
+      computed:{
+          key(){
+              return (new Date()).valueOf();
+          }
       },
       created(){
           console.log("获取医院信息");

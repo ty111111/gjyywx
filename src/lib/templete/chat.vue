@@ -77,7 +77,7 @@
       <slot name="inputTalk">
         <div class="robot-room-wirte yk-box yk-cell">
           <div class="yk-cell-bd mr10">
-            <edit-div :message="clean" v-model="text" id="inputArea" class="input-text"></edit-div>
+            <edit-div :message="clean" v-model="text" id="inputArea" class="input-text" @test="test"></edit-div>
           </div>
           <div v-show="!text.length" class="showJia" @click.stop="showCheckList"><span class="jia">+</span></div>
           <button v-show="text.length" class="send-btn" @click="send()">发送</button>
@@ -92,7 +92,7 @@
     </div>
   </div>
 </template>
-<script type="text/ecmascript-6">
+<script >
   import Api from '../api'
   import editDiv from './editDiv.vue'
   import Ajax from '../ajax'
@@ -114,7 +114,8 @@
         checkList:false,
         clean:true,
         attaList:[],
-        attaIdList:[]
+        attaIdList:[],
+          testVal:0
       }
     },
     watch:{
@@ -131,10 +132,44 @@
       }
     },
     mounted(){
-
-
+        console.log(this.$refs.talking.clientHeight,99989898989);
+        this.testVal=this.$refs.talking.clientHeight;
+        var overscroll = function(el){
+            el.addEventListener('touchstart', function(){
+                var top = el.scrollTop;
+                var totalScroll = el.scrollHeight;
+                var currentScroll = top + el.offsetHeight;
+                if(top === 0) {
+                    el.scrollTop = 1;
+                }else if(currentScroll === totalScroll){
+                    el.scrollTop = top - 1;
+                }
+            });
+            el.addEventListener('touchmove', function(evt){
+                if(el.offsetHeight < el.scrollHeight){
+                    evt._isScroller = true;
+                }
+            });
+        }
+        overscroll(document.querySelector('.wrap'));
+        document.body.addEventListener('touchmove', this.preventScroll,false);
     },
+      beforeDestroy(){
+          document.body.removeEventListener('touchmove', this.preventScroll,false);
+      },
     methods:{
+        test(){
+            setTimeout(()=>{
+                var num=this.testVal-this.$refs.talking.clientHeight;
+                alert(num);
+                
+            },1000);
+        },
+        preventScroll(evt){
+            if(!evt._isScroller){
+                evt.preventDefault();
+            }
+        },
       toBottom(){
         setTimeout(()=>{
           this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
@@ -285,6 +320,7 @@
   }
 
   .wrap{
+      flex:1 1 auto;
     -webkit-overflow-scrolling: touch;
     overflow: auto;
     padding-top: 15px;
@@ -349,6 +385,7 @@
     text-align: center;
   }
 
+/*
   .bottom{
     position: fixed;
     bottom: 0px;
@@ -356,6 +393,7 @@
     height: auto;
     background: white;
   }
+*/
   .mr10 {
     margin-right: 10px;
     width: 100%;

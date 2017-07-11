@@ -173,7 +173,10 @@
                 list.push(newNode);
             }
             return list;
-        }
+        },
+        key(){
+        return (new Date()).valueOf();
+    }
 
     },
     components:{
@@ -204,7 +207,7 @@
         {
             window.localStorage['time']= item.hour+':'+item.minute+'-'+item.newHour+':'+item.newMinute;
             window.localStorage['last']="/service/book/doctor/"+this.dept.bookDeptId;
-            this.$router.push("/service/book/reserve/"+item.bookNumId+"&"+this.dept.bookHosId);
+            this.$router.push({path:"/service/book/reserve/"+item.bookNumId+"&"+this.dept.bookHosId,query:{key:this.key}});
         },
         check(item)
         {

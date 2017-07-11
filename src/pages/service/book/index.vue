@@ -1,11 +1,12 @@
 <template>
   <div class="viewpage">
       <app-header style="display:flex;flex-direction:row">
-          <div slot="left" style="flex:0 0 auto; width:4rem"><router-link :to="src" ><span id="arrow">&#xe600;</span></router-link></div>
           <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">{{title}}</div>
           <div slot="right"  class="appointl" @click="getMyScheme" style="0 0 auto;width:4rem;"><p v-show="isShown">我的挂号</p></div>
     </app-header>
-      <router-view @headerInfo="check" @hasRight="setRight"></router-view>
+      <transition :name="transitionName">
+      <router-view @headerInfo="check" @hasRight="setRight" class="Router"></router-view>
+    </transition>
   </div>
 </template>
 
@@ -16,7 +17,8 @@
           return{
               title:"",
               src:"",
-              isShown:false
+              isShown:false,
+              transitionName:"slide-left"
           }
       },
       components:{
@@ -38,6 +40,23 @@
           getMyScheme(){
               this.$router.push("/myRegistration/"+window.localStorage["myId"]);
           }
+      },
+    watch: {
+        '$route' (to, from) {
+          if (from.query.key&&to.query.key) {
+            if (to.query.key < from.query.key) {
+              this.transitionName = 'slide-right'
+            } else {
+              this.transitionName = 'slide-left'
+            }
+          } else {
+              if(!from.query.key)
+            {this.transitionName = 'slide-left';}
+              else{
+                  this.transitionName="slide-right";
+              }
+          }
+        }
       }
   }
 </script>
@@ -86,4 +105,18 @@ $info:  #3399FF;
     p, span{
         font-family:宋体
     }
+    .Router{
+        position:absolute;
+        top:45px;
+        width:100%;
+        transition:all .5s ease;
+    }
+ .slide-left-leave-active, .slide-right-enter {
+   transform: translate(-100% 0);
+     opacity:0;
+}
+.slide-left-enter, .slide-right-leave-active{
+   transform: translate(100%, 0);
+    opacity:0;
+}
 </style>

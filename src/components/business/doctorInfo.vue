@@ -168,6 +168,9 @@
                 list.push(newNode);
             }
             return list;
+        },
+        key(){
+            return (new Date()).valueOf();
         }
 
     },
@@ -206,7 +209,7 @@
         reserve(item){
             window.localStorage['time']= item.hour+':'+item.minute+'-'+item.newHour+':'+item.newMinute;
             window.localStorage['last']="/service/book/doctorInfo/"+this.$route.params.id;
-            this.$router.push("/service/book/reserve/"+item.bookNumId+"&"+this.doctorInfo.bookHosId);
+            this.$router.push({path:"/service/book/reserve/"+item.bookNumId+"&"+this.doctorInfo.bookHosId,query:{key:this.key}});
         },
         getTime(str){
             let date=new Date(str);
