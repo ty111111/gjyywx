@@ -2,23 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="544a4a71-a253-4204-a8fd-e21dd77f85e6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist.rar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/overScroll.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/substitude.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.vue" afterPath="$PROJECT_DIR$/src/App.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/business/app-footer.vue" afterPath="$PROJECT_DIR$/src/components/business/app-footer.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/business/app-header.vue" afterPath="$PROJECT_DIR$/src/components/business/app-header.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/business/department.vue" afterPath="$PROJECT_DIR$/src/components/business/department.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/business/doctor.vue" afterPath="$PROJECT_DIR$/src/components/business/doctor.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/business/doctorInfo.vue" afterPath="$PROJECT_DIR$/src/components/business/doctorInfo.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/business/hospital.vue" afterPath="$PROJECT_DIR$/src/components/business/hospital.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/templete/chat.vue" afterPath="$PROJECT_DIR$/src/lib/templete/chat.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/templete/editDiv.vue" afterPath="$PROJECT_DIR$/src/lib/templete/editDiv.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/consult/obligation.vue" afterPath="$PROJECT_DIR$/src/pages/consult/obligation.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/consult/twValuate.vue" afterPath="$PROJECT_DIR$/src/pages/consult/twValuate.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/login/index.vue" afterPath="$PROJECT_DIR$/src/pages/login/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/myCenter/index.vue" afterPath="$PROJECT_DIR$/src/pages/myCenter/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/onlineDoc/docCard.vue" afterPath="$PROJECT_DIR$/src/pages/onlineDoc/docCard.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/onlineDoc/onlineDoc.vue" afterPath="$PROJECT_DIR$/src/pages/onlineDoc/onlineDoc.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/service/book/index.vue" afterPath="$PROJECT_DIR$/src/pages/service/book/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/tab/index.vue" afterPath="$PROJECT_DIR$/src/pages/tab/index.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/business/scroll-fresh.vue" afterPath="$PROJECT_DIR$/src/components/business/scroll-fresh.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/filter.js" afterPath="$PROJECT_DIR$/src/lib/filter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/onlineDoc/docArticle.vue" afterPath="$PROJECT_DIR$/src/pages/onlineDoc/docArticle.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/onlineDoc/docComment.vue" afterPath="$PROJECT_DIR$/src/pages/onlineDoc/docComment.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/tab/news.vue" afterPath="$PROJECT_DIR$/src/pages/tab/news.vue" />
     </list>
     <ignored path="wei.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,17 +49,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+            <state relative-caret-position="-120">
+              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hospital.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hospital.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/business/hospital.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-2592">
@@ -147,7 +143,6 @@
         <option value="$PROJECT_DIR$/src/pages/myDoc/noVipTalking.vue" />
         <option value="$PROJECT_DIR$/src/pages/myDoc/talking.vue" />
         <option value="$PROJECT_DIR$/src/pages/myCenter/myRegistration.vue" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/src/lib/templete/editDiv.vue" />
         <option value="$PROJECT_DIR$/src/pages/consult/twValuate.vue" />
@@ -166,6 +161,7 @@
         <option value="$PROJECT_DIR$/dist/index.html" />
         <option value="$PROJECT_DIR$/src/lib/templete/chat.vue" />
         <option value="$PROJECT_DIR$/src/components/business/hospital.vue" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -449,12 +445,12 @@
       <workItem from="1499646690879" duration="23187000" />
       <workItem from="1499733576729" duration="10814000" />
       <workItem from="1499763723917" duration="605000" />
-      <workItem from="1499821027405" duration="204000" />
+      <workItem from="1499821027405" duration="307000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77759000" />
+    <option name="totallyTimeSpent" value="77862000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -851,18 +847,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/business/hospital.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2592">
           <caret line="59" column="31" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
           <folding />
         </state>
       </provider>

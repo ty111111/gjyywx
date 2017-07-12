@@ -9,7 +9,7 @@
 
     </div>
     <div class="weui-panel weui-panel_access" v-show="Got&&!failure">
-        <div class="weui-panel__bd">
+        <div class="weui-panel__bd scroller" >
                     <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" v-for="item in hospital" @click="show(item.bookHosId,item.hosName)" :id="item.bookHosId">
                 <div class="weui-media-box__hd">
                     <a :href="item.picture"><img class="weui-media-box__thumb" :src="item.hosPic" alt="" style="border-radius:50%; height:100%"></a>
