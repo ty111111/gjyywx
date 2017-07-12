@@ -37,7 +37,7 @@
         </div>
       </scroller>
       <div class="bottom">
-        <foot></foot>
+        <foot msg="index"></foot>
       </div>
     </div>
 </template>

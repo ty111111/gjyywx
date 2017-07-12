@@ -1,7 +1,7 @@
 <template>
   <div class="viewpage view">
     <router-view></router-view>
-    <app-footer></app-footer>
+    <app-footer msg="essay"></app-footer>
   </div>
 </template>
 

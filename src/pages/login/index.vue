@@ -1,6 +1,7 @@
 <template>
   <div>
     <top>
+      <div slot="left"> <span class="arrow">返回</span></div>
       <div class="middle big">请先登录</div>
     </top>
     <div>
@@ -45,8 +46,8 @@
   export default {
     data(){
       return {
-        patMobile:'',
-        patPassword:''
+        patMobile:'15558689977',
+        patPassword:'123456'
 
       }
     },
@@ -90,6 +91,9 @@
 </script>
 
 <style scoped lang="scss">
+  .arrow{
+    opacity:0
+  }
 .title{
   height: 150px;
   line-height: 150px;

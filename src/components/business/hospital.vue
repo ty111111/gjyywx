@@ -6,7 +6,7 @@
     </div>
       <div class="weui-loadmore weui-loadmore_line" v-show="failure">
           <span class="weui-loadmore__tips">网络错误</span>
-          
+
     </div>
     <div class="weui-panel weui-panel_access" v-show="Got&&!failure">
         <div class="weui-panel__bd">
@@ -21,8 +21,8 @@
             </a>
         </div>
     </div>
-	<app-footer class="footer">
-		
+	<app-footer msg="service" class="footer">
+
 	</app-footer>
     <div class="background" v-show="isShown" >
         <div class="option weui-panel weui-panel_access">
@@ -36,7 +36,7 @@
                 <p class="weui-media-box__desc">七天内普通号、专家号预约</p>
             </div>
     </a>
-                
+
     </div>
     </div>
                 <div class="option weui-panel weui-panel_access">
@@ -57,7 +57,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
     import api from "../../lib/api.js";
 	import AppFooter from "../../components/business/app-footer";
   export default {
@@ -71,8 +71,8 @@
              isAppt:true,
              Got:false,
              failure:false
- 
-         } 
+
+         }
       }
       ,
 
@@ -150,7 +150,7 @@
         width:80%;
         height:30%;
         box-shadow: 2px 5px 5px lighten(black,40%);
-        
+
     }
     .footer{
         position:fixed;

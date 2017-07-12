@@ -85,7 +85,7 @@
     <!--</div>-->
     <!--</div >-->
 
-      <div class="test" ref="talking">
+      <div class="test" >
         <chat  :message ='obj' :id="consultId" v-on:send="getData">
           <div slot="inputTalk"></div>
         </chat>
@@ -137,9 +137,9 @@
             var obj = req.obj.consult;
 //              var list = req.obj.messageList;
             this.$set(this.$data,'consult',obj);
-            setTimeout(()=>{
-              this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
-            },50)
+//            setTimeout(()=>{
+//              this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
+//            },50)
 //              this.$set(this.$data,'talkList',list);
 //              this.$set(this.$data,'attaList',list.attaList);
 //              this.$set(this.$data,'imgList',req.obj.attaList);
@@ -313,6 +313,7 @@
     box-sizing: border-box;
     padding: 0 15px;
     background: white;
+    z-index: 111;
   }
 
   /*.comment {*/

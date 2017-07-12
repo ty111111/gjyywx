@@ -2,7 +2,7 @@
   <header>
     <slot name="left">
 
-      <div class="left" @click="back"><font>返回</font></div>
+      <div class="left" @click="back"><font><span>&#xe600;</span></font></div>
 
     </slot>
     <slot></slot>
@@ -39,6 +39,14 @@
 </script>
 
 <style scoped lang="scss">
+  @font-face {
+    font-family: 'iconfont';
+    src: url('//at.alicdn.com/t/font_33qiq29sp5y7gb9.woff') format('woff'),
+  }
+  span{
+    font-family: 'iconfont';
+    font-size: 18px;
+  }
   $w:45px;
   header{
     position: relative;

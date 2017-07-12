@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" ref="apps">
     <router-view></router-view>
     <toast ref="toast" @toast:hide="show=false" :show="show" text="成功"></toast>
   </div>
@@ -8,7 +8,6 @@
 <script type="text/ecmascript-6">
   //import WeuiForVue from "weui-for-vue"
   import {Msg, Loading, Toast} from "weui-for-vue"
-
   export default {
     name: 'app',
     data(){
@@ -23,7 +22,7 @@
     mounted(){
 
       setTimeout((res) => {
-        this.show = true;    }, 100)
+        this.show = true;  }, 100)
 
     },
     watch: {},
@@ -35,12 +34,12 @@
   @import "common/base";
 
   #app {
-    position: fixed;
+    position: absolute;
     background-color: map_get($colors, bg);
     left: 0;
     right: 0;
     top: 0;
-    bottom: 0;
+    bottom: 0px;
     display: flex;
     flex-direction: column;
     overflow: hidden;

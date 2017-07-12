@@ -348,6 +348,7 @@
   .more{
     float: right;
     padding-right: 15px;
+    color: royalblue;
   }
 
 </style>
