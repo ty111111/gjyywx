@@ -28,7 +28,11 @@
             return {}
         },
         mounted(){
-
+            setTimeout(()=>{
+              this.$router.push({
+                name:'myInquiry'
+              })
+            },2000)
         }
     }
 </script>

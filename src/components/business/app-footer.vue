@@ -74,7 +74,7 @@
         this.$router.push("/tab/news");
       },
       goMyCenter(){
-        this.$router.push('/myCenter')
+        this.$router.push('/myDoc')
       },
       goOnlineDoc(){
         this.$router.push('/online');
