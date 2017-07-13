@@ -81,10 +81,9 @@
     <div class="background" v-if="isShown"@click="isShown=false;this.failure=false">
 
     </div>
-        <transition name="fade">
+        <transition name="fad">
 
         <div class="options" v-if="isShown">
-<!--
             <div class="weui-loadmore" v-show="!Got">
                 <i class="weui-loading"></i>
                 <span class="weui-loadmore__tips">正在加载</span>
@@ -104,7 +103,6 @@
     </ul>
     </div>
     </div>
--->
             
     </div>
     </transition>
@@ -432,10 +430,10 @@
             }
         }
     }
-    .fade-enter-active, .fade-leave-active {
+    .fad-enter-active, .fad-leave-active {
       transition: height .5s
     }
-    .fade-enter, .fade-leave-to{
+    .fad-enter, .fad-leave-to{
         height:0;
     }
     
