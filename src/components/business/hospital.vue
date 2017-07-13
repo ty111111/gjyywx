@@ -3,7 +3,7 @@
       <div class="app">
       <app-header>
           <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">预约挂号</div>
-          <div slot="right"  class="appointl" @click="getMyScheme" style="0 0 auto;width:4rem;"><p>我的挂号</p></div>
+          <div slot="right"  class="appointl" @click="getMyScheme" style="0 0 auto;width:4rem;"><p class="right">我的挂号</p></div>
     </app-header>
     <div class="weui-loadmore" v-show="!Got">
         <i class="weui-loading"></i>

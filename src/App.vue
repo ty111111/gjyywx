@@ -22,6 +22,7 @@
     },
     watch: {
       $route(to, from) {
+        console.log("转换路由");
       console.log(this.$store.state.routeChain,77777)
       console.log(this.$store.state.pageDirection,88888)
         this.$set(this.$data,'transitionName',this.$store.state.pageDirection)
@@ -49,11 +50,13 @@
     transition:all .3s ease-in-out
   }
   .slide-enter{
+
     transform: translateX(100%);
   }
   .slide-enter-to{
     position: absolute;
     top:0;
+      bottom: 0;
     width: 100%;
   }
   .slide-leave-to {
@@ -68,6 +71,7 @@
   .fade-enter-to{
     position: absolute;
     top:0;
+      bottom:0px;
     width: 100%;
   }
   .fade-leave-to {
@@ -92,39 +96,5 @@
       flex-direction: column;
     }
   }
-    .slide-right-enter-active,.slide-right-leave-active{
-        transition:all .5s ease-in-out;
-    }
-    .slide-right-leave-to{
-        transform:translateX(100%);
-    }
-    .slide-right-enter-to{
-        position:absolute;
-        top:0px;
-        width:100%;
-        bottom:0px;
-    }
-    .slide-right-enter{
-        transform:translateX(-100%);
-/*        display:none;*/
-    }
-/*
-    .router{
-        transition:all .5s ease;
-    }
-    .slide-left-enter-to,.slide-right-enter-to{
-        position:absolute;
-        top:0px;
-        bottom:0px;
-        width:100%;
-    }
- .slide-left-leave-active, .slide-right-enter {
-   transform: translate(-100% 0);
-     opacity:0;
-}
-.slide-left-enter, .slide-right-leave-active{
-    transform: translate(100%, 0);
-    opacity:0;
-}
-*/
+
 </style>

@@ -84,6 +84,7 @@
         <transition name="fade">
 
         <div class="options" v-if="isShown">
+<!--
             <div class="weui-loadmore" v-show="!Got">
                 <i class="weui-loading"></i>
                 <span class="weui-loadmore__tips">正在加载</span>
@@ -103,6 +104,7 @@
     </ul>
     </div>
     </div>
+-->
             
     </div>
     </transition>
@@ -404,15 +406,17 @@
         border-radius:50%;
         margin-right:1rem;
     }
+/*
     .background{
         position:fixed;
         left:0px;
         top:0px;
-        z-index:30;
+        z-index:1000;
         background-color:gray;
         height:100%;
         width:100%;
     }
+*/
     .options{
         position:fixed;
         bottom:0px;
@@ -420,7 +424,7 @@
         background-color:white;
         width:100%;
         height:300px;
-        z-index:31;
+        z-index:1001;
         ul{
             text-align:center;
             li{
@@ -432,7 +436,7 @@
       transition: height .5s
     }
     .fade-enter, .fade-leave-to{
-        height:0px;
+        height:0;
     }
     
     .weui-btn.button{

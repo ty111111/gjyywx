@@ -7,7 +7,7 @@
     </slot>
     <slot style="flex:1 1 auto"></slot>
     <slot name="right" >
-      <div class="right"style="flex:0 0 auto;width:4rem"></div>
+      <div class="right"></div>
     </slot>
   </header>
 </template>
@@ -47,7 +47,7 @@
     font-family: 'iconfont';
     font-size: 18px;
   }
-  $w:45px;
+  $w:77px;
   header{
     position: relative;
     height: 45px;
@@ -57,7 +57,7 @@
 flex: none;
    z-index:999;
     >.left,.right{
-      text-align: center;
+        flex:0 0 auto;
       width: $w;
     }
     div:nth-child(2){
@@ -69,6 +69,10 @@ flex: none;
   .right{
     padding-right: 5px;
     color: #3CC51F;
+          text-align:center;
   }
+    .left{
+        padding-left:1rem;
+    }
 
 </style>

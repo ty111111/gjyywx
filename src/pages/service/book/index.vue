@@ -10,7 +10,7 @@
   export default {
       data(){
           return{
-              transitionName:"slide-left"
+              transitionName:"fade"
           }
       },
       components:{
@@ -19,22 +19,13 @@
 
       },
     watch: {
-        '$route' (to, from) {
-          if (from.query.key&&to.query.key) {
-            if (to.query.key < from.query.key) {
-              this.transitionName = 'slide-right'
-            } else {
-              this.transitionName = 'slide-left'
-            }
-          } else {
-              if(!from.query.key)
-            {this.transitionName = 'slide-left';}
-              else{
-                  this.transitionName="slide-right";
-              }
-          }
-        }
+      $route(to, from) {
+        console.log("转换路由");
+      console.log(this.$store.state.routeChain,77777)
+      console.log(this.$store.state.pageDirection,88888)
+        this.$set(this.$data,'transitionName',this.$store.state.pageDirection)
       }
+    }
   }
 </script>
 
@@ -89,24 +80,35 @@ $info:  #3399FF;
     p, span{
         font-family:宋体
     }
-    .slide-left-enter-active, .slide-left-leave-active,.slide-right-enter-active,.slide-right-leave-active{
-        transition:all .5s ease-in-out;
-    }
-    .slide-left-enter,.slide-right-leave-to{
-        transform:translateX(100%);
-    }
-    .slide-left-enter-to,.slide-right-enter-to{
-        position:absolute;
-        top:0px;
-        width:100%;
-/*
-        .footer{
-            
-            display:none;
-        }
-*/
-    }
-    .slide-left-leave-to,.slide-right-enter{
-        transform:translateX(-100%);
-    }
+  .slide-enter-active, .slide-leave-active {
+    transition:all .3s ease-in-out
+  }
+  .slide-enter{
+
+    transform: translateX(100%);
+  }
+  .slide-enter-to{
+    position: absolute;
+    top:0;
+      bottom: 0;
+    width: 100%;
+  }
+  .slide-leave-to {
+    transform: translateX(-100%);
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition:all .3s ease-in-out
+  }
+  .fade-enter{
+    transform: translateX(-100%);
+  }
+  .fade-enter-to{
+    position: absolute;
+    top:0;
+      bottom:0px;
+    width: 100%;
+  }
+  .fade-leave-to {
+    transform: translateX(100%);
+  }
 </style>
