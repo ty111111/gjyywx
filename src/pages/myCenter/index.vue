@@ -106,7 +106,7 @@
 
 
       <div class="bottom">
-        <foot></foot>
+        <foot msg="my"></foot>
       </div>
     </div>
 </template>

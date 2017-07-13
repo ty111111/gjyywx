@@ -111,7 +111,6 @@
           }else if(this.captcha.length!=4){
             weui.alert('请输入正确的验证码')
           }else {
-            alert('成功');
             Api('nethos.pat.compat.add',{
               token:token,
               patId:this.patId,

@@ -1,7 +1,9 @@
 <template>
-  <div id="app">
-      <transition :name="transitionName">
-    <router-view class="router"></router-view>
+  <div id="app" ref="apps">
+    <transition :name="transitionName">
+      <router-view>
+
+      </router-view>
     </transition>
     <toast ref="toast" @toast:hide="show=false" :show="show" text="成功"></toast>
   </div>
@@ -10,56 +12,74 @@
 <script >
   //import WeuiForVue from "weui-for-vue"
   import {Msg, Loading, Toast} from "weui-for-vue"
-
   export default {
     name: 'app',
     data(){
       return {
-        show: false,
-        transitionName:"slide-right"
+        show: true,
+        transitionName:this.$store.state.pageDirection
       }
     },
-    computed: {},
     watch: {
-        '$route' (to, from) {
-          if (from.query.key&&to.query.key) {
-            if (to.query.key < from.query.key) {
-              this.transitionName = 'slide-right'
-            } else {
-              this.transitionName = 'slide-left'
-            }
-          } else {
-              if(!from.query.key)
-            {this.transitionName = 'slide-left';}
-              else{
-                  this.transitionName="slide-right";
-              }
-          }
-        }
-      },
+      $route(to, from) {
+      console.log(this.$store.state.routeChain,77777)
+      console.log(this.$store.state.pageDirection,88888)
+        this.$set(this.$data,'transitionName',this.$store.state.pageDirection)
+      }
+    },
+    computed: {
+
+    },
     components: {
       Msg, Loading, Toast
     },
     mounted(){
-//
-//      setTimeout((res) => {
-//        this.show = true;    }, 100)
+      setTimeout((res) => {
+        this.show = true;  }, 100)
 
     },
-    watch: {},
+
     methods: {}
   }
 </script>
 
 <style lang="scss">
   @import "common/base";
+  .slide-enter-active, .slide-leave-active {
+    transition:all .3s ease-in-out
+  }
+  .slide-enter{
+    transform: translateX(100%);
+  }
+  .slide-enter-to{
+    position: absolute;
+    top:0;
+    width: 100%;
+  }
+  .slide-leave-to {
+    transform: translateX(-100%);
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition:all .3s ease-in-out
+  }
+  .fade-enter{
+    transform: translateX(-100%);
+  }
+  .fade-enter-to{
+    position: absolute;
+    top:0;
+    width: 100%;
+  }
+  .fade-leave-to {
+    transform: translateX(100%);
+  }
   #app {
-      position:fixed;
-      left:0;
-      top:0;
-      right:0;
-      bottom:0;
-
+    position: absolute;
+    background-color: map_get($colors, bg);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0px;
     display: flex;
     flex-direction: column;
     overflow: hidden;

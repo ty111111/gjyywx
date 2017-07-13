@@ -1,6 +1,7 @@
 <template>
     <div contenteditable="true"
-          @input="changeText" @click="test">
+         @click="inputText"
+          @input="changeText">
     </div>
 </template>
 <script>
@@ -15,9 +16,9 @@
       }
     },
     methods:{
-        test(){
-            this.$emit("test");
-        },
+      inputText(){
+       this.$emit('inputText')
+      },
       changeText(){
         this.innerText = this.$el.innerText;
         var text = this.innerText.replace(/\ +/g,"");

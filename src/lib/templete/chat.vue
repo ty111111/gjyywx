@@ -1,5 +1,5 @@
 <template>
-  <div class="page" >
+  <div class="page" ref="pages" @click="cancel">
     <div class="contain" v-show="talkList.length==0">
       <div class="name">{{consult.consulterName}}</div>
       <div class="comment">
@@ -21,12 +21,12 @@
               {{consult.consultContent}}
             </div>
             <div class="ImgBox" v-for="item of attaList" @click="showImg(item.url)">
-              <img  class="inquiryImg" :src="item.url" alt="">
+              <img  class="inquiryImg" :src="item.url" alt="" @load="loadImage">
             </div>
           </div>
         </div>
       </div>
-      <div @click="cancel"  class="talk-detail" v-for="item of talkList">
+      <div   class="talk-detail" v-for="item of talkList">
         <div>
           <div class="rightMsg" v-if="item.replierType=='DOC'">
             <div class="floatImg">
@@ -36,7 +36,7 @@
               <div class="com">
                 {{item.replyContent}}
                 <div  v-for="img of item.attaList" @click="showImg(img.url)">
-                  <img   class="DocinquiryImg" :src="img.url" alt="">
+                  <img   class="DocinquiryImg" :src="img.url" alt="" @load="loadImage">
                 </div>
               </div>
             </div>
@@ -49,7 +49,7 @@
               <div class="com">
                 {{item.replyContent}}
                 <div  v-for="img of item.attaList" @click="showImg(img.url)">
-                  <img  class="DocinquiryImg" :src="img.url" alt="">
+                  <img  class="DocinquiryImg" :src="img.url" alt="" @load="loadImage">
                 </div>
               </div>
             </div>
@@ -63,7 +63,7 @@
               <div class="comment">
                 {{item.replyContent}}
                 <div  v-for="img of item.attaList" @click="showImg(img.url)">
-                  <img  class="DocinquiryImg" :src="img.url" alt="">
+                  <img  class="DocinquiryImg" :src="img.url" alt="" @load="loadImage">
                 </div>
               </div>
             </div>
@@ -73,16 +73,16 @@
 
       </div>
     </div >
-    <div v-show="talkList.length!=0" class="bottom">
+    <div ref="btn" v-show="talkList.length!=0" class="bottom">
       <slot name="inputTalk">
         <div class="robot-room-wirte yk-box yk-cell">
           <div class="yk-cell-bd mr10">
-            <edit-div :message="clean" v-model="text" id="inputArea" class="input-text" @test="test"></edit-div>
+            <edit-div :message="clean" v-model="text" id="inputArea" class="input-text" v-on:inputText="getFocus"></edit-div>
           </div>
           <div v-show="!text.length" class="showJia" @click.stop="showCheckList"><span class="jia">+</span></div>
           <button v-show="text.length" class="send-btn" @click="send()">发送</button>
         </div>
-        <div class="checkList" v-show="checkList">
+        <div ref="inputBtn" class="checkList" v-show="checkList">
           <div class="upload">
             <label for="upload_img" class="label_img">图片</label>
             <input  @change="upLoad" type="file" id="upload_img" >
@@ -115,11 +115,12 @@
         clean:true,
         attaList:[],
         attaIdList:[],
-          testVal:0
+        pagesHeight:Number
       }
     },
     watch:{
       message:function (value) {
+        console.log(value,8888)
         this.$set(this.$data,'consult',value.consult);
         this.$set(this.$data,'talkList',value.messageList);
         this.$set(this.$data,'attaList',value.attaList);
@@ -158,23 +159,20 @@
           document.body.removeEventListener('touchmove', this.preventScroll,false);
       },
     methods:{
-        test(){
-            setTimeout(()=>{
-                var num=this.testVal-this.$refs.talking.clientHeight;
-                alert(num);
-                
-            },1000);
-        },
-        preventScroll(evt){
-            if(!evt._isScroller){
-                evt.preventDefault();
-            }
-        },
+      loadImage(){
+        console.log('图片加载完毕');
+        this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
+      },
+      getFocus(){
+        if(this.$refs.btn){
+          this.$refs.btn.scrollIntoView(false);
+        }
+      },
       toBottom(){
         setTimeout(()=>{
+          console.log(this.$refs.talking.scrollHeight,this.$refs.talking.clientHeight,this.$refs.talking.offsetHeight,1212121212 )
           this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
-          console.log(this.$refs.talking.scrollHeight)
-        },100)
+        },50)
       },
       send(){
         Api('nethos.consult.info.reply',{
@@ -219,11 +217,13 @@
   }
 </script>
 <style scoped>
+
 .page{
   flex: 1;
-  overflow: auto;
+  /*overflow: auto;*/
   display: flex;
   flex-direction: column;
+
 }
   .contain{
     margin-top: 20px;
@@ -320,11 +320,12 @@
   }
 
   .wrap{
-      flex:1 1 auto;
-    -webkit-overflow-scrolling: touch;
+    flex:1;
     overflow: auto;
     padding-top: 15px;
     padding-bottom: 60px;
+    -webkit-overflow-scrolling: touch;
+
   }
   .talk-detail{
     margin-bottom: 1px;
@@ -387,8 +388,9 @@
 
 /*
   .bottom{
-    position: fixed;
+    position: absolute;
     bottom: 0px;
+    left: 0;
     width: 100%;
     height: auto;
     background: white;
@@ -497,10 +499,6 @@
     line-height: 50px;
     text-align: center;
     border: 1px solid darkgray;
-  }
-  .scr{
-
-pos    z-index: -1;
   }
 
 

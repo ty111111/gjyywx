@@ -131,7 +131,10 @@
             }).then(req=>{
               if(req.succ){
                 this.$set(this.$data,'contain','');
-               // this.$router.push('submitSucceed');
+                console.log(123123132)
+               this.$router.push({
+                 name:'submitSucceed'
+               });
               }else {
                 weui.alert(req.msg)
               }

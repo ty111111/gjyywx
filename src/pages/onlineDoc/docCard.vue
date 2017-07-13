@@ -62,11 +62,11 @@
           </div>
 
           <div class="docEssay">
-            <div class="docStrong">医生文章  <div class="more" @click="goEssay(docObj.docId)">更多</div></div>
+            <div class="docStrong">医生文章  <div class="more" @click="goEssay(docObj.docId)">{{essayList?'更多':'无'}}</div></div>
 
             <div >
               <ul>
-                <li class="essay" >
+                <li class="essay" v-if="essayList">
                   <span class="essayTitle">{{essayList.title}}&nbsp;&nbsp;&nbsp;</span>
                   <span class="essayNum"> {{essayList.readTimes}} 阅读 &nbsp;&nbsp;&nbsp;</span>
                   <span class="essayDate">{{essayList.createTime | Todate}}</span>
@@ -348,6 +348,7 @@
   .more{
     float: right;
     padding-right: 15px;
+    color: royalblue;
   }
 
 </style>

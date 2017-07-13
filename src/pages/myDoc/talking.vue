@@ -4,7 +4,6 @@
       <div class="middle big">{{name}}</div>
     </top>
     <div  class="wrap">
-
         <div ref="talking" @click="cancel" class="talk-detail" >
           <div  v-for="item in talkList">
             <div class="rightMsg" v-if="item.msgReceiverType=='DOC'">
@@ -14,7 +13,7 @@
               <div class="floatRight">
                 <div class="comment">
                   {{item.msgText}}
-                  <img v-if="item.sysAttachment" @click="bigImg(item.sysAttachment.url)" :src="item.sysAttachment.url" alt="">
+                  <img v-if="item.sysAttachment" @click="bigImg(item.sysAttachment.url)" :src="item.sysAttachment.url" @load="loadImage" alt="">
                 </div>
               </div>
 
@@ -26,14 +25,13 @@
               <div class="floatLeft">
                 <div class="com">
                   {{item.msgText}}
-                  <img v-if="item.sysAttachment"  @click="bigImg(item.sysAttachment.url)" :src="item.sysAttachment.url" alt="">
+                  <img v-if="item.sysAttachment"  @click="bigImg(item.sysAttachment.url)" @load="loadImage" :src="item.sysAttachment.url" alt="">
                 </div>
               </div>
 
             </div>
           </div>
         </div>
-
       <div class="bottom">
         <div class="robot-room-wirte yk-box yk-cell">
           <div class="yk-cell-bd mr10">
@@ -87,6 +85,9 @@
       this.getData()
     },
     methods:{
+      loadImage(){
+        this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
+      },
       bigImg(url){
         weui.gallery(url)
       },
@@ -134,7 +135,6 @@
           this.msg=!this.msg;
           this.text='';
           this.attaId=''
-
           this.getData()
         })
       }

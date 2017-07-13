@@ -14,8 +14,7 @@
             </div>
           </div>
         </div>
-
-          <div class="contain">
+        <div class="contain">
             <div v-show="showAttention" class="list" v-for="item of attentionList" @click="goDocCard(item.sysDoc.docId)">
               <div class="itemImg">
                 <img :src="item.sysDoc.docAvatar" alt="">
@@ -47,8 +46,6 @@
               </div>
             </div>
           </div>
-
-
       </div>
     </div>
 </template>
@@ -143,9 +140,14 @@
     }
 </script>
 <style scoped>
+  .wrap{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+  }
   #onlinepage{
     flex: 1;
-    overflow: auto;
+    /*overflow: auto;*/
     display: flex;
     flex-direction: column;
   }
@@ -154,7 +156,7 @@
   }
   .navbar{
     border: 1px solid gainsboro;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
   }
 .navbarHeader{
   display: flex;
@@ -162,6 +164,7 @@
 }
 
 .contain{
+  flex: 1;
   overflow:auto;
   -webkit-overflow-scrolling: touch;
 }
