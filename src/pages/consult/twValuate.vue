@@ -18,82 +18,11 @@
     <div class="state">
       {{consult.consultStatusDescription}}
     </div>
-
-    <!--<div  class="wrap" ref="talking">-->
-    <!--<div class="leftMsg" >-->
-    <!--<div class="otherImg">-->
-    <!--<img class="otherTitle" src="" alt="">-->
-    <!--</div>-->
-    <!--<div class="floatLeft">-->
-    <!--<div class="com">-->
-    <!--<div>-->
-    <!--{{consult.consultContent}}-->
-    <!--</div>-->
-    <!--<div class="ImgBox" v-for="item of imgList" @click="showImg(item.url)">-->
-    <!--<img  class="inquiryImg" :src="item.url" alt="">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--</div>-->
-    <!--<div   class="talk-detail" v-for="item of talkList">-->
-    <!--<div>-->
-    <!--<div class="rightMsg" v-if="item.replierType=='DOC'">-->
-    <!--<div class="floatImg">-->
-    <!--<img class="title" :src="item.replierAvatar" alt="">-->
-    <!--</div>-->
-    <!--<div class="floatRight">-->
-    <!--<div class="comment">-->
-    <!--{{item.replyContent}}-->
-    <!--<div  v-for="img of item.attaList" @click="showImg(img.url)">-->
-    <!--<img   class="DocinquiryImg" :src="img.url" alt="">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--</div>-->
-    <!--<div class="rightMsg" v-else-if="item.replierType=='ASS'">-->
-    <!--<div class="floatImg">-->
-    <!--<img class="title" :src="item.replierAvatar" alt="">-->
-    <!--</div>-->
-    <!--<div class="floatRight">-->
-    <!--<div class="comment">-->
-    <!--{{item.replyContent}}-->
-    <!--<div  v-for="img of item.attaList" @click="showImg(img.url)">-->
-    <!--<img  class="DocinquiryImg" :src="img.url" alt="">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--</div>-->
-    <!--<div class="leftMsg" v-else-if="item.replierType=='PAT'">-->
-    <!--<div class="otherImg">-->
-    <!--<img class="otherTitle" :src="item.replierAvatar" alt="">-->
-    <!--</div>-->
-    <!--<div class="floatLeft">-->
-    <!--<div class="com">-->
-    <!--{{item.replyContent}}-->
-    <!--<div  v-for="img of item.attaList" @click="showImg(img.url)">-->
-    <!--<img  class="DocinquiryImg" :src="img.url" alt="">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--</div>-->
-    <!--</div >-->
-
-      <div class="test" >
+    <div  class="test" >
         <chat  :message ='obj' :id="consultId" v-on:send="getData">
           <div slot="inputTalk"></div>
         </chat>
       </div>
-
-
-
-
     <div class="bottom" v-show="consult.consultStatusDescription=='待评价'" @click="commit(consult.consultId)">
       <a href="javascript:;" class="weui-btn weui-btn_primary">立即点评</a>
     </div>
@@ -163,7 +92,7 @@
 </script>
 <style scoped>
   #onlinepage{
-    overflow: auto;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -213,7 +142,6 @@
     flex: 1;
   }
   .test{
-    overflow: auto;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -306,14 +234,14 @@
   /*text-align: center;*/
   /*}*/
   .bottom{
-    position: fixed;
-    left: 0px;
-    bottom: 0px;
+    /*position: fixed;*/
+    /*left: 0px;*/
+    /*bottom: 0px;*/
     width: 100%;
     box-sizing: border-box;
     padding: 0 15px;
     background: white;
-    z-index: 111;
+    /*z-index: 111;*/
   }
 
   /*.comment {*/

@@ -134,13 +134,13 @@
   #onlinepage{
     display: flex;
     flex-direction: column;
-    /*flex: 1;*/
+    flex: 1;
   }
   .test{
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    /*flex: 1;*/
+    flex: 1;
     /*margin-bottom: 50px;*/
   }
   .titleHeader{

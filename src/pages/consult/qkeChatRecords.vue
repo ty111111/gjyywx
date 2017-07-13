@@ -65,13 +65,13 @@
               {{consult.consultContent}}
             </div>
             <div class="ImgBox" v-for="item of imgList" @click="showImg(item.url)">
-              <img  class="inquiryImg" :src="item.url" alt="">
+              <img  class="inquiryImg" :src="item.url" alt="" @load="loadImage">
             </div>
           </div>
         </div>
 
       </div>
-      <div   class="talk-detail" v-for="item of talkList">
+      <div class="talk-detail" v-for="item of talkList">
         <div>
           <div class="rightMsg" v-if="item.replierType=='DOC'">
             <div class="floatImg">
@@ -81,7 +81,7 @@
               <div class="comment">
                 {{item.replyContent}}
                 <div  v-for="img of item.attaList" @click="showImg(img.url)">
-                  <img   class="DocinquiryImg" :src="img.url" alt="">
+                  <img   class="DocinquiryImg" :src="img.url" alt="" @load="loadImage">
                 </div>
               </div>
             </div>
@@ -95,7 +95,7 @@
               <div class="comment">
                 {{item.replyContent}}
                 <div  v-for="img of item.attaList" @click="showImg(img.url)">
-                  <img  class="DocinquiryImg" :src="img.url" alt="">
+                  <img  class="DocinquiryImg" :src="img.url" alt="" @load="loadImage">
                 </div>
               </div>
             </div>
@@ -109,7 +109,7 @@
               <div class="com">
                 {{item.replyContent}}
                 <div  v-for="img of item.attaList" @click="showImg(img.url)">
-                  <img  class="DocinquiryImg" :src="img.url" alt="">
+                  <img  class="DocinquiryImg" :src="img.url" alt="" @load="loadImage">
                 </div>
               </div>
             </div>
@@ -159,6 +159,9 @@
       })
     },
     methods:{
+      loadImage(){
+        this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
+      },
       showImg(url){
         console.log(url);
         weui.gallery(url)
@@ -169,7 +172,7 @@
 <style scoped>
 
   #onlinepage{
-    overflow: auto;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -200,6 +203,7 @@
   .wrap{
     -webkit-overflow-scrolling: touch;
     overflow: auto;
+    flex: 1;
     padding-top: 15px;
   }
   .talk-detail{

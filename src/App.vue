@@ -1,6 +1,10 @@
 <template>
   <div id="app" ref="apps">
-    <router-view></router-view>
+    <transition :name="transitionName">
+      <router-view>
+
+      </router-view>
+    </transition>
     <toast ref="toast" @toast:hide="show=false" :show="show" text="成功"></toast>
   </div>
 </template>
@@ -12,27 +16,63 @@
     name: 'app',
     data(){
       return {
-        show: true
+        show: true,
+        transitionName:this.$store.state.pageDirection
       }
     },
-    computed: {},
+    watch: {
+      $route(to, from) {
+      console.log(this.$store.state.routeChain,77777)
+      console.log(this.$store.state.pageDirection,88888)
+        this.$set(this.$data,'transitionName',this.$store.state.pageDirection)
+      }
+    },
+    computed: {
+
+    },
     components: {
       Msg, Loading, Toast
     },
     mounted(){
-
       setTimeout((res) => {
         this.show = true;  }, 100)
 
     },
-    watch: {},
+
     methods: {}
   }
 </script>
 
 <style lang="scss">
   @import "common/base";
-
+  .slide-enter-active, .slide-leave-active {
+    transition:all .3s ease-in-out
+  }
+  .slide-enter{
+    transform: translateX(100%);
+  }
+  .slide-enter-to{
+    position: absolute;
+    top:0;
+    width: 100%;
+  }
+  .slide-leave-to {
+    transform: translateX(-100%);
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition:all .3s ease-in-out
+  }
+  .fade-enter{
+    transform: translateX(-100%);
+  }
+  .fade-enter-to{
+    position: absolute;
+    top:0;
+    width: 100%;
+  }
+  .fade-leave-to {
+    transform: translateX(100%);
+  }
   #app {
     position: absolute;
     background-color: map_get($colors, bg);

@@ -21,7 +21,7 @@
               {{consult.consultContent}}
             </div>
             <div class="ImgBox" v-for="item of attaList" @click="showImg(item.url)">
-              <img  class="inquiryImg" :src="item.url" alt="">
+              <img  class="inquiryImg" :src="item.url" alt="" @load="loadImage">
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
               <div class="com">
                 {{item.replyContent}}
                 <div  v-for="img of item.attaList" @click="showImg(img.url)">
-                  <img   class="DocinquiryImg" :src="img.url" alt="">
+                  <img   class="DocinquiryImg" :src="img.url" alt="" @load="loadImage">
                 </div>
               </div>
             </div>
@@ -49,7 +49,7 @@
               <div class="com">
                 {{item.replyContent}}
                 <div  v-for="img of item.attaList" @click="showImg(img.url)">
-                  <img  class="DocinquiryImg" :src="img.url" alt="">
+                  <img  class="DocinquiryImg" :src="img.url" alt="" @load="loadImage">
                 </div>
               </div>
             </div>
@@ -63,7 +63,7 @@
               <div class="comment">
                 {{item.replyContent}}
                 <div  v-for="img of item.attaList" @click="showImg(img.url)">
-                  <img  class="DocinquiryImg" :src="img.url" alt="">
+                  <img  class="DocinquiryImg" :src="img.url" alt="" @load="loadImage">
                 </div>
               </div>
             </div>
@@ -133,16 +133,23 @@
       }
     },
     mounted(){
-      this.$refs.inputBtn.scrollIntoView(false);
+
+
     },
     methods:{
+      loadImage(){
+        console.log('图片加载完毕');
+        this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
+      },
       getFocus(){
-          this.$refs.inputBtn.scrollIntoView(false)
+        if(this.$refs.btn){
+          this.$refs.btn.scrollIntoView(false);
+        }
       },
       toBottom(){
         setTimeout(()=>{
+          console.log(this.$refs.talking.scrollHeight,this.$refs.talking.clientHeight,this.$refs.talking.offsetHeight,1212121212 )
           this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
-          console.log(this.$refs.talking.scrollTop,1212121212 )
         },50)
       },
       send(){
@@ -188,8 +195,9 @@
   }
 </script>
 <style scoped>
+
 .page{
-  /*flex: 1;*/
+  flex: 1;
   /*overflow: auto;*/
   display: flex;
   flex-direction: column;

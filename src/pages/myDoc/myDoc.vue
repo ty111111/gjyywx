@@ -142,10 +142,11 @@
 <style scoped>
   .wrap{
     display: flex;
+    flex:1;
     flex-direction: column;
   }
   #onlinepage{
-    /*flex: 1;*/
+    flex: 1;
     /*overflow: auto;*/
     display: flex;
     flex-direction: column;
