@@ -1,10 +1,10 @@
 <template>
   <div class="app">
       <app-header>
-          <p>查报告单</p>
+          <p  style="flex:1 1 auto; text-align:center">查报告单</p>
     </app-header>
       <div class="weui-cells">
-          <a class="weui-cell weui-cell_access myPanel" @click="getReport">
+          <a class="weui-cell weui-cell_access myPanel" @click="getReport(0)">
               <div class="weui-cell__hd">
                   <p>检验报告</p>
     </div>
@@ -13,7 +13,7 @@
               <div class="weui-cell__ft">
     </div>
     </a>
-          <a class="weui-cell weui-cell_access myPanel">
+          <a class="weui-cell weui-cell_access myPanel" @click="getReport(1)">
               <div class="weui-cell__hd">
                   <p>检查报告</p>
     </div>
@@ -35,10 +35,12 @@
 
 <script>
     import AppHeader from "../../../components/business/app-header.vue";
+    import Api from "../../../lib/api.js";
   export default {
     data() {
       return {
-
+          compatId:"",
+          name:""
       };
     },
     computed:{
@@ -49,14 +51,20 @@
 
     },
     mounted() {
-
+        [this.compatId,this.name]=this.$route.params.id.split('&');
     },
     beforeDestroy() {
 
     },
     methods: {
-        getReport(){
-            this.$router.push("/service/baogao/reportInfo");
+        getReport(flag){
+            if(flag==0){
+                window.localStorage['mode']='jy';
+            }
+            else{
+                window.localStorage['mode']="jc";
+            }
+            this.$router.push("/service/baogao/reportInfo/"+this.compatId+"&"+encodeURI(this.name));
         }
 
     }

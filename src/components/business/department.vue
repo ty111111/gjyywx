@@ -1,5 +1,8 @@
 <template>
-<div>
+<div class="app">
+      <app-header>
+          <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">{{title}}</div>
+    </app-header>
     <div class="weui-loadmore" v-show="!Got">
         <i class="weui-loading"></i>
         <span class="weui-loadmore__tips">正在加载</span>
@@ -41,6 +44,7 @@
 </template>
 
 <script>
+    import AppHeader from "../../components/business/app-header";
     import api from '../../lib/api.js';
   export default {
       data(){
@@ -52,18 +56,11 @@
               departmentId:"",
               isAppt:false,
               Got:false,
-              failure:false
+              failure:false,
+              title:""
           }
       },
       methods:{
-          setHeight(){          /**获取屏幕高度
-          **/
-              console.log(document.getElementById("module"));
-              let screenHeight=document.documentElement.clientHeight;
-              let headerHeight=45;
-              document.getElementById("module").style.height=screenHeight-headerHeight+'px';
-                  
-          },
           changeDepartment(index){
               console.log(index);
               let item=this.department[index];
@@ -89,6 +86,9 @@
               }
           }
       },
+      components:{
+          AppHeader
+      },
       computed:{
         departmentFilter(){
             let department=this.department;
@@ -112,19 +112,13 @@
           }
           var storage=window.localStorage;
           if (storage['hosName']){
-              this.$emit("headerInfo",{
-                  title:storage['hosName'],
-                  backSrc:"../"
-              });
+              this.title=storage['hosName'];
           }
           else
           {
               api("nethos.book.hos.info",{bookHosId:bookHosId})
           .then((val)=>{
-              this.$emit("headerInfo",{
-                  title:val.obj.hosName,
-                  backSrc:"../"
-              })
+                this.title=val.obj.hosName;
           },
                ()=>{
                   this.failure=true;
@@ -137,7 +131,6 @@
               this.department=val.list;
               this.Got=true;          
               let index=0;
-              setTimeout(()=>{this.setHeight()},50);
               if(window.localStorage["deptIndex"]){
                   index=storage["deptIndex"];
 //                  this.subDepartment=eval('('+storage["deptList"]+')');
@@ -164,6 +157,7 @@
         
         display:flex;
         flex-direction:row;
+        align-items:stretch;
 
     }
     li{
@@ -178,7 +172,6 @@
     }
     .sidebar
     {
-        height:100%;
         background-color:#F2F2F2;
         width:7rem;
         overflow-y: auto;
@@ -186,7 +179,6 @@
 
     }
     .main{
-        height:100%;
         flex: 1;
         overflow-y: scroll;
 /*        -webkit-overflow-scrolling: touch;  */

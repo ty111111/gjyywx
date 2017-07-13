@@ -42,7 +42,8 @@
       data(){
           return{
               patInfo:{},
-              recordDis:false
+              recordDis:false,
+              compatRecord:""
           }
       },
       mounted(){
@@ -61,10 +62,12 @@
               else{
                  api("nethos.pat.compat.list",{'token':window.localStorage['token']})
                  .then((val)=>{
+                     console.log(val);
                      this.patInfo=val.list[0];
                   if(!this.patInfo.compatMedicalRecord){
                       this.patInfo.compatMedicalRecord="暂未绑定病案号";
                   }
+                   this.compatRecord=this.patInfo.compatRecord;
                  })
               }
           }
@@ -74,18 +77,27 @@
              this.$router.push("/service/setPat/"); 
           },
           query(){
-              if (this.patInfo.compatMedicalRecord!="暂未绑定病案号"){
-//                  this.recordDis=true;
+              if (this.patInfo.compatMedicalRecord=="暂未绑定病案号"){
+                  this.recordDis=true;
 //                  console.log(this.recordDis);
 //                  this.$router.push("/service/bind/"+this.patInfo.patId);
               }
               else{
-                  this.$router.push("/service/baogao/report/");
+                  if(this.patInfo.compatId){
+                    this.$router.push("/service/baogao/report/"+this.patInfo.compatId+"&"+encodeURI(this.patInfo.compatName));
+                  }
+                  else{
+                      alert("该病人无法查询");
+                      window.history.back();
+                  }
               }
           },
           bind(){
               this.$router.push("/service/bind/"+this.patInfo.patId);
           }
+      },
+      beforeDestroy(){
+          window.localStorage.removeItem("compatInfo");
       }
   }
 </script>
@@ -110,4 +122,5 @@
         flex:1 1 auto;
         background:rgb(248,248,248);
     }
+
 </style>

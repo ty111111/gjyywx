@@ -71,15 +71,27 @@ export default [{
     }
   },
     {
-    path: '/service/baogao/report',
+    path: '/service/baogao/report/:id',
     component: resolve => {
       require(['./baogao/report.vue'], resolve)
     }
   },
     {
-    path: '/service/baogao/reportInfo',
+    path: '/service/baogao/reportInfo/:id',
     component: resolve => {
       require(['./baogao/reportInfo.vue'], resolve)
+    }
+  },
+     {
+    path: '/service/baogao/detail/:id',
+    component: resolve => {
+      require(['./baogao/detail.vue'], resolve)
+    }
+  },
+     {
+    path: '/service/baogao/reportDetail/:id',
+    component: resolve => {
+      require(['./baogao/reportDetail.vue'], resolve)
     }
   },
     {

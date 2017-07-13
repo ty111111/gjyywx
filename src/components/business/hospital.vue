@@ -1,5 +1,10 @@
 <template>
-  <div >
+  <div class="app">
+      <div class="app">
+      <app-header>
+          <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">预约挂号</div>
+          <div slot="right"  class="appointl" @click="getMyScheme" style="0 0 auto;width:4rem;"><p>我的挂号</p></div>
+    </app-header>
     <div class="weui-loadmore" v-show="!Got">
         <i class="weui-loading"></i>
         <span class="weui-loadmore__tips">正在加载</span>
@@ -8,7 +13,7 @@
           <span class="weui-loadmore__tips">网络错误</span>
           
     </div>
-    <div class="weui-panel weui-panel_access" v-show="Got&&!failure">
+    <div class="weui-panel weui-panel_access containing" v-show="Got&&!failure">
         <div class="weui-panel__bd scroller" >
                     <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" v-for="item in hospital" @click="show(item.bookHosId,item.hosName)" :id="item.bookHosId">
                 <div class="weui-media-box__hd">
@@ -24,6 +29,7 @@
 	<app-footer class="footer">
 		
 	</app-footer>
+    </div>
     <div class="background" v-show="isShown" >
         <div class="option weui-panel weui-panel_access">
             <div class="weui-panel__bd">
@@ -58,6 +64,7 @@
 </template>
 
 <script>
+    import AppHeader from "../../components/business/app-header";
     import api from "../../lib/api.js";
 	import AppFooter from "../../components/business/app-footer";
   export default {
@@ -78,6 +85,9 @@
 
       methods:
       {
+          getMyScheme(){
+              this.$router.push("/myRegistration/"+window.localStorage["myId"]);
+          },
           check(){
               console.log("click get");
           },
@@ -97,11 +107,6 @@
       },
         mounted(){
             window.localStorage.removeItem("deptIndex");
-            this.$emit("headerInfo",{
-                title:"预约挂号",
-                backSrc:"/"
-            })
-            this.$emit("hasRight");
       },
       computed:{
           key(){
@@ -126,10 +131,10 @@
           })
       },
 	  components:{
-		AppFooter
+		AppFooter,
+          AppHeader
 	  },
       beforeDestroy(){
-          this.$emit("hasRight");
           window.localStorage["isAppt"]=this.isAppt;
           window.localStorage['hosName']=this.hosName;
 //          window.localStorage['backSrc']="/service/book/";
@@ -140,12 +145,7 @@
 <style scoped lang="scss">
     .background{
         padding-top:45%;
-        position:fixed;
-        left:0px;
-        top:0px;
-        background-color:grey;
-        width:100%;
-        height:100%;
+
         display:flex;
         align-items:center;
         flex-direction: column;
@@ -158,8 +158,15 @@
         
     }
     .footer{
-        position:fixed;
-        bottom:0px;
-        width:100%;
+        flex: 0 0 auto;
+        
+    }
+    .containing{
+        flex:1 1 auto;
+    }
+    .app{
+        flex:1 1 auto;
+        display:flex;
+        flex-direction:column;
     }
 </style>

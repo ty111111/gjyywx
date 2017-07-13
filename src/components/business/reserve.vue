@@ -1,5 +1,8 @@
 <template>
-  <div style="overflow:auto" ref="main">
+  <div ref="main" class="app">
+          <app-header>
+          <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">{{title}}</div>
+    </app-header>
             <div class="weui-loadmore" v-show="!Got">
                 <i class="weui-loading"></i>
                 <span class="weui-loadmore__tips">正在加载</span>
@@ -7,8 +10,8 @@
           <div class="weui-loadmore weui-loadmore_line" v-show="failure">
               <span class="weui-loadmore__tips">网络错误</span>
     </div>
-      <div v-show="Got&&!failure">
-      <div class="weui-cells">
+      <div v-show="Got&&!failure" class="temp" style="overflow:auto">
+      <div class="weui-cells temp">
           <div class="weui-cell">
               <div>
                   <span class="big">预约信息</span><br><br>
@@ -25,7 +28,7 @@
               
     </div>
     </div>
-      <div class="weui-cells">
+      <div class="weui-cells temp">
           <div class="weui-cell">
               <div style="width:100%">
               <div class="patInfo">
@@ -47,7 +50,7 @@
     </div>
     </div>
 
-      <div class="weui-cells" v-show="Got">
+      <div class="weui-cells temp" v-show="Got">
       <my-nav title="验证码" :hasRight="hasRight" placeholder="请输入验证码" @update="updateVal">
           <div slot="right"><img src="" id="au" style="height:30px;width:60px;"></div>
     </my-nav>
@@ -83,6 +86,7 @@
 <script>
     import api from '../../lib/api.js';
     import MyNav from "./nav";
+    import AppHeader from "../../components/business/app-header";
   export default {
     data() {
       return {
@@ -99,7 +103,8 @@
           msg:"",
           Got:false,
           failure:false,
-          patList:[]
+          patList:[],
+          title:"就诊信息确认"
       };
     },
     computed:{
@@ -109,14 +114,15 @@
 
     },
     components:{
-        MyNav
+        MyNav,
+        AppHeader
     },
     mounted() {
-        this.setHeight();
+        //this.setHeight();
         
     },
     beforeDestroy() {
-
+        window.localStorage.removeItem("compatInfo")
     },
     methods: {
         setPat(){
@@ -210,7 +216,6 @@
           temp.isAppt=eval(storage['isAppt'])||true;
           this.reserveInfo=temp;
           var backSrc=storage['last']||"/";
-          this.$emit("headerInfo",{title:"就诊信息确认",backSrc:backSrc});
           this.token=window.localStorage['token'];
           var item={}
           if(window.localStorage['compatInfo']!=undefined){
@@ -237,6 +242,9 @@
 </script>
 
 <style scoped lang="scss">
+    .temp{
+        flex:1 1 auto;
+    }
     .pat-header{
         display:flex;
         flex-direction:column;

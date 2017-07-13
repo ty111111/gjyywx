@@ -1,5 +1,8 @@
 <template>
-<div class="view">
+<div class="view app">
+      <app-header>
+          <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">{{title}}</div>
+    </app-header>
     <div class="buttonArea" v-if="isAppt" >
         <div style="font-size:0px">
         <button @click="changeMode('doctorBased')" class=" weui-btn weui-btn_mini weui-btn_primary button" :class="{'clicked':isDoc}" style="border-radius:10px 0 0 10px">按专家预约</button>
@@ -14,9 +17,12 @@
     </div>
     </div>
     </div>
-  <div  id="module" v-show="Got">
+            <div class="weui-loadmore weui-loadmore_line" v-show="failure">
+                <span class="weui-loadmore__tips">网络错误</span>
+    </div>
+  <div  id="module" class="app" v-show="Got">
 
-    <div class="weui-loadmore weui-loadmore_line" v-show="noInfo1&&noInfo2">
+    <div class="weui-loadmore weui-loadmore_line" v-show="!failure&&noInfo1&&noInfo2">
         <span class="weui-loadmore__tips">暂无号源</span>
     </div>
       <div class="appoint">
@@ -82,18 +88,20 @@
                 <i class="weui-loading"></i>
                 <span class="weui-loadmore__tips">正在加载</span>
             </div>               
-            <div class="weui-loadmore weui-loadmore_line" v-show="failure">
-                <span class="weui-loadmore__tips">网络错误</span>
-    </div>
-            <div  class="popup" v-show="Got&&!failure">
+
+            <div  v-show="Got&&!failure" class="popup">
+                <div>
                 <p class="small">{{chosedItem.year}}-{{chosedItem.schemeDate}}
                     {{chosedItem.week}} {{chosedItem.schemeAmpm}}</p>
-                <p class=" weui-msg__desc small">号源时段以医院实际情况为准</p>   
+                <p class=" weui-msg__desc small">号源时段以医院实际情况为准</p>
+    </div>
+                <div style="overflow:auto;">
                 <ul>
                     <li v-for="item in filteredBookList" @click="reserve(item)"> 
                         <a class="small">{{item.index}}号 {{item.hour}}:{{item.minute}}-{{item.newHour}}:{{item.newMinute}}</a>
     </li>
     </ul>
+    </div>
     </div>
             
     </div>
@@ -102,14 +110,12 @@
         <i class="weui-loading"></i>
         <span class="weui-loadmore__tips">正在加载</span>
     </div>
-    <div class="weui-loadmore weui-loadmore_line" v-show="failure">
-        <span class="weui-loadmore__tips">网络错误</span>
-    </div>
     </div>
 </template>
 
 <script>
     import api from '../../lib/api.js';
+    import AppHeader from "../../components/business/app-header";
   export default {
     data() {
       return {
@@ -132,7 +138,8 @@
           noInfo1:true,
           noInfo2:true,
           week:["周日","周一","周二","周三","周四","周五","周六","周日"],
-          failure:false
+          failure:false,
+          title:""
       };
     },
     computed:{
@@ -180,10 +187,11 @@
 
     },
     components:{
-
+        AppHeader
     },
       
     mounted() {
+        
         this.setHeight();
         
     },
@@ -313,10 +321,7 @@
         api("nethos.book.dept.info",{bookDeptId:bookDeptId })
         .then((val)=>{
             this.dept=val.obj;
-            this.$emit("headerInfo",{
-                title:this.dept.deptName,
-                backSrc:"/service/book/department/"+this.dept.bookHosId
-            })
+            this.title=this.dept.deptName;  
         });
         api("nethos.book.doc.list.scheme.list",{bookDeptId:bookDeptId })
         .then((val)=>{
@@ -361,6 +366,7 @@
     }
     
     .buttonArea{
+        flex: 0 0 auto;
         display:flex;
         justify-content: center;
         width:100%;
@@ -368,6 +374,7 @@
         background: white;
     }
     .time{
+        flex:0 0 auto;
         background-color:white;
         overflow-x:auto;
         min-height:50px;
@@ -407,7 +414,6 @@
         width:100%;
     }
     .options{
-        overflow:auto;
         position:fixed;
         bottom:0px;
         left:0px;
@@ -461,6 +467,9 @@
     }
     .popup{
         padding:1rem;
+        display:flex;
+        flex-direction:column;
+        height:300px;
     }
 
 </style>

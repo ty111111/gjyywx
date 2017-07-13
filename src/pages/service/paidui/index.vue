@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
       <app-header>
           <img slot="left" src="../../../../static/img/u436.png" class="arrow"onClick="window.history.back()">
           <div class="middle big">排队叫号</div>
@@ -79,16 +79,23 @@
 //                  this.$router.push("/service/bind/"+this.patInfo.patId);
               }
               else{
-                  this.$router.push("/service/paidui/myQueue/"+this.patInfo.patId);
+                  this.$router.push("/service/paidui/myQueue/"+this.patInfo.compatId);
               }
           },
           bind(){
               this.$router.push("/service/bind/"+this.patInfo.patId);
           }
+      },
+      beforeDestroy(){
+          window.localStorage.removeItem("compatInfo");
       }
   }
 </script>
 <style scoped lang="scss">
+    .app{
+        flex:1 1 auto;
+        background:rgb(248,248,248);
+    }
     .chaxun{
         font-size:0.875rem;
         color: #3399CC;

@@ -61,10 +61,10 @@
         this.$router.push('register')
       },
       login(){
-//       var passWord = sha512(hex_md5(this.patPassword) + this.patPassword );
+       var passWord = sha512(hex_md5(this.patPassword) + this.patPassword );
         Api('nethos.pat.login',{
           patMobile:this.patMobile,
-          patPassword:this.patPassword
+          patPassword:passWord
         }).then(req=>{
           console.log(req)
           if(req.succ){

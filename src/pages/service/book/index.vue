@@ -1,45 +1,22 @@
 <template>
   <div class="viewpage">
-      <app-header style="display:flex;flex-direction:row">
-          <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">{{title}}</div>
-          <div slot="right"  class="appointl" @click="getMyScheme" style="0 0 auto;width:4rem;"><p v-show="isShown">我的挂号</p></div>
-    </app-header>
       <transition :name="transitionName">
-      <router-view @headerInfo="check" @hasRight="setRight" class="Router"></router-view>
+      <router-view ></router-view>
     </transition>
   </div>
 </template>
 
 <script>
-    import AppHeader from '../../../components/business/app-header.vue';
   export default {
       data(){
           return{
-              title:"",
-              src:"",
-              isShown:false,
               transitionName:"slide-left"
           }
       },
       components:{
-          AppHeader
       },
       methods:{
-          check(option){
-              this.title=option.title;
-              this.src=option.backSrc;
-          },
-          setRight(){
-              if(this.isShown){
-                  this.isShown=false;
-              }
-              else{
-                  this.isShown=true;
-              }
-          },
-          getMyScheme(){
-              this.$router.push("/myRegistration/"+window.localStorage["myId"]);
-          }
+
       },
     watch: {
         '$route' (to, from) {
@@ -64,6 +41,28 @@
 <style  lang="scss">
 $price: #FFCC00;
 $info:  #3399FF;
+    .background{
+        position:fixed;
+        left:0px;
+        top:0px;
+        background-color:grey;
+        width:100%;
+        height:100%;
+        z-index:999
+    }
+    header{
+        flex:0 0 auto;
+    }
+    .app{
+        flex: 1 1 auto;
+        display:flex;
+        flex-direction:column;
+    }
+    .viewpage{
+        display:flex;
+        flex-direction:column;
+        flex:1 1 auto;
+    }
 .figure
     {
         width:60px;
@@ -87,36 +86,27 @@ $info:  #3399FF;
             color:#FF6666;
         }
     }
-    .appointl{
-        color:$info;
-        padding-right:5px;
-    }
-    @font-face {
-      font-family: 'iconfont';
-      src: url('//at.alicdn.com/t/font_33qiq29sp5y7gb9.woff') format('woff'),
-    }
-    #arrow{
-        
-      font-family: 'iconfont';
-      font-size: 18px;
-        padding-left:1rem;
-        color:black;
-    }
     p, span{
         font-family:宋体
     }
-    .Router{
-        position:absolute;
-        top:45px;
-        width:100%;
-        transition:all .5s ease;
+    .slide-left-enter-active, .slide-left-leave-active,.slide-right-enter-active,.slide-right-leave-active{
+        transition:all .5s ease-in-out;
     }
- .slide-left-leave-active, .slide-right-enter {
-   transform: translate(-100% 0);
-     opacity:0;
-}
-.slide-left-enter, .slide-right-leave-active{
-   transform: translate(100%, 0);
-    opacity:0;
-}
+    .slide-left-enter,.slide-right-leave-to{
+        transform:translateX(100%);
+    }
+    .slide-left-enter-to,.slide-right-enter-to{
+        position:absolute;
+        top:0px;
+        width:100%;
+/*
+        .footer{
+            
+            display:none;
+        }
+*/
+    }
+    .slide-left-leave-to,.slide-right-enter{
+        transform:translateX(-100%);
+    }
 </style>
