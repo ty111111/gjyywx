@@ -10,7 +10,7 @@
       <div class="weui-loadmore weui-loadmore_line" v-show="failure">
           <span class="weui-loadmore__tips">网络错误</span>
     </div>
-      <div class="app"v-show="Got&&!failure">
+      <div class="app overflow"v-show="Got&&!failure">
       <div>
       <myPanel class="weui-cells">
           <img class="figure"slot="picture" :src="doctorInfo.docAvatar">

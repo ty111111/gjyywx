@@ -162,6 +162,7 @@
         flex-direction:column;
         width:100%;
         overflow-x:scroll;
+        -webkit-overflow-scrolling:touch;
     }
     .panel{
         border:1px solid silver;

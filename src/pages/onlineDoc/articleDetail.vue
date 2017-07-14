@@ -111,6 +111,7 @@
 
     .window{
         overflow:auto;
+        -webkit-overflow-scrolling:touch;
     }
         .figure
     {

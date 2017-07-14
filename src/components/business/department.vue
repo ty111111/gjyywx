@@ -12,7 +12,7 @@
     </div>
   <div class="view" id="module" v-if="Got&&!failure">
 
-      <div class="sidebar scroller" id="sidebar">
+      <div class="sidebar scroller overflow" id="sidebar">
         <ul>
             <li v-for="(item,index) in departmentFilter" @click="changeDepartment(index)" :class="{'isChosed':checkIfChosed(index)}">
 
@@ -26,7 +26,7 @@
     </li>
     </ul>
     </div>
-      <div class="main scroller" id="main">
+      <div class="main scroller overflow" id="main">
           <ul>
               <li v-for="item in subDepartment" :class="{'li-disabled':!item.hasScheme}">
     <a class="weui-cell weui-cell_access" href="javascript:;" @click="next(item)">
@@ -174,14 +174,11 @@
     {
         background-color:#F2F2F2;
         width:7rem;
-        overflow-y: auto;
         border:1px solid #CCCCCC;
 
     }
     .main{
         flex: 1;
-        overflow-y: scroll;
-/*        -webkit-overflow-scrolling: touch;  */
         max-width: 13rem;
         border:1px solid #CCCCCC;
 

@@ -10,8 +10,8 @@
           <div class="weui-loadmore weui-loadmore_line" v-show="failure">
               <span class="weui-loadmore__tips">网络错误</span>
     </div>
-      <div v-show="Got&&!failure" class="temp" style="overflow:auto">
-      <div class="weui-cells temp">
+      <div v-show="Got&&!failure" class="flex overflow">
+      <div class="weui-cells flex">
           <div class="weui-cell">
               <div>
                   <span class="big">预约信息</span><br><br>
@@ -28,7 +28,7 @@
               
     </div>
     </div>
-      <div class="weui-cells temp">
+      <div class="weui-cells flex">
           <div class="weui-cell">
               <div style="width:100%">
               <div class="patInfo">
@@ -50,7 +50,7 @@
     </div>
     </div>
 
-      <div class="weui-cells temp" v-show="Got">
+      <div class="weui-cells flex" v-show="Got">
       <my-nav title="验证码" :hasRight="hasRight" placeholder="请输入验证码" @update="updateVal">
           <div slot="right"><img src="" id="au" style="height:1.875rem;width:3.75rem;"></div>
     </my-nav>
@@ -242,9 +242,6 @@
 </script>
 
 <style scoped lang="scss">
-    .temp{
-        flex:1 1 auto;
-    }
     .pat-header{
         display:flex;
         flex-direction:column;

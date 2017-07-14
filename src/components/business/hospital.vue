@@ -16,7 +16,7 @@
     <div class="weui-cells flex overflow"v-show="Got&&!failure">
         <a class="weui-cell" v-for="item in hospital" @click="show(item.bookHosId,item.hosName)" :id="item.bookHosId" >
             <div class="weui-cell__hd">
-            <img class="figure" :src="item.hosPic" alt="" style="border-radius:50%; height:100%;width:4rem">    
+            <img class="figure" :src="item.hosPic" alt="" style="border-radius:50%;">    
     </div>
             <div class="weui-cell__bd">
                     <p >{{item.hosName}}</p>

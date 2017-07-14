@@ -57,6 +57,7 @@ $info:  #3399FF;
 .figure
     {
         width:3.75rem;
+        height:3.75rem;
         margin-right:.3rem;
         display:block;
         border-radius:50%;

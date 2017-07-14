@@ -53,6 +53,7 @@
     }
     .overflow{
         overflow:auto;
+        -webkit-overflow-scrolling:touch;
     }
   .slide-enter-active, .slide-leave-active {
     transition:all .3s ease-in-out

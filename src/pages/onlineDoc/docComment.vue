@@ -126,6 +126,8 @@
     .wrapper{
         flex:1 1 auto;
         overflow:auto;
+
+        -webkit-overflow-scrolling:touch;
     }
   .xingxing{
     font-family: 'iconfont';

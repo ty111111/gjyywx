@@ -9,7 +9,7 @@
             <button @click="changeMode('dateBased')" class='button weui-btn weui-btn_mini weui-btn_default ' :class="{'clicked':!isDoc}"style="border-radius:0 10px 10px 0"><p>按日期预约</p></button>
     </div>
     </div>      
-    <div class="time" v-if="!isDoc&&isAppt">
+    <div class="time overflow" v-if="!isDoc&&isAppt">
           <div class="scroller">
           <div v-for="item in timeList" @click="dateChange(item)" class="timeItem":class="{'clicked':checkIfClicked(item)}">
               {{item.day}}<br>
@@ -29,7 +29,7 @@
 <div class="weui-cells">
     <a v-for="item in normalAppoint"class="weui-cell weui-cell_access" href="javascript:;" @click="next(item)">
         <div class="weui-cell__hd">
-            <div style="background-image:url(./../../../static/img/u6883.png)" class="figure img">
+            <div  class="figure img">
                 <p>普通</p><p>门诊</p>
     </div>
     </div>
@@ -56,7 +56,7 @@
           <div class="weui-cells">
               <a v-for="item in expert" class="weui-cell weui-cell_access" @click="next(item)">
                   <div class="weui-cell__hd">
-                    <img :src="item.pic"class="figure" onerror="this.src='../../../static/img/u6883.png'"alt="暂无图像">
+                    <img :src="item.pic"class="figure" onerror="this.src='./static/img/u6883.png'"alt="暂无图像">
 
     </div>
                   <div class="weui-cell__bd">
@@ -350,6 +350,7 @@
         display:flex;
         flex-direction:column;
         overflow:auto;
+        -webkit-overflow-scrolling:touch;
     }
     
     .buttonArea{
@@ -427,12 +428,15 @@
             color:white;
         }
     .img{
+        background-image:url(./../../../static/img/u6883.png);
+        display:flex;
+        flex-direction:column;
+        align-items:center;
         background-repeat:no-repeat;
-        background-size:101%;
+        background-size:100%;
         font-size:0.77rem;
         p{
-            height:1.875rem;
-            padding-left:.7rem;
+            flex:1 1 auto;
             padding-top:.3rem;
         }
     }

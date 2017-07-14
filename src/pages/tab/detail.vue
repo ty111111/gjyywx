@@ -73,6 +73,7 @@
     }
     .page{
         overflow:auto;
+        -webkit-overflow-scrolling:touch;
         position:absolute;
         top:2.8rem;
         width:100%;
