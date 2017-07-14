@@ -26,11 +26,11 @@
                 <ul>
                   <li>{{item.docName}} &nbsp; &nbsp;&nbsp;<span class="fontCol">{{item.docTitle}}</span></li>
                   <li><span class="fontCol">{{item.docDeptName}}</span></li>
-                  <li><span class="fontCol">{{item.docPicConsultStatus?'图文问诊':''}} {{item.docVideoConsultStatus?'视频问诊':''}}</span></li>
+                  <li><span class="fontCol">{{item.docPicConsultStatus?'图文问诊':''}} &nbsp; &nbsp;&nbsp;{{item.docVideoConsultStatus?'视频问诊':''}}</span></li>
                 </ul>
               </div>
               <div class="itemXing" ><span v-show="item.docScoure" class="fontCol">
-              {{item.docScoure}} 星&nbsp;</span><span class="fontCol">&gt;</span>
+              {{item.docScoure}} 星&nbsp;</span><span >&gt;</span>
               </div>
             </div>
           </div>
