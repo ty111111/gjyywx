@@ -10,9 +10,7 @@
             &#xe60b;</label>
         </div>
     </div>
-      <div ref="wrapper" class="wrapper" >
-          <div ref="scroller" >
-<!--      <div class="scroller" ref="scroller">-->
+      <pull-up @pullUp="pullUp" class="wrapper">
           <div v-for="item in comments" class="well">
               <div>
                 <span class="xingxing" v-for="i of 5" :class="{active : Math.round(item.sysComment.score/2)>=i}">
@@ -24,8 +22,7 @@
                   <p style="flex:1 1 auto;text-align:right;padding-top:5px" class="weui-msg__desc"><img :src="item.sysPat.patAvatar" onerror="this.src='../../../src/assets/u6883.png'"class="smallPic">{{item.sysPat.patName}} | {{item.sysComment.createTime | goodTime}}</p>
     </div>
     </div>
-    </div>
-    </div>
+    </pull-up>
     <div id="toast" v-show="nothingMore">
     <div class="weui-mask_transparent"></div>
     <div class="weui-toast">
@@ -36,6 +33,7 @@
 </template>
 
 <script >
+    import PullUp from '../../components/business/pullUp';
     import ScrollFresh from '../../components/business/scroll-fresh.vue';
     import AppHeader from "../../components/business/app-header";
     import api from "../../lib/api";
@@ -61,42 +59,19 @@
  
       },
     components:{
+        PullUp,
         AppHeader,
         ScrollFresh
     },
     mounted() {
         let params={"docId":this.$route.params.id,'pageSize':10,'pageNo':1};
         this.apiRequest(params);
-        this.setScroll();
 
     },
     beforeDestroy() {
 
     },
-    methods: {
-        setScroll(){
-            this.topValue = 0,// 上次滚动条到顶部的距离  
-                this.interval = null;// 定时器  
-            var _this=this;
-            this.$refs.wrapper.onscroll = function() {
-                if(_this.interval == null){ 
-                    _this.interval = setInterval(_this.test, 100);
-                }
-                _this.topValue = _this.$refs.wrapper.scrollTop;  
-            }   
-        },
-        test() {  
-            // 判断此刻到顶部的距离是否和1秒前的距离相等  
-
-            if(this.$refs.wrapper.scrollTop == this.topValue) {
-                var target=this.$refs.wrapper.scrollHeight-this.$refs.wrapper.offsetHeight-30;
-                clearInterval(this.interval);  
-                this.interval = null;  
-                if (this.topValue>target){
-                    this.pullUp();
-                }
-            }  
-        }, 
+    methods: { 
         apiRequest(params,pullUp){
             api("nethos.doc.comment.list",params)
             .then((val)=>{
@@ -109,12 +84,7 @@
                 }
                 this.page=val.paginator;
                 this.update();
-                //this.setHeight();
             })
-        },
-        pullDown(){
-            let params={"docId":this.$route.params.id,'pageNo':1,'pageSize':10};
-            this.apiRequest(params,false);
         },
         pullUp(){
             let params={'docId':this.$route.params.id,'pageNo':this.page.nextPage,'pageSize':10};
@@ -138,11 +108,6 @@
                     item.sysComment.moudleType="视频问诊"
                 }
             })
-        },
-        setHeight(){
-            let headerHeight=45;
-            let totalHeight=150;
-            this.$refs.scroller.style.height=document.documentElement.clientHeight-headerHeight-totalHeight+'px';
         }
 
     }

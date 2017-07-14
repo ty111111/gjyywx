@@ -38,10 +38,6 @@
     },
     created(){
         this.password=this.$route.params.id;
-              this.$emit("headerInfo",{
-                  title:"",
-                  backSrc:"/service/book"
-              })
     },
     methods: {
         check(){    

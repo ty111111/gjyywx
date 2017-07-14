@@ -1,12 +1,12 @@
 <template>
-  <header>
-    <slot name="left">
+  <header style="display:flex;flex-direction:row">
+    <slot name="left" >
 
       <div class="left" @click="back"><font><span>&#xe600;</span></font></div>
 
     </slot>
-    <slot></slot>
-    <slot name="right">
+    <slot style="flex:1 1 auto"></slot>
+    <slot name="right" >
       <div class="right"></div>
     </slot>
   </header>
@@ -47,7 +47,7 @@
     font-family: 'iconfont';
     font-size: 18px;
   }
-  $w:45px;
+  $w:4rem;
   header{
     position: relative;
     height: 45px;
@@ -57,7 +57,7 @@
 flex: none;
    z-index:999;
     >.left,.right{
-      text-align: center;
+        flex:0 0 auto;
       width: $w;
     }
     div:nth-child(2){
@@ -69,6 +69,10 @@ flex: none;
   .right{
     padding-right: 5px;
     color: #3CC51F;
+          text-align:center;
   }
+    .left{
+        padding-left:1rem;
+    }
 
 </style>

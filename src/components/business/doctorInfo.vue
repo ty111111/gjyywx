@@ -1,5 +1,8 @@
 <template>
-  <div class="view" style="overflow:auto">
+  <div class="view app">
+      <app-header>
+          <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">{{title}}</div>
+    </app-header>
         <div class="weui-loadmore" v-show="!Got">
             <i class="weui-loading"></i>
             <span class="weui-loadmore__tips">正在加载</span>
@@ -7,7 +10,7 @@
       <div class="weui-loadmore weui-loadmore_line" v-show="failure">
           <span class="weui-loadmore__tips">网络错误</span>
     </div>
-      <div v-show="Got&&!failure">
+      <div class="app"v-show="Got&&!failure">
       <div>
       <myPanel class="weui-cells">
           <img class="figure"slot="picture" :src="doctorInfo.docAvatar">
@@ -61,7 +64,7 @@
     <div class="background" v-if="isShown"@click="isShown=false;failure=false">
 
     </div>
-        <transition name="fade">
+        <transition name="fad">
             <div class="options" v-if="isShown">
                 <div class="weui-loadmore" v-show="!Got">
                     <i class="weui-loading"></i>
@@ -71,14 +74,18 @@
                     <span class="weui-loadmore__tips">网络错误</span>
                 </div>
                 <div v-show="Got&!failure" class="popUp">
+                    <div>
                     <p class="small">{{chosedItem.time | getMyDay}}  {{chosedItem.week}}  {{chosedItem.Ampm}}</p>
                     
                     <p class="weui-msg__desc small">号源时段以医院实际情况为准</p>
+    </div>
+                    <div style="overflow:auto">
                     <ul>
                         <li v-for="item in filteredBookList" @click="reserve(item)"> 
                             <a>{{item.index}}号 {{item.hour}}:{{item.minute}}-{{item.newHour}}:{{item.newMinute}}</a>
                         </li>
                     </ul>
+    </div>
     </div>
             
             </div>
@@ -91,6 +98,7 @@
     import MyPanel from './panel';
     import api from '../../lib/api.js';
     import {getMyDay} from "../../lib/filter.js";
+    import AppHeader from '../../components/business/app-header';
   export default {
     data() {
       return {
@@ -108,7 +116,8 @@
           chosedItem:{},
           bookList:[],
           Got:false,
-          failure:false
+          failure:false,
+          title:""
       };
     },
     filters:{
@@ -168,12 +177,16 @@
                 list.push(newNode);
             }
             return list;
+        },
+        key(){
+            return (new Date()).valueOf();
         }
 
     },
     components:{
         myPanel:MyPanel,
-        MySelect
+        MySelect,
+        AppHeader
     },
     mounted() {
 
@@ -206,7 +219,7 @@
         reserve(item){
             window.localStorage['time']= item.hour+':'+item.minute+'-'+item.newHour+':'+item.newMinute;
             window.localStorage['last']="/service/book/doctorInfo/"+this.$route.params.id;
-            this.$router.push("/service/book/reserve/"+item.bookNumId+"&"+this.doctorInfo.bookHosId);
+            this.$router.push({path:"/service/book/reserve/"+item.bookNumId+"&"+this.doctorInfo.bookHosId,query:{key:this.key}});
         },
         getTime(str){
             let date=new Date(str);
@@ -228,10 +241,7 @@
                 }
             console.log(val.obj);
                 this.hospitalName=this.doctorInfo.hosName;
-                this.$emit("headerInfo",{
-                    title:this.doctorInfo.docName,
-                    backSrc:"/service/book/doctor/"+bookDeptId
-                }) 
+                this.title=this.doctorInfo.docName;
                 this.deptSchemeList=val.obj.deptSchemeList.filter((item)=>{
                     return item.deptName!=this.deptName;
                 });
@@ -283,7 +293,6 @@
         width:100%;
     }
     .options{
-        overflow:auto;
         position:fixed;
         bottom:0px;
         left:0px;
@@ -298,16 +307,19 @@
             }
         }
     }
-    .fade-enter-active, .fade-leave-active {
+    .fad-enter-active, .fad-leave-active {
       transition: height .5s
     }
-    .fade-enter, .fade-leave-to{
+    .fad-enter, .fad-leave-to{
         height:0px;
     }
     .small{
         font-size:0.75rem;
     }
     .popUp{
+        display:flex;
+        flex-direction:column;
+        height:300px;
         .small{
             font-size:0.75rem;
             padding:0.3rem 0 0 0.625rem;

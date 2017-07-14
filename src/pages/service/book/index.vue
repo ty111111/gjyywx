@@ -1,50 +1,59 @@
 <template>
   <div class="viewpage">
-      <app-header>
-          <div slot="left"><router-link :to="src" ><p style="padding-left:0.5rem;color:black"></p></router-link></div>
-          <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">{{title}}</div>
-          <div slot="right" v-show="isShown" class="appointl" @click="getMyScheme">我的挂号</div>
-    </app-header>
-      <router-view @headerInfo="check" @hasRight="setRight"></router-view>
+      <transition :name="transitionName">
+      <router-view ></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-    import AppHeader from '../../../components/business/app-header.vue';
   export default {
       data(){
           return{
-              title:"",
-              src:"",
-              isShown:false
+              transitionName:"fade"
           }
       },
       components:{
-          AppHeader
       },
       methods:{
-          check(option){
-              this.title=option.title;
-              this.src=option.backSrc;
-          },
-          setRight(){
-              if(this.isShown){
-                  this.isShown=false;
-              }
-              else{
-                  this.isShown=true;
-              }
-          },
-          getMyScheme(){
-              this.$router.push("/myRegistration/"+window.localStorage["myId"]);
-          }
+
+      },
+    watch: {
+      $route(to, from) {
+        console.log("转换路由");
+      console.log(this.$store.state.routeChain,77777)
+      console.log(this.$store.state.pageDirection,88888)
+        this.$set(this.$data,'transitionName',this.$store.state.pageDirection)
       }
+    }
   }
 </script>
 
 <style  lang="scss">
 $price: #FFCC00;
 $info:  #3399FF;
+    .background{
+        position:fixed;
+        left:0px;
+        top:0px;
+        background-color:grey;
+        width:100%;
+        height:100%;
+        z-index:999
+    }
+    header{
+        flex:0 0 auto;
+    }
+    .app{
+        flex: 1 1 auto;
+        display:flex;
+        flex-direction:column;
+    }
+    .viewpage{
+        display:flex;
+        flex-direction:column;
+        flex:1 1 auto;
+    }
 .figure
     {
         width:60px;
@@ -68,8 +77,38 @@ $info:  #3399FF;
             color:#FF6666;
         }
     }
-    .appointl{
-        color:$info;
-        padding-right:5px;
+    p, span{
+        font-family:宋体
     }
+  .slide-enter-active, .slide-leave-active {
+    transition:all .3s ease-in-out
+  }
+  .slide-enter{
+
+    transform: translateX(100%);
+  }
+  .slide-enter-to{
+    position: absolute;
+    top:0;
+      bottom: 0;
+    width: 100%;
+  }
+  .slide-leave-to {
+    transform: translateX(-100%);
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition:all .3s ease-in-out
+  }
+  .fade-enter{
+    transform: translateX(-100%);
+  }
+  .fade-enter-to{
+    position: absolute;
+    top:0;
+      bottom:0px;
+    width: 100%;
+  }
+  .fade-leave-to {
+    transform: translateX(100%);
+  }
 </style>

@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script >
   //import WeuiForVue from "weui-for-vue"
   import {Msg, Loading, Toast} from "weui-for-vue"
   export default {
@@ -50,11 +50,13 @@
     transition:all .3s ease-in-out
   }
   .slide-enter{
+
     transform: translateX(100%);
   }
   .slide-enter-to{
     position: fixed;
     top:0;
+      bottom: 0;
     width: 100%;
   }
   .slide-leave-to {
@@ -69,6 +71,7 @@
   .fade-enter-to{
     position: absolute;
     top:0;
+      bottom:0px;
     width: 100%;
   }
   .fade-leave-to {
@@ -93,4 +96,5 @@
       flex-direction: column;
     }
   }
+
 </style>

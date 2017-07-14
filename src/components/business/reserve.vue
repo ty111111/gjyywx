@@ -1,5 +1,8 @@
 <template>
-  <div style="overflow:auto" ref="main">
+  <div ref="main" class="app">
+          <app-header>
+          <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">{{title}}</div>
+    </app-header>
             <div class="weui-loadmore" v-show="!Got">
                 <i class="weui-loading"></i>
                 <span class="weui-loadmore__tips">正在加载</span>
@@ -7,27 +10,27 @@
           <div class="weui-loadmore weui-loadmore_line" v-show="failure">
               <span class="weui-loadmore__tips">网络错误</span>
     </div>
-      <div v-show="Got&&!failure">
-      <div class="weui-cells">
+      <div v-show="Got&&!failure" class="temp" style="overflow:auto">
+      <div class="weui-cells temp">
           <div class="weui-cell">
               <div>
                   <span class="big">预约信息</span><br><br>
              <div class="containing" style="font-size:0.77rem">
-                医院: {{reserveInfo.hosName}}<br><br>
-                科室: {{reserveInfo.deptName}}<br><br>
-                 医生: {{reserveInfo.name}}<br><br>
-                 就诊日期: {{reserveInfo.date}}  {{reserveInfo.Ampm}}<br><br>
-                 <p >预估就诊时间: {{reserveInfo.time}}  <span class="weui-msg__desc" style="font-size:0.77rem">(以医院实际情况为准)</span></p><br>
-              支付方式: 现场支付<br><br>
-              挂号费: <span style="color:#FFCC00;font-size:0.77rem">{{reserveInfo.bookFee}}.0元</span>
+                 <p>医院: {{reserveInfo.hosName}}</p>
+                 <p>科室: {{reserveInfo.deptName}}</p>
+                 <p>医生: {{reserveInfo.name}}</p>
+                 <p>就诊日期: {{reserveInfo.date}}  {{reserveInfo.Ampm}}</p>
+                 <p >预估就诊时间: {{reserveInfo.time}}  <span class="weui-msg__desc" style="font-size:0.77rem">(以医院实际情况为准)</span></p>
+                 <p>支付方式: 现场支付</p>
+                 <p>挂号费: <span style="color:#FFCC00;font-size:0.77rem">{{reserveInfo.bookFee}}.0元</span></p>
     </div>
     </div>
               
     </div>
     </div>
-
-      <div class="weui-cells">
-          <div class="weui-cell pat-header">
+      <div class="weui-cells temp">
+          <div class="weui-cell">
+              <div style="width:100%">
               <div class="patInfo">
                   <div style="text-align:left;width:40%">
                       <p class="big">就诊人信息</p>
@@ -35,16 +38,19 @@
                   <div style="color:#3399ff;width:60%;text-align:right" @click="setPat">
                       切换就诊人>
     </div>
-    </div><br>
-    <div class="containing">姓名: {{patInfo.name}}<br><br>
-    手机号: {{patInfo.phone}}<br><br>
-    身份证号: {{patInfo.id}}<br><br>
-    病案号: {{patInfo.compatRecord}}
+    </div>
+    <div class="containing" style="font-size:0.77rem">
+    <p>姓名: {{patInfo.name}}</p>
+    <p>手机号: {{patInfo.phone}}</p>
+    <p>身份证号: {{patInfo.id}}</p>
+    <p>病案号: {{patInfo.compatRecord}}</p>
+    </div>
+    </div>
+              
     </div>
     </div>
 
-    </div>
-      <div class="weui-cells" v-show="Got">
+      <div class="weui-cells temp" v-show="Got">
       <my-nav title="验证码" :hasRight="hasRight" placeholder="请输入验证码" @update="updateVal">
           <div slot="right"><img src="" id="au" style="height:30px;width:60px;"></div>
     </my-nav>
@@ -80,6 +86,7 @@
 <script>
     import api from '../../lib/api.js';
     import MyNav from "./nav";
+    import AppHeader from "../../components/business/app-header";
   export default {
     data() {
       return {
@@ -96,29 +103,34 @@
           msg:"",
           Got:false,
           failure:false,
-          patList:[]
+          patList:[],
+          title:"就诊信息确认"
       };
     },
     computed:{
+        key(){
+            return (new Date()).valueOf();  
+        }
 
     },
     components:{
-        MyNav
+        MyNav,
+        AppHeader
     },
     mounted() {
-        this.setHeight();
+        //this.setHeight();
         
     },
     beforeDestroy() {
-
+        window.localStorage.removeItem("compatInfo")
     },
     methods: {
         setPat(){
-            this.$router.push("/service/setPat/");
+            this.$router.push({path:"/service/setPat/",query:{key:this.key}});
         },
         bind(){
 //            console.log(this.patInfo);
-            this.$router.push("/service/bind/"+this.patInfo.compatId);
+            this.$router.push({path:"/service/bind/"+this.patInfo.compatId,query:{key:this.key}});
         },
         updateVal(val){
             this.auVal=val;
@@ -141,7 +153,7 @@
                         this.isShown=true;
                     }
                     if(val.succ){
-                    this.$router.push("/service/book/info/"+"1");
+                    this.$router.push({path:"/service/book/info/"+"1",query:{key:this.key}});
                     }
                 },
                      ()=>{
@@ -192,7 +204,7 @@
           var temp=new Object();
           if(!storage['hosName']||!storage['deptName']||!storage['name']||!storage['date']||!storage['date']||!storage['time']||!storage['Ampm'] ||!storage['bookFee']){
               alert("填写内容不完整，请重新填写");
-              this.$router.push("/service/book");
+              this.$router.push({path:"/service/book",query:{key:this.key}});
           }
           temp.hosName=storage["hosName"];
           temp.deptName=storage['deptName'];
@@ -204,7 +216,6 @@
           temp.isAppt=eval(storage['isAppt'])||true;
           this.reserveInfo=temp;
           var backSrc=storage['last']||"/";
-          this.$emit("headerInfo",{title:"就诊信息确认",backSrc:backSrc});
           this.token=window.localStorage['token'];
           var item={}
           if(window.localStorage['compatInfo']!=undefined){
@@ -231,6 +242,9 @@
 </script>
 
 <style scoped lang="scss">
+    .temp{
+        flex:1 1 auto;
+    }
     .pat-header{
         display:flex;
         flex-direction:column;
@@ -245,6 +259,8 @@
         font-size:0.77rem;
         p{
             font-size:0.77rem;
+            padding:1rem 0;
+            font-family: 宋体;
         }
     }
 

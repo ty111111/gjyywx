@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
       <app-header>
           <div class="middle big">我的叫号</div>
           <img slot="left" src="../../../../static/img/u436.png" onClick="window.history.back()"> 
@@ -61,6 +61,10 @@
 </script>
 
 <style scoped lang="scss">
+    .app{
+        flex:1 1 auto;
+        background:rgb(248,248,248);
+    }
     span{
         color: #3399FF;
     }

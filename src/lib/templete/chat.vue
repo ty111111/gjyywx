@@ -92,7 +92,7 @@
     </div>
   </div>
 </template>
-<script type="text/ecmascript-6">
+<script >
   import Api from '../api'
   import editDiv from './editDiv.vue'
   import Ajax from '../ajax'
@@ -133,8 +133,13 @@
       }
     },
     mounted(){
+
 //      this.$refs.btn.scrollIntoView(false);
+
     },
+      beforeDestroy(){
+          document.body.removeEventListener('touchmove', this.preventScroll,false);
+      },
     methods:{
       loadImage(){
         console.log('图片加载完毕');
@@ -363,6 +368,7 @@
     text-align: center;
   }
 
+/*
   .bottom{
     position: absolute;
     bottom: 0px;
@@ -371,6 +377,7 @@
     height: auto;
     background: white;
   }
+*/
   .mr10 {
     margin-right: 10px;
     width: 100%;
