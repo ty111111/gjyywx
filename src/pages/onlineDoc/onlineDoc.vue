@@ -26,11 +26,11 @@
                 <ul>
                   <li>{{item.docName}} &nbsp; &nbsp;&nbsp;<span class="fontCol">{{item.docTitle}}</span></li>
                   <li><span class="fontCol">{{item.docDeptName}}</span></li>
-                  <li><span class="fontCol">{{item.docPicConsultStatus?'图文问诊':''}} &nbsp; &nbsp;&nbsp;{{item.docVideoConsultStatus?'视频问诊':''}}</span></li>
+                  <li><span class="fontCol">{{item.docPicConsultStatus?'图文问诊':''}} {{item.docVideoConsultStatus?'视频问诊':''}}</span></li>
                 </ul>
               </div>
-              <div class="itemXing"><span class="fontCol">
-              {{item.docScoure}}星&nbsp;&nbsp;&gt;</span>
+              <div class="itemXing" ><span v-show="item.docScoure" class="fontCol">
+              {{item.docScoure}} 星&nbsp;</span><span class="fontCol">&gt;</span>
               </div>
             </div>
           </div>
@@ -280,18 +280,26 @@
     display: flex;
     align-items: center;
     padding: 10px 10px;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
+  }
+  .itemImg{
+    width: 50px;
+    height: 50px;
   }
   .itemImg img{
     width: 50px;
     height: 50px;
-
+    border-radius: 25px;
   }
   .itemContain{
-
+    flex: 1;
+    box-sizing: border-box;
+    padding-left: 20px;
+    /*text-align: center;*/
   }
   .itemXing{
-
+    box-sizing: border-box;
+    padding-right: 10px;
   }
   .fontCol{
     color: gray;

@@ -9,21 +9,18 @@ import Vuex from 'vuex';
 // import service from "../pages/service/store"
 
 Vue.use(Vuex);
-
-
 export default new Vuex.Store({
   state: {
-    count: 1,
-    pageDirection: 'slide',
-    routeChain:[]
+    pageDirection: 'slide'
+    // routeChain:[]
   },
   mutations: {
-    addRouteChain(state, route){
-      state.routeChain.push(route);
-    },
-    popRouteChain(state){
-      state.routeChain.pop();
-    },
+  //   addRouteChain(state, route){
+  //     state.routeChain.push(route);
+  //   },
+  //   popRouteChain(state){
+  //     state.routeChain.pop();
+  //   },
     setPageDirection(state, dir){
       state.pageDirection = dir;
     }

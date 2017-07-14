@@ -77,7 +77,7 @@
       <slot name="inputTalk">
         <div class="robot-room-wirte yk-box yk-cell">
           <div class="yk-cell-bd mr10">
-            <edit-div :message="clean" v-model="text" id="inputArea" class="input-text" v-on:inputText="getFocus"></edit-div>
+            <edit-div :message="clean" v-model="text" id="inputArea" class="input-text" ></edit-div>
           </div>
           <div v-show="!text.length" class="showJia" @click.stop="showCheckList"><span class="jia">+</span></div>
           <button v-show="text.length" class="send-btn" @click="send()">发送</button>
@@ -92,7 +92,7 @@
     </div>
   </div>
 </template>
-<script >
+<script type="text/ecmascript-6">
   import Api from '../api'
   import editDiv from './editDiv.vue'
   import Ajax from '../ajax'
@@ -133,27 +133,9 @@
       }
     },
     mounted(){
-        console.log(this.$refs.talking.clientHeight,99989898989);
-        this.testVal=this.$refs.talking.clientHeight;
-        var overscroll = function(el){
-            el.addEventListener('touchstart', function(){
-                var top = el.scrollTop;
-                var totalScroll = el.scrollHeight;
-                var currentScroll = top + el.offsetHeight;
-                if(top === 0) {
-                    el.scrollTop = 1;
-                }else if(currentScroll === totalScroll){
-                    el.scrollTop = top - 1;
-                }
-            });
-            el.addEventListener('touchmove', function(evt){
-                if(el.offsetHeight < el.scrollHeight){
-                    evt._isScroller = true;
-                }
-            });
-        }
-        overscroll(document.querySelector('.wrap'));
-        document.body.addEventListener('touchmove', this.preventScroll,false);
+
+//      this.$refs.btn.scrollIntoView(false);
+
     },
       beforeDestroy(){
           document.body.removeEventListener('touchmove', this.preventScroll,false);
@@ -163,11 +145,11 @@
         console.log('图片加载完毕');
         this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
       },
-      getFocus(){
-        if(this.$refs.btn){
-          this.$refs.btn.scrollIntoView(false);
-        }
-      },
+//      getFocus(){
+//        if(this.$refs.btn){
+//          this.$refs.btn.scrollIntoView(false);
+//        }
+//      },
       toBottom(){
         setTimeout(()=>{
           console.log(this.$refs.talking.scrollHeight,this.$refs.talking.clientHeight,this.$refs.talking.offsetHeight,1212121212 )
