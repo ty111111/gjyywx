@@ -56,8 +56,8 @@ $info:  #3399FF;
     }
 .figure
     {
-        width:60px;
-        margin-right:5px;
+        width:3.75rem;
+        margin-right:.3rem;
         display:block;
         border-radius:50%;
     }
@@ -79,6 +79,9 @@ $info:  #3399FF;
     }
     p, span{
         font-family:宋体
+    }
+    .weui-loadmore{
+        font-size:0.875rem;
     }
   .slide-enter-active, .slide-leave-active {
     transition:all .3s ease-in-out

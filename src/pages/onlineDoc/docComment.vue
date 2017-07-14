@@ -19,7 +19,7 @@
               <p>{{item.sysComment.content}}</p>
               <div class="test">
               <p>{{item.sysComment.moudleType}}</p>
-                  <p style="flex:1 1 auto;text-align:right;padding-top:5px" class="weui-msg__desc"><img :src="item.sysPat.patAvatar" onerror="this.src='../../../src/assets/u6883.png'"class="smallPic">{{item.sysPat.patName}} | {{item.sysComment.createTime | goodTime}}</p>
+                  <p style="flex:1 1 auto;text-align:right;padding-top:0.3125rem" class="weui-msg__desc"><img :src="item.sysPat.patAvatar" onerror="this.src='../../../src/assets/u6883.png'"class="smallPic">{{item.sysPat.patName}} | {{item.sysComment.createTime | goodTime}}</p>
     </div>
     </div>
     </pull-up>
@@ -121,7 +121,7 @@
   }
   label {
     font-family: 'iconfont';
-    font-size: 25px;
+    font-size: 1.5625rem;
   }
     .wrapper{
         flex:1 1 auto;
@@ -129,18 +129,18 @@
     }
   .xingxing{
     font-family: 'iconfont';
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .active {
     color: #eeba1b;
   }
-    $totalHeight:100px;
+    $totalHeight:6.25rem;
     $background:s#333333;
     .well{
         width:18rem;
         background:white;
-        margin:10px auto;
-        border-radius:5px;
+        margin:0.625rem auto;
+        border-radius:0.3125rem;
         border:1px solid $background;
     }
     .scroller{
@@ -154,7 +154,7 @@
     }
     .totalComment{
         flex: 0 0 auto;/*flex:0 1 auto*/
-        padding-top:10px;
+        padding-top:0.625rem;
         height:$totalHeight;
         text-align:center;
     }
@@ -163,16 +163,16 @@
     }
     p{
         font-size:0.77rem;
-        padding:5px;
+        padding:0.3125rem;
         &.header{
-            padding-top:10px;
+            padding-top:0.625rem;
             font-size:1rem;
         }
     }
     .smallPic{
         height:1rem;
-        padding-top:5px;
-        border-radius:10px;
+        padding-top:0.3125rem;
+        border-radius:0.625rem;
     }
     .view{
         display:flex;

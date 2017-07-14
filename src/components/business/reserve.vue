@@ -52,7 +52,7 @@
 
       <div class="weui-cells temp" v-show="Got">
       <my-nav title="验证码" :hasRight="hasRight" placeholder="请输入验证码" @update="updateVal">
-          <div slot="right"><img src="" id="au" style="height:30px;width:60px;"></div>
+          <div slot="right"><img src="" id="au" style="height:1.875rem;width:3.75rem;"></div>
     </my-nav>
       <div style="padding:20px 10px; background-color:rgb(248,248,248);">
       <button class="weui-btn weui-btn_plain-default" @click="done" style="background-color:white;height:2.6rem;border:1px solid #cccccc;font-size:1rem">确认挂号</button>

@@ -20,13 +20,53 @@
 
 
   export default {
+      props:
+      {
+          right:{
+             type:String,
+              default:"false",
+              required:false
+          },
+          isCompleted:
+          {
+              type:Boolean,
+              default:false,
+              required:false
+          },
+          nothingMore:
+          {
+              type:Boolean,
+              default:false,
+              required:false
+          }
+          ,
+
+          height:{
+              type:String,
+              default:"3.125rem",
+              required:false
+      },
+          top:{
+              type:String,
+              default:"5.6rem",
+              requried:false
+          },
+          bottom:{
+              type:String,
+              default:"1.875rem",
+              required:false
+          }
+      },
       mounted()
       {
           var that=this;
-          document.getElementById("wrapper").style.top=this.top+'px';
+          console.log(this.top);
+          document.getElementById("wrapper").style.top=this.top;
+          document.getElementById("wrapper").style.bottom=this.bottom;
+
           if(this.hasRight)
           {
-              document.getElementById("pullUp").style.height=this.bottom+'px';
+//              document.getElementById("pullUp").style.height=this.bottom;
           }
           var overscroll = function(el){
 		  el.addEventListener('touchstart', function(){
@@ -73,43 +113,7 @@
           console.log("delete");
           document.body.removeEventListener("touchmove",this.myFun);
       },
-      props:
-      {
-          right:{
-             type:String,
-              default:"false",
-              required:false
-          },
-          isCompleted:
-          {
-              type:Boolean,
-              default:false,
-              required:false
-          },
-          nothingMore:
-          {
-              type:Boolean,
-              default:false,
-              required:false
-          }
-          ,
 
-          height:{
-              type:String,
-              default:"50",
-              required:false
-      },
-          top:{
-              type:String,
-              default:"105",
-              requried:false
-          },
-          bottom:{
-              type:String,
-              default:"30",
-              required:false
-          }
-      },
       watch:
       {
           isCompleted()
@@ -137,6 +141,11 @@
       },
       methods:
       {
+          getOffset(item){
+             var unit=document.body.scrollWidth/20;
+              var param=parseInt(item.substring(0,item.length-3));
+              return unit*param;
+          },
           myFun(evt){
              
               if(!evt._isScroller){
@@ -149,7 +158,8 @@
               let scrollerHeight=this.myScroll.scroller.clientHeight;
               let tempHeight=wrapperHeight-scrollerHeight-this.pullDownOffset;
               if(this.hasRight){
-                  tempHeight+=parseInt(this.bottom);
+                  tempHeight+=this.getOffset(this.bottom);
+//                  tempHeight+=parseInt(this.bottom);
               }
               this.$refs.supplement.style.height=Math.max(tempHeight,0)+'px'
               if(this.$refs.supplement.style.height==0){this.isShown=true};
@@ -159,9 +169,8 @@
               {  
                   var pullUp=document.getElementById("pullUp");
                   var pullDown = document.getElementById('pullDown');
-                  pullDown.style.height=this.height+'px';
-
-                  this.pullDownOffset=-parseInt(this.height);
+                  pullDown.style.height=this.height;
+                  this.pullDownOffset=-this.getOffset(this.height);
                   this.myScroll = new IScroll('#wrapper', {
                        useTranstion:true,
                        fadeScrollbars:true,

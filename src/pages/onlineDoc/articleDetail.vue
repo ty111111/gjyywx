@@ -13,11 +13,11 @@
       <my-panel @activate="follow()" :hasArrow="hasArrow">
           <div slot="picture"><img :src="info.docAvatar"class="figure" onerror="this.src='../../../src/assets/u6883.png'"></div>
           <div slot="article" style="color:black">{{info.docName}}</div>
-          <div  slot="ft"class="weui-msg__desc">{{footerWord}}</div>
+          <div  slot="ft" class="small">{{footerWord}}</div>
     </my-panel>
       <my-article :containing="containing" height="400"></my-article>
           <div style="border-top:1px solid #ccc">
-              <p  style="text-align:center"class="weui-msg__desc">长按识别二维码，关注我</p>
+              <p  style="text-align:center;color:#999999"class="small">长按识别二维码，关注我</p>
               <img :src="info.docQrcodeUrl" class="QrCode">
     </div>
     </div>
@@ -26,7 +26,7 @@
 
 <script type="text/ecmascript-6">
 
-    import MyArticle from "../../lib/templete/detail.vue";
+    import MyArticle from "../../components/business/detail.vue";
     import MyPanel from "../../lib/templete/panel.vue";
     import ScrollFresh from '../../lib/templete/scroll-fresh.vue';
     import AppHeader from "../../components/business/app-header.vue";
@@ -90,8 +90,8 @@
     }
         .figure
     {
-        width:60px;
-        margin-right:5px;
+        width:3.75rem;
+        margin-right:0.3125rem;
         display:block;
         border-radius:50%;
         margin-right:1rem;

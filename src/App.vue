@@ -46,6 +46,15 @@
 
 <style lang="scss">
   @import "common/base";
+    p,span,a{
+        font-family:"宋体";
+    }
+    .flex{
+        flex:1 1 auto;
+    }
+    .overflow{
+        overflow:auto;
+    }
   .slide-enter-active, .slide-leave-active {
     transition:all .3s ease-in-out
   }
