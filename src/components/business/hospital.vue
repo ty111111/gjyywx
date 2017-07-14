@@ -5,7 +5,7 @@
           <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">预约挂号</div>
           <div slot="right"  class="appointl" @click="getMyScheme" style="0 0 auto;width:4rem;"><p class="right" style="color:#3399FF">我的挂号</p></div>
     </app-header>
-    <div class="weui-loadmore" v-show="!Got">
+    <div class="weui-loadmore flex" v-show="!Got">
         <i class="weui-loading"></i>
         <span class="weui-loadmore__tips">正在加载</span>
     </div>
@@ -16,13 +16,14 @@
     <div class="weui-cells flex overflow"v-show="Got&&!failure">
         <a class="weui-cell" v-for="item in hospital" @click="show(item.bookHosId,item.hosName)" :id="item.bookHosId" >
             <div class="weui-cell__hd">
-            <img class="figure" :src="item.hosPic" alt="" style="border-radius:50%; height:100%">    
+            <img class="figure" :src="item.hosPic" alt="" style="border-radius:50%; height:100%;width:4rem">    
     </div>
             <div class="weui-cell__bd">
                     <p >{{item.hosName}}</p>
                     <p class="small" style="color:#999999">{{item.hosLevel}}<br>{{item.hosAddress}}</p>
     </div>
     </a>
+
     </div>
 	<app-footer msg="service" class="footer">
 

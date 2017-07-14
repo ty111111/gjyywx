@@ -27,7 +27,7 @@
           
     </div>
       <div class="weui-cells">
-          <MySelect :options="deptList" @update="update"></MySelect>
+          <MySelect :options="deptList" @update="update" v-show="deptList.length>0"></MySelect>
           <div class="weui-cell" style="display:flex;flex-direction:row" v-for="scheme in filteredSchemeList">
               <div >
                     {{scheme.time|getMyDay}}
@@ -45,7 +45,7 @@
     </div>
     </div>
       <div v-show="isDoctor">
-          <div class="weui-cells__title"><p>该医生坐诊的其他科室:</p></div>
+          <div class="weui-cells__title" v-show="deptSchemeList.length>0"><p>该医生坐诊的其他科室:</p></div>
       <div class="weui-cells">
           
           <myPanel v-for="item in deptSchemeList" @activate="anotherDept(item)" :key="item.bookDeptId">

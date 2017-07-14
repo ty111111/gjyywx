@@ -5,7 +5,6 @@
 
       </router-view>
     </transition>
-    <toast ref="toast" @toast:hide="show=false" :show="show" text="成功"></toast>
   </div>
 </template>
 

@@ -5,7 +5,7 @@
           <div class="scroller" >
           <div class="page__hd">
               <h1 class="page__title title">{{info.title}}</h1>
-              <p class="small">{{info.viewCount}}阅读  {{time}}    <span class="box" @click="recommend">推荐</span></p>
+              <p class="small">{{info.viewCount}}阅读  {{time}}    <span class="box" v-show="info.isGrade">推荐</span></p>
     </div>
           <div class="page__bd">
               <p class="weui-article" style="word-break:break-all;" ref="article"></p>
@@ -68,7 +68,7 @@
             this.$refs.article.innerHTML=this.info.content;
             this.info.createTime/=1000;
             if(this.height!=''){
-                this.$refs.page.style.height=this.height+'px';
+                this.$refs.page.style.height=this.height;
             }
         },
         getLocalTime(nS) {

@@ -15,20 +15,19 @@
           <div slot="article" style="color:black">{{info.docName}}</div>
           <div  slot="ft" class="small">{{footerWord}}</div>
     </my-panel>
-      <my-article :containing="containing" height="400"></my-article>
+      <my-article :containing="containing" height="25rem"></my-article>
           <div style="border-top:1px solid #ccc">
-              <p  style="text-align:center;color:#999999"class="small">长按识别二维码，关注我</p>
+              <p  style="text-align:center;color:#999999"class="small">长按识别二维码，关注我{{this.hasArrow}}</p>
               <img :src="info.docQrcodeUrl" class="QrCode">
     </div>
     </div>
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 
     import MyArticle from "../../components/business/detail.vue";
-    import MyPanel from "../../lib/templete/panel.vue";
-    import ScrollFresh from '../../lib/templete/scroll-fresh.vue';
+    import MyPanel from "../../components/business/panel.vue";
     import AppHeader from "../../components/business/app-header.vue";
     import api from "../../lib/api";
   export default {
@@ -39,12 +38,14 @@
           containing:'{}',
           info:{},
           Got:false,
+          params:{},
+          isFollowed:false
 
       };
     },
     computed:{
         footerWord(){
-            return this.info.follow?"已关注":"关注我";
+            return this.isFollowed?"已关注":"关注我";
         },
         hasArrow(){
             return this.footerWord=='已关注'?"false":"true";
@@ -63,21 +64,44 @@
     },
     created(){
         let articleId=this.$route.params.id;
-        this.params={"articleId":articleId};
+        this.params={"articleId":articleId,"token":window.localStorage['token']};
         api(this.command,this.params)
         .then((val)=>{
             console.log(val);
             this.info=val.obj.sysDoc;
             this.containing=JSON.stringify(val.obj.docArticle);
             this.Got=true;
-        })
+            this.params={docId:this.info.docId,token:window.localStorage['token']};
+
+            api("nethos.follow.get",this.params)
+            .then((val)=>{
+//                console.log(val);
+                this.isFollowed=val.succ;
+            },
+                     ()=>{
+                alert("网络错误，请稍后重试");
+            });
+        });
     },
     methods: {
         follow(){
+            
             if(this.info.follow){
                 return;
             }
-            alert("follow");
+            api("nethos.follow.dp.add",this.params)
+            .then((val)=>{
+                api("nethos.follow.get",this.params)
+                .then((val)=>{
+                    this.isFollowed=val.obj.followDocpat.enable;
+                },
+                         ()=>{
+                    alert("网络错误，请稍后重试");
+                })
+            },
+                 ()=>{
+                alert("网络错误，请稍后重试");
+            })
         }
     }
   };

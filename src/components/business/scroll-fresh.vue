@@ -7,9 +7,6 @@
           <slot name="containing"></slot>
 
           <div ref="supplement" style="height:0px;background-color:#F8F8F8" id="supplement"></div>
-          <slot name="pullUp" v-if="hasRight">
-              <div id="pullUp" ref="pullUp" style="text-align:center;" >正在加载</div>
-    </slot>
     </div>
     </div>
 </template>
@@ -22,24 +19,12 @@
   export default {
       props:
       {
-          right:{
-             type:String,
-              default:"false",
-              required:false
-          },
           isCompleted:
           {
               type:Boolean,
               default:false,
               required:false
           },
-          nothingMore:
-          {
-              type:Boolean,
-              default:false,
-              required:false
-          }
-          ,
 
           height:{
               type:String,
@@ -64,10 +49,6 @@
           document.getElementById("wrapper").style.top=this.top;
           document.getElementById("wrapper").style.bottom=this.bottom;
 
-          if(this.hasRight)
-          {
-//              document.getElementById("pullUp").style.height=this.bottom;
-          }
           var overscroll = function(el){
 		  el.addEventListener('touchstart', function(){
               var top = el.scrollTop;
@@ -105,12 +86,8 @@
           }
       },
       computed:{
-          hasRight(){
-              return eval(this.right);
-          }
       },
       beforeDestroy(){
-          console.log("delete");
           document.body.removeEventListener("touchmove",this.myFun);
       },
 
@@ -120,21 +97,9 @@
           {
 
               if(this.isCompleted){
-                  if(this.step==1)
-                  {
-                      this.myScroll.scrollTo(0,this.pullDownOffset,300);
-                      document.getElementById("pullDown").innerHTML="下拉刷新";
-                  }
-                  else
-                  {
-
-                      if(this.nothingMore)
-                      {
-                          this.$refs.pullUp.innerHTML="无更多内容";
-                      }
-                  }
+                  this.myScroll.scrollTo(0,this.pullDownOffset,300);
+                  document.getElementById("pullDown").innerHTML="下拉刷新";
                   this.step=0;
-                 setTimeout(()=>{this.step=0;},500);
                   setTimeout(()=>{this.refresh()},100);
               }
           }
@@ -157,17 +122,12 @@
               let wrapperHeight=this.myScroll.wrapper.clientHeight;
               let scrollerHeight=this.myScroll.scroller.clientHeight;
               let tempHeight=wrapperHeight-scrollerHeight-this.pullDownOffset;
-              if(this.hasRight){
-                  tempHeight+=this.getOffset(this.bottom);
-//                  tempHeight+=parseInt(this.bottom);
-              }
               this.$refs.supplement.style.height=Math.max(tempHeight,0)+'px'
               if(this.$refs.supplement.style.height==0){this.isShown=true};
               this.myScroll.refresh();
           },
           load()
               {  
-                  var pullUp=document.getElementById("pullUp");
                   var pullDown = document.getElementById('pullDown');
                   pullDown.style.height=this.height;
                   this.pullDownOffset=-this.getOffset(this.height);
@@ -189,10 +149,6 @@
                               this.step=1;
                               pullDown.innerHTML="加载中";
                               setTimeout(()=>{this.$emit("pullDown");},200);
-                          }                      
-                          else if(this.myScroll.y==this.myScroll.maxScrollY&&this.hasRight){
-                              this.step=2;
-                              this.$emit("pullUp");
                           }
                           else if (this.myScroll.y>this.pullDownOffset){
                               this.myScroll.scrollTo(0,this.pullDownOffset,300);
