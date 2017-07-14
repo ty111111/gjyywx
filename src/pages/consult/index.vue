@@ -215,7 +215,8 @@
     align-items: center;
   }
   .bak{
-    background: gainsboro;
+     color:  darkgreen;
+    font-size: 17px;
   }
   .contain{
     overflow: auto;

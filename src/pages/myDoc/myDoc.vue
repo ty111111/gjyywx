@@ -23,7 +23,7 @@
                 <ul>
                   <li>{{item.sysDoc.docName}} &nbsp; &nbsp;&nbsp;<span class="fontCol">{{item.sysDoc.docTitle}}</span></li>
                   <li><span class="fontCol">{{item.sysDoc.docDeptName}}</span></li>
-                  <li><span class="fontCol">{{item.sysDoc.docPicConsultStatus?'图文问诊':''}} &nbsp; &nbsp;&nbsp;{{item.sysDoc.docVideoConsultStatus?'视频问诊':''}}</span></li>
+                  <li><span class="fontCol">{{item.sysDoc.docPicConsultStatus?'图文问诊':''}} {{item.sysDoc.docVideoConsultStatus?'视频问诊':''}}</span></li>
                 </ul>
               </div>
               <div class="itemXing"><span class="fontCol">
@@ -47,16 +47,21 @@
             </div>
           </div>
       </div>
+      <div class="bottom">
+        <foot msg="my"></foot>
+      </div>
     </div>
 </template>
 <script type="text/ecmascript-6">
     import top from '../../components/business/app-header.vue'
+    import foot from '../../components/business/app-footer.vue'
     import Api from '../../lib/api'
     import {Todate} from '../../lib/filter'
     var token = localStorage.getItem('token')
     export default{
         components: {
-            top
+            top,
+          foot
         },
         data(){
             return {
@@ -152,7 +157,9 @@
     flex-direction: column;
   }
   .active{
-    background: gainsboro;
+    color: darkgreen;
+    font-weight: 500;
+    border-bottom: 1px solid darkgreen;
   }
   .navbar{
     border: 1px solid gainsboro;
@@ -175,20 +182,24 @@
   display: flex;
   align-items: center;
   padding: 10px 10px;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
 }
 .itemImg{
-  flex: 2;
+  width: 50px;
+  height: 50px;
 }
 .itemImg img{
   width: 50px;
   height: 50px;
+  border-radius: 25px;
 }
 .itemContain{
-  flex: 6;
+  flex: 1;
+  padding-left: 20px;
+  box-sizing: border-box;
 }
 .itemXing{
-  flex: 1;
+  padding-right: 15px;
 }
 .fontCol{
   color: gray;
@@ -223,5 +234,12 @@
   }
   .message{
 
+  }
+  .bottom{
+    width: 100%;
+    background: white;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
   }
 </style>

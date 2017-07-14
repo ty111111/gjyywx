@@ -92,7 +92,7 @@
     </div>
   </div>
 </template>
-<script >
+<script type="text/ecmascript-6">
   import Api from '../api'
   import editDiv from './editDiv.vue'
   import Ajax from '../ajax'
