@@ -193,8 +193,6 @@
       
     mounted() {
         
-        this.setHeight();
-        
     },
     beforeDestroy() {
 
