@@ -77,7 +77,7 @@
       <slot name="inputTalk">
         <div class="robot-room-wirte yk-box yk-cell">
           <div class="yk-cell-bd mr10">
-            <edit-div :message="clean" v-model="text" id="inputArea" class="input-text" v-on:inputText="getFocus"></edit-div>
+            <edit-div :message="clean" v-model="text" id="inputArea" class="input-text" ></edit-div>
           </div>
           <div v-show="!text.length" class="showJia" @click.stop="showCheckList"><span class="jia">+</span></div>
           <button v-show="text.length" class="send-btn" @click="send()">发送</button>
@@ -133,19 +133,18 @@
       }
     },
     mounted(){
-
-
+//      this.$refs.btn.scrollIntoView(false);
     },
     methods:{
       loadImage(){
         console.log('图片加载完毕');
         this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
       },
-      getFocus(){
-        if(this.$refs.btn){
-          this.$refs.btn.scrollIntoView(false);
-        }
-      },
+//      getFocus(){
+//        if(this.$refs.btn){
+//          this.$refs.btn.scrollIntoView(false);
+//        }
+//      },
       toBottom(){
         setTimeout(()=>{
           console.log(this.$refs.talking.scrollHeight,this.$refs.talking.clientHeight,this.$refs.talking.offsetHeight,1212121212 )

@@ -156,7 +156,10 @@
           this.$set(this.$data,'attaList',list.attaList);
           this.$set(this.$data,'imgList',req.obj.attaList);
         }
-      })
+      });
+      setTimeout(()=>{
+        this.$refs.talking.scrollTop = this.$refs.talking.scrollHeight - this.$refs.talking.clientHeight;
+      },45)
     },
     methods:{
       loadImage(){

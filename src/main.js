@@ -20,36 +20,95 @@ Vue.use(weui)
 import "babel-polyfill";
 Vue.config.productionTip = false;
 
-
 router.beforeEach((to, from, next) => {
-  //定义一个可以记录路由路径变化的数组，这里用在vuex，其实也可以用sessionStorage,或者在window.routeChain等变量
-  //不一定要用到vuex
-  let routeLength = store.state.routeChain.length;
+  var arr = [];
+  if(sessionStorage.getItem('arr')){
+    arr = JSON.parse(sessionStorage.getItem('arr'))
+  }else {
+    var str = JSON.stringify(arr);
+    sessionStorage.setItem('arr',str)
+  }
+  let routeLength = arr.length;
+  console.log(routeLength,'一开始的空')
   if (routeLength === 0) {
+    // this.$set(this.$data,'transitionName','slide')
     store.commit('setPageDirection', 'slide');
     if (to.path === from.path && to.path === '/') {
-      //当直接打开根路由的时候
-      store.commit('addRouteChain', to);
+      arr.push(to.path);
+      sessionStorage.setItem('arr',JSON.stringify(arr))
     } else {
-      //直接打开非根路由的时候其实生成了两个路径，from其实就是根路由
-      store.commit('addRouteChain', from);
-      store.commit('addRouteChain', to);
+      arr.push(from.path)
+      arr.push(to.path);
+      console.log(arr,'一开始的')
+      sessionStorage.setItem('arr',JSON.stringify(arr))
     }
   } else if (routeLength === 1) {
     store.commit('setPageDirection', 'fade');
-    store.commit('addRouteChain', to);
+    var str = JSON.parse(sessionStorage.getItem('arr'));
+    str.push(to.path)
+    sessionStorage.setItem('arr',JSON.stringify(str))
   } else {
-    let lastBeforeRoute = store.state.routeChain[routeLength-2];
-    if (lastBeforeRoute.path === to.path) {
-      store.commit('popRouteChain');
+    let lastBeforeRoute = JSON.parse(sessionStorage.getItem('arr'))[routeLength-2];
+    console.log(lastBeforeRoute,2222)
+    if (lastBeforeRoute === to.path) {
+//           store.commit('popRouteChain');
+      var str = JSON.parse(sessionStorage.getItem('arr'));
+      str.pop();
+      console.log(str,'后退的','fade')
+      sessionStorage.setItem('arr',JSON.stringify(str))
       store.commit('setPageDirection', 'fade');
     } else {
-      store.commit('addRouteChain', to);
-      store.commit('setPageDirection', 'slide');
+      var str = JSON.parse(sessionStorage.getItem('arr'));
+      if(str[routeLength-1]===to.path){
+        console.log(str,'每次前进的','slide')
+        sessionStorage.setItem('arr',JSON.stringify(str))
+      }else {
+        str.push(to.path);
+        console.log(str,'每次前进的','slide')
+        sessionStorage.setItem('arr',JSON.stringify(str))
+        store.commit('setPageDirection', 'slide');
+      }
+     // this.$set(this.$data,'transitionName','slide')
     }
   }
   next();
 });
+
+
+
+
+
+// router.beforeEach((to, from, next) => {
+//   //定义一个可以记录路由路径变化的数组，这里用在vuex，其实也可以用sessionStorage,或者在window.routeChain等变量
+//   //不一定要用到vuex
+//   console.log(router,11111)
+//   let routeLength = store.state.routeChain.length;
+//   if (routeLength === 0) {
+//     store.commit('setPageDirection', 'slide');
+//     if (to.path === from.path && to.path === '/') {
+//       //当直接打开根路由的时候
+//       store.commit('addRouteChain', to);
+//     } else {
+//       //直接打开非根路由的时候其实生成了两个路径，from其实就是根路由
+//       store.commit('addRouteChain', from);
+//       store.commit('addRouteChain', to);
+//     }
+//   } else if (routeLength === 1) {
+//     store.commit('setPageDirection', 'fade');
+//     store.commit('addRouteChain', to);
+//   } else {
+//     let lastBeforeRoute = store.state.routeChain[routeLength-2];
+//     console.log(lastBeforeRoute,2222)
+//     if (lastBeforeRoute.path === to.path) {
+//       store.commit('popRouteChain');
+//       store.commit('setPageDirection', 'fade');
+//     } else {
+//       store.commit('addRouteChain', to);
+//       store.commit('setPageDirection', 'slide');
+//     }
+//   }
+//   next();
+// });
 
 
 

@@ -17,14 +17,15 @@
     data(){
       return {
         show: true,
-        transitionName:this.$store.state.pageDirection
+        transitionName:this.$store.state.pageDirection,
+//        pageDirection: 'slide',
+        routeChain:[]
       }
     },
     watch: {
       $route(to, from) {
-      console.log(this.$store.state.routeChain,77777)
-      console.log(this.$store.state.pageDirection,88888)
         this.$set(this.$data,'transitionName',this.$store.state.pageDirection)
+
       }
     },
     computed: {
@@ -52,7 +53,7 @@
     transform: translateX(100%);
   }
   .slide-enter-to{
-    position: absolute;
+    position: fixed;
     top:0;
     width: 100%;
   }
