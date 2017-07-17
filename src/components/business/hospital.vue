@@ -3,9 +3,9 @@
       <div class="app">
       <app-header>
           <div class="middle big" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden; flex:1 1 auto">预约挂号</div>
-          <div slot="right"  class="appointl" @click="getMyScheme" style="0 0 auto;width:4rem;"><p class="right">我的挂号</p></div>
+          <div slot="right"  class="appointl" @click="getMyScheme" style="0 0 auto;width:4rem;"><p class="right" style="color:#3399FF">我的挂号</p></div>
     </app-header>
-    <div class="weui-loadmore" v-show="!Got">
+    <div class="weui-loadmore flex" v-show="!Got">
         <i class="weui-loading"></i>
         <span class="weui-loadmore__tips">正在加载</span>
     </div>
@@ -13,18 +13,17 @@
           <span class="weui-loadmore__tips">网络错误</span>
 
     </div>
-    <div class="weui-panel weui-panel_access containing" v-show="Got&&!failure">
-        <div class="weui-panel__bd scroller" >
-                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" v-for="item in hospital" @click="show(item.bookHosId,item.hosName)" :id="item.bookHosId">
-                <div class="weui-media-box__hd">
-                    <a :href="item.picture"><img class="weui-media-box__thumb" :src="item.hosPic" alt="" style="border-radius:50%; height:100%"></a>
-                </div>
-                <div class="weui-media-box__bd">
-                    <p class="weui-media-box__title">{{item.hosName}}</p>
-                    <p class="weui-media-box__desc">{{item.hosLevel}}<br>{{item.hosAddress}}</p>
-                </div>
-            </a>
-        </div>
+    <div class="weui-cells flex overflow"v-show="Got&&!failure">
+        <a class="weui-cell" v-for="item in hospital" @click="show(item.bookHosId,item.hosName)" :id="item.bookHosId" >
+            <div class="weui-cell__hd">
+            <img class="figure" :src="item.hosPic" alt="" style="border-radius:50%;">    
+    </div>
+            <div class="weui-cell__bd">
+                    <p >{{item.hosName}}</p>
+                    <p class="small" style="color:#999999">{{item.hosLevel}}<br>{{item.hosAddress}}</p>
+    </div>
+    </a>
+
     </div>
 	<app-footer msg="service" class="footer">
 
@@ -38,8 +37,8 @@
                 <img class="weui-media-box__thumb" src="../../../images/u4088.png" alt="" >
             </div>
            <div class="weui-media-box__bd">
-                <p class="weui-media-box__title">预约挂号</p>
-                <p class="weui-media-box__desc">七天内普通号、专家号预约</p>
+                <p>预约挂号</p>
+                <p class="small" style="color:#999999">七天内普通号、专家号预约</p>
             </div>
     </a>
 
@@ -52,8 +51,8 @@
                 <img class="weui-media-box__thumb" src="../../../images/u4088.png" alt="" >
             </div>
             <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">当天挂号</h4>
-                <p class="weui-media-box__desc">今天号源立挂立取</p>
+                <p >当天挂号</p>
+                <p class="small" style="color:#999999">今天号源立挂立取</p>
             </div>
         </a>
 
@@ -154,7 +153,13 @@
         margin-top:5%;
         width:80%;
         height:30%;
-        box-shadow: 2px 5px 5px lighten(black,40%);
+        box-shadow: .2rem .3rem .3rem lighten(black,40%);
+        div{
+            height:100%;
+            a{
+                height:100%;
+            }
+        }
 
     }
     .footer{

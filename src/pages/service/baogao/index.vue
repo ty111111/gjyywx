@@ -1,7 +1,6 @@
 <template>
   <div class="app">
       <app-header>
-          <img slot="left" src="../../../../static/img/u436.png" class="arrow"onClick="window.history.back()">
           <div class="middle big">排队叫号</div>
           <a slot="right" class="chaxun" @click="query">查询</a>
     </app-header>
@@ -106,6 +105,7 @@
         border:1px solid rgb(204,204,204);
     }
     .chaxun{
+        width:4rem;
         font-size:0.875rem;
         color: #3399CC;
         padding-right:0.8rem;

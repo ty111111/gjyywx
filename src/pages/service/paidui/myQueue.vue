@@ -14,7 +14,7 @@
     </div>
               <div class="weui-cell__bd">
               <div>{{item.deptName}}<br>
-                  <p style="font-size: 14px;color: #999999;">{{item.time}} {{item.Ampm}}<br>{{item.name}} {{item.num}}</p>
+                  <p style="font-size: 0.875rem;color: #999999;">{{item.time}} {{item.Ampm}}<br>{{item.name}} {{item.num}}</p>
     </div>
     </div>
               <div class="weui-cell__ft">
@@ -72,11 +72,11 @@
         border:1px solid lightgrey;
     }
     .noItem{
-        padding-top:100px;
+        padding-top:6.25rem;
         text-align:center;
         width:100%;
-        height:200px;
-        font-size: 24px;
+        height:12.5rem;
+        font-size: 1.3rem;
         color: #999999;
     }    
 </style>

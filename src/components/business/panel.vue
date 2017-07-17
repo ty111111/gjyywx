@@ -35,8 +35,12 @@
     components:{
 
     },
+      watch:{
+          hasArrow(){
+              this.arrow=eval(this.hasArrow);
+          }
+      },
     mounted() {
-        this.arrow=eval(this.hasArrow);
 
     },
     beforeDestroy() {

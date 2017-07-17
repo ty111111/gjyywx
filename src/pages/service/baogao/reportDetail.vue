@@ -8,7 +8,7 @@
         <span class="weui-loadmore__tips">正在加载</span>
     </div>
       <div class="containing" v-show="Got">
-      <div class="weui-cells" style="padding: 20px 15px">
+      <div class="weui-cells">
           <p class="title">[医疗名称]</p>
           <div class="div_info">
               <div>
@@ -153,6 +153,6 @@
         overflow:auto;
     }
     .weui-cell{
-        padding:20px 15px;
+        padding:1.1rem 0.83rem;
     }
 </style>

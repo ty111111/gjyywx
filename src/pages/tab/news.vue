@@ -15,11 +15,11 @@
             <i class="weui-loading"></i>
             <span class="weui-loadmore__tips">正在加载</span>
         </div>
-    <scroll-fresh  @pullDown="pulldown" @pullUp="pullup":isCompleted="isCompleted" height="50"v-show="Got">
+    <scroll-fresh  @pullDown="pulldown" @pullUp="pullup":isCompleted="isCompleted" bottom="3rem"v-show="Got">
         <div slot="containing">
 
         <my-panel v-for="item in list[chosedIndex]" :key="item.newId" class="panel" @activate="getDetail(item)" >
-            <img slot="picture" :src="item.imgUrl" style="height:70px">
+            <img slot="picture" :src="item.imgUrl" style="height:4.375rem">
             <div slot="article" class="article">
                 <h3>{{item.title}}</h3>
                 <div style="overflow:hidden ;height:2.5rem;text-overflow:ellipsis;">
@@ -134,12 +134,12 @@
     .nav{
         display:flex;
         flex-direction:row;  
-        padding-top:10px;
-        height:50px;
+        padding-top:0.625rem;
+        height:3.125rem;
         div{
-            padding-top:10px;
-            min-width:100px;
-            height:30px;
+            padding-top:0.625rem;
+            min-width:6.25rem;
+            height:1.875rem;
             text-align: center;
             color:#999999;
             font-size:0.77rem;
@@ -157,17 +157,18 @@
     .horiScroller{
         background-color:white;
         border:1px solid silver;
-        height:50px;
+        height:3.125rem;
         display:flex;
         flex-direction:column;
         width:100%;
         overflow-x:scroll;
+        -webkit-overflow-scrolling:touch;
     }
     .panel{
         border:1px solid silver;
         background-color:white;
         img.div{
-            max-height:70px;
+            max-height:4.4rem;
         }
     }
     .article{

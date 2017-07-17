@@ -9,13 +9,13 @@
                   <div class="weui-msg" v-if="isSucc">
         <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>
         <div class="weui-msg__text-area">
-            <p class="weui-msg__desc">绑定成功，您的病案号是</p>
+            <p class="small">绑定成功，您的病案号是</p>
         </div>
     </div>
                   <div class="weui-msg" v-else>
         <div class="weui-msg__icon-area"><i class="weui-icon-warn weui-icon_msg"></i></div>
         <div class="weui-msg__text-area">
-            <p style="font-size:20px">绑定失败</p><br>
+            <p style="font-size:1.25rem">绑定失败</p><br>
             <p class="small">若该就诊人曾在浙二就诊过，请保证姓名、身份证号、手机和医院留的一致；</p><br>
             <p class="small">如真实信息发生变化请前往医院修改。</p><br>
             <a  style="color:#00CC99" @click="lastPage">我知道了</a>
@@ -84,7 +84,7 @@
         background-color:white;
         margin-top:5%;
         width:80%;
-        box-shadow: 2px 5px 5px lighten(black,40%);
+        box-shadow: .1rem .3rem .3rem lighten(black,40%);
         
     }
     .small{

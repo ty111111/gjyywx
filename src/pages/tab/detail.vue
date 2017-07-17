@@ -9,7 +9,6 @@
         </div>
     </div>
     <app-header>
-        <img src="../../../static/img/u436.png" slot="left" onClick="window.history.back()">
       <div class="middle big">文章详情</div>
     </app-header>
 
@@ -61,7 +60,7 @@
         font-family: 'Arial Normal', 'Arial';
         font-style: normal;
         font-weight: 400;
-        font-size: 34px;
+        font-size: 2.125rem;
         color: #CC6633;
     }
     .page__hd{
@@ -74,8 +73,9 @@
     }
     .page{
         overflow:auto;
+        -webkit-overflow-scrolling:touch;
         position:absolute;
-        top:45px;
+        top:2.8rem;
         width:100%;
         border-top:1px solid lightgrey;
     }

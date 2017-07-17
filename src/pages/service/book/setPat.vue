@@ -1,8 +1,7 @@
 <template>
   <div>
       <app-header>
-          <div slot="left"><img src="../../../../static/img/u436.png" onClick="window.history.back()"></div>
-          <div><p>选择就诊人</p></div>
+          <div><p class="big middle">选择就诊人</p></div>
     </app-header>
       <div class="containing">
           <div class="weui-cells">

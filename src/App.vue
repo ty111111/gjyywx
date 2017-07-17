@@ -5,7 +5,6 @@
 
       </router-view>
     </transition>
-    <toast ref="toast" @toast:hide="show=false" :show="show" text="成功"></toast>
   </div>
 </template>
 
@@ -46,6 +45,16 @@
 
 <style lang="scss">
   @import "common/base";
+    p,span,a{
+        font-family:"宋体";
+    }
+    .flex{
+        flex:1 1 auto;
+    }
+    .overflow{
+        overflow:auto;
+        -webkit-overflow-scrolling:touch;
+    }
   .slide-enter-active, .slide-leave-active {
     transition:all .2s ease-in-out
   }

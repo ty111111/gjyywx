@@ -10,15 +10,15 @@
       <div class="weui-loadmore weui-loadmore_line" v-show="failure">
           <span class="weui-loadmore__tips">网络错误</span>
     </div>
-      <div class="app"v-show="Got&&!failure">
+      <div class="app overflow"v-show="Got&&!failure">
       <div>
       <myPanel class="weui-cells">
           <img class="figure"slot="picture" :src="doctorInfo.docAvatar">
           <div slot="article">
               <p>{{doctorInfo.docName}}
-                  <span class="weui-msg__desc">{{doctorInfo.docTitle}}</span></p>
-              <p class="weui-msg__desc  font-hide" style="width:9rem">{{hospitalName}}</p>
-              <p class="weui-msg__desc">{{deptName}}</p>
+                  <span >{{doctorInfo.docTitle}}</span></p>
+              <p  class="font-hide" style="width:9rem">{{hospitalName}}</p>
+              <p class="small" style="color:#999999">{{deptName}}</p>
               
 
     </div>
@@ -27,17 +27,17 @@
           
     </div>
       <div class="weui-cells">
-          <MySelect :options="deptList" @update="update"></MySelect>
+          <MySelect :options="deptList" @update="update" v-show="deptList.length>0"></MySelect>
           <div class="weui-cell" style="display:flex;flex-direction:row" v-for="scheme in filteredSchemeList">
               <div >
                     {{scheme.time|getMyDay}}
                       {{scheme.Ampm}}
                       {{scheme.week}}
     </div>
-              <div style="flex:1">
+              <div class="flex">
     </div>
               <div v-if="scheme.status=='预约'">
-                  <a class="weui-btn weui-btn_mini weui-btn_default" style="background:white" @click="next(scheme)">{{scheme.status}} {{scheme.bookFee}}.0元</a>
+                  <a class="weui-btn weui-btn_mini weui-btn_default" style="background:white" @click="next(scheme)"><p>{{scheme.status}} {{scheme.bookFee}}.0元</p></a>
     </div>
               <div v-if="scheme.status!='预约'" style="width:3rem">
               <span  class="font-warn">{{scheme.status}}</span>
@@ -45,17 +45,17 @@
     </div>
     </div>
       <div v-show="isDoctor">
-      <div class="weui-cells__title">该医生坐诊的其他科室:</div>
+          <div class="weui-cells__title" v-show="deptSchemeList.length>0"><p>该医生坐诊的其他科室:</p></div>
       <div class="weui-cells">
           
           <myPanel v-for="item in deptSchemeList" @activate="anotherDept(item)" :key="item.bookDeptId">
-              <div slot="picture">{{item.deptName}}</div>
+              <div slot="picture"><p>{{item.deptName}}</p></div>
     </myPanel>
     </div>
       <div class="weui-cells__title">医生擅长</div>
       <div class="weui-cells">
           <div class="weui-cell">
-              {{doctorInfo.docDescription}}
+              <p>{{doctorInfo.docDescription}}</p>
     </div>
     </div>
     </div>
@@ -79,7 +79,7 @@
                     
                     <p class="weui-msg__desc small">号源时段以医院实际情况为准</p>
     </div>
-                    <div style="overflow:auto">
+                    <div class="overflow">
                     <ul>
                         <li v-for="item in filteredBookList" @click="reserve(item)"> 
                             <a>{{item.index}}号 {{item.hour}}:{{item.minute}}-{{item.newHour}}:{{item.newMinute}}</a>
@@ -278,8 +278,8 @@
 <style scoped lang="scss">
     .figure
     {
-        width:60px;
-        margin-right:5px;
+        width:3.75rem;
+        margin-right:.3rem;
         display:block;
         border-radius:50%;
     }
@@ -298,12 +298,12 @@
         left:0px;
         background-color:white;
         width:100%;
-        height:300px;
+        height:18.75rem;
         z-index:31;
         ul{
             text-align:center;
             li{
-                margin-top:30px;
+                margin-top:1.875rem;
             }
         }
     }
@@ -319,7 +319,7 @@
     .popUp{
         display:flex;
         flex-direction:column;
-        height:300px;
+        height:18.75rem;
         .small{
             font-size:0.75rem;
             padding:0.3rem 0 0 0.625rem;

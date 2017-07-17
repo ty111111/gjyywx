@@ -4,12 +4,12 @@
           <div class="middle big">医生文章</div>
     </app-header>
       <div>
-          <scroll-fresh height="50" :isCompleted="isCompleted" @pullDown="pullDown" top="45">
+          <scroll-fresh height="3.125rem" :isCompleted="isCompleted" @pullDown="pullDown" top="2.8125rem" bottom="0rem">
               <div slot="containing" class='weui-cells'>
                   <a class="weui-cell" v-for="item in articleList" @click="getDetail(item)">
                       <div class="weui-cell__hd">
                           <p>{{item.title}}</p>
-                          <p class="weui-msg__desc"><span v-show="item.isGrade" class="recTag">推荐</span> {{item.readTimes}}阅读 {{item.createTime}} | {{docName}}</p>
+                          <p class="weui-msg__desc"><span v-show="item.isGrade" class="recTag">推荐</span> <span>{{item.readTimes}}阅读 {{item.createTime}} | {{docName}}</span></p>
     </div>
 
     </a>
@@ -85,7 +85,7 @@
 <style scoped lang="scss">
     .recTag{
         border:1px solid #999;
-        border-radius:5px;
-        padding:0 5px;
+        border-radius:0.3125rem;
+        padding:0 0.3125rem;
     }
 </style>

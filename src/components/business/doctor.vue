@@ -5,11 +5,11 @@
     </app-header>
     <div class="buttonArea" v-if="isAppt" >
         <div style="font-size:0px">
-        <button @click="changeMode('doctorBased')" class=" weui-btn weui-btn_mini weui-btn_primary button" :class="{'clicked':isDoc}" style="border-radius:10px 0 0 10px">按专家预约</button>
-        <button @click="changeMode('dateBased')" class='button weui-btn weui-btn_mini weui-btn_default ' :class="{'clicked':!isDoc}"style="border-radius:0 10px 10px 0">按日期预约</button>
+            <button @click="changeMode('doctorBased')" class=" weui-btn weui-btn_mini weui-btn_primary button" :class="{'clicked':isDoc}" style="border-radius:0.625rem 0 0 0.625rem"><p>按专家预约</p></button>
+            <button @click="changeMode('dateBased')" class='button weui-btn weui-btn_mini weui-btn_default ' :class="{'clicked':!isDoc}"style="border-radius:0 10px 10px 0"><p>按日期预约</p></button>
     </div>
     </div>      
-    <div class="time" v-if="!isDoc&&isAppt">
+    <div class="time overflow" v-if="!isDoc&&isAppt">
           <div class="scroller">
           <div v-for="item in timeList" @click="dateChange(item)" class="timeItem":class="{'clicked':checkIfClicked(item)}">
               {{item.day}}<br>
@@ -29,8 +29,8 @@
 <div class="weui-cells">
     <a v-for="item in normalAppoint"class="weui-cell weui-cell_access" href="javascript:;" @click="next(item)">
         <div class="weui-cell__hd">
-            <div style="background-image:url(./../../../static/img/u6883.png)" class="img">
-                <p>普通<br>门诊</p>
+            <div  class="figure img">
+                <p>普通</p><p>门诊</p>
     </div>
     </div>
         <div class="weui-cell__bd">
@@ -56,15 +56,16 @@
           <div class="weui-cells">
               <a v-for="item in expert" class="weui-cell weui-cell_access" @click="next(item)">
                   <div class="weui-cell__hd">
-                    <img :src="item.pic"class="figure" onerror="this.src='../../../static/img/u6883.png'"alt="暂无图像">
+                    <img :src="item.pic"class="figure" onerror="this.src='./static/img/u6883.png'"alt="暂无图像">
 
     </div>
                   <div class="weui-cell__bd">
                       <span class="big">{{item.name}}</span><br v-show="isDoc">
-                      <span class="weui-msg__desc">  {{item.title}}</span>
-                      <p class="weui-msg__desc font-hide"style="max-width:9rem;">{{item.description}}</p>
-                      <span v-if="!isDoc" style="color:#666666">{{item.year}}-{{item.schemeDate}} {{item.schemeAmpm}} 专家</span>
-                      
+                      <div  style="color:#666666">
+                      <span>  {{item.title}}</span>
+                      <p class="font-hide"style="max-width:9rem;">{{item.description}}</p>
+                      <span v-if="!isDoc">{{item.year}}-{{item.schemeDate}} {{item.schemeAmpm}} 专家</span>
+    </div>
                       
 
     </div>
@@ -192,25 +193,11 @@
       
     mounted() {
         
-        this.setHeight();
-        
     },
     beforeDestroy() {
 
     },
     methods: {
-        setHeight(){
-            let screenWidth=document.documentElement.clientWidth;
-              let screenHeight=document.documentElement.clientHeight;
-            console.log(screenHeight);
-              let headerHeight=45;
-            let barHeight=50;
-            if(!this.isDoc){
-                barHeight+=60;
-            }
-              document.getElementById("module").style.height=screenHeight-headerHeight-barHeight+'px';
-            document.getElementById("module").style.width=screenWidth+'px'; 
-        },
         reserve(item)
         {
             window.localStorage['time']= item.hour+':'+item.minute+'-'+item.newHour+':'+item.newMinute;
@@ -363,6 +350,7 @@
         display:flex;
         flex-direction:column;
         overflow:auto;
+        -webkit-overflow-scrolling:touch;
     }
     
     .buttonArea{
@@ -370,14 +358,14 @@
         display:flex;
         justify-content: center;
         width:100%;
-        height:60px;
+        height:3.75rem;
         background: white;
     }
     .time{
         flex:0 0 auto;
         background-color:white;
         overflow-x:auto;
-        min-height:50px;
+        min-height:3.125rem;
         .scroller{
             display:flex;
             flex-direction:row;
@@ -386,8 +374,8 @@
             border-right:1px solid #CCCCCC;
             border-top:1px solid #cccccc;
             border-bottom:1px solid #cccccc;
-            min-width:50px;
-            height:50px;
+            min-width:3.125rem;
+            height:3.125rem;
         }
         }
     }
@@ -396,37 +384,18 @@
         text-align:center;
         width:20%;
     }
-    .figure
-    {
-        width:60px;
-        margin-right:5px;
-        display:block;
-        border-radius:50%;
-        margin-right:1rem;
-    }
-/*
-    .background{
-        position:fixed;
-        left:0px;
-        top:0px;
-        z-index:1000;
-        background-color:gray;
-        height:100%;
-        width:100%;
-    }
-*/
     .options{
         position:fixed;
         bottom:0px;
         left:0px;
         background-color:white;
         width:100%;
-        height:300px;
+        height:18.75rem;
         z-index:1001;
         ul{
             text-align:center;
             li{
-                margin-top:30px;
+                margin-top:1.875rem;
             }
         }
     }
@@ -459,19 +428,26 @@
             color:white;
         }
     .img{
-        background-size:101%;
-        height:4rem;
-        width:4rem;
-        padding-left:1.2rem;
-        padding-top:0.9rem;
-        font-size:0.7rem;
-        margin-right:1rem;
+        background-image:url(./../../../static/img/u6883.png);
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        background-repeat:no-repeat;
+        background-size:100%;
+        font-size:0.77rem;
+        p{
+            flex:1 1 auto;
+            padding-top:.3rem;
+        }
     }
     .popup{
         padding:1rem;
         display:flex;
         flex-direction:column;
-        height:300px;
+        height:18.75rem;
+    }
+    .small{
+        font-size:0.77rem;
     }
 
 </style>

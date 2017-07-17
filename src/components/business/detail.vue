@@ -5,7 +5,7 @@
           <div class="scroller" >
           <div class="page__hd">
               <h1 class="page__title title">{{info.title}}</h1>
-              <p class="page__desc">{{info.viewCount}}阅读  {{time}}    <span class="box" @click="recommend">推荐</span></p>
+              <p class="small">{{info.viewCount}}阅读  {{time}}    <span class="box" v-show="info.isGrade">推荐</span></p>
     </div>
           <div class="page__bd">
               <p class="weui-article" style="word-break:break-all;" ref="article"></p>
@@ -68,7 +68,7 @@
             this.$refs.article.innerHTML=this.info.content;
             this.info.createTime/=1000;
             if(this.height!=''){
-                this.$refs.page.style.height=this.height+'px';
+                this.$refs.page.style.height=this.height;
             }
         },
         getLocalTime(nS) {
@@ -92,7 +92,7 @@
         font-family: 'Arial Normal', 'Arial';
         font-style: normal;
         font-weight: 400;
-        font-size: 34px;
+        font-size: 2.125rem;
         color: #CC6633;
     }
     .page__hd{
@@ -101,7 +101,7 @@
     }
     .page__desc{
         color:#CCCCCC;
-        font-size:12px;
+        font-size:0.75rem;
     }
     .page{
         overflow:auto;
@@ -112,8 +112,8 @@
     }
     .box{
         border:1px solid #ccc;
-        border-radius:5px;
+        border-radius:.3125rem;
         display:inline-block;
-        padding:0 5px;
+        padding:0 0.3125rem;
     }
 </style>
