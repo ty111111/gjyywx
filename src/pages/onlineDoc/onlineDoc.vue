@@ -26,7 +26,7 @@
                 <ul>
                   <li>{{item.docName}} &nbsp; &nbsp;&nbsp;<span class="fontCol">{{item.docTitle}}</span></li>
                   <li><span class="fontCol">{{item.docDeptName}}</span></li>
-                  <li><span class="fontCol">{{item.docPicConsultStatus?'图文问诊':''}} &nbsp; &nbsp;&nbsp;{{item.docVideoConsultStatus?'视频问诊':''}}</span></li>
+                  <li><span class="fontCol">{{item.docPicConsultStatus?'图文问诊':''}} {{item.docVideoConsultStatus?'视频问诊':''}}</span></li>
                 </ul>
               </div>
               <div class="itemXing" ><span v-show="item.docScoure" class="fontCol">
@@ -247,6 +247,7 @@
     }
 </script>
 <style scoped>
+
   #onlinepage{
     flex: 1;
     overflow: auto;

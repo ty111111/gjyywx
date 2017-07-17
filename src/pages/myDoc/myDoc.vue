@@ -38,7 +38,7 @@
               <div class="talkDetail">
                 <ul>
                   <li>{{talkItem.sysDoc.docName}} &nbsp; <span class="fontCol">{{talkItem.sysDoc.docTitle}}</span></li>
-                  <li class="message" v-if="talkItem.followMessage">{{talkItem.followMessage.msgText.substring(0,8)+'......'}}</li>
+                  <li class="message" v-if="talkItem.followMessage">{{talkItem.followMessage.msgText+'......'}}</li>
                 </ul>
               </div>
               <div class="date" v-if="talkItem.followMessage">
@@ -145,15 +145,16 @@
     }
 </script>
 <style scoped>
-  .wrap{
-    display: flex;
-    flex:1;
-    flex-direction: column;
-  }
+
   #onlinepage{
     flex: 1;
     /*overflow: auto;*/
     display: flex;
+    flex-direction: column;
+  }
+  .wrap{
+    display: flex;
+    flex:1;
     flex-direction: column;
   }
   .active{
@@ -173,7 +174,9 @@
 .contain{
   flex: 1;
   overflow:auto;
-  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  padding-bottom: 50px;
+  -webkit-overflow-scrolling: touch ;
 }
 
 .list{

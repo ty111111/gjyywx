@@ -47,7 +47,7 @@
 <style lang="scss">
   @import "common/base";
   .slide-enter-active, .slide-leave-active {
-    transition:all .3s ease-in-out
+    transition:all .2s ease-in-out
   }
   .slide-enter{
 

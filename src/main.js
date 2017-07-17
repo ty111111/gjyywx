@@ -63,10 +63,16 @@ router.beforeEach((to, from, next) => {
         console.log(str,'每次前进的','slide')
         sessionStorage.setItem('arr',JSON.stringify(str))
       }else {
-        str.push(to.path);
-        console.log(str,'每次前进的','slide')
-        sessionStorage.setItem('arr',JSON.stringify(str))
-        store.commit('setPageDirection', 'slide');
+        if(to.path=='/myDoc'||to.path=='/tab/news'||to.path=='/service/book'||to.path=='online'){
+            console.log('没有特效的')
+          store.commit('setPageDirection','')
+        }else {
+          str.push(to.path);
+          console.log(str,'每次前进的','slide')
+          sessionStorage.setItem('arr',JSON.stringify(str))
+          store.commit('setPageDirection', 'slide');
+        }
+
       }
      // this.$set(this.$data,'transitionName','slide')
     }

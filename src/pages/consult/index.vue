@@ -1,9 +1,9 @@
 <template>
+
   <div id="onlinepage">
     <top>
       <div class="middle big">我的问诊</div>
     </top>
-
       <div class="wrap">
         <div class="tab">
           <div class="tabGround">
@@ -44,9 +44,8 @@
           </div>
         </div>
       </div>
-
-
   </div>
+
 </template>
 
 <script type="text/ecmascript-6">
@@ -58,7 +57,7 @@
       return {
         current:'all',
         token:localStorage.getItem('token'),
-        inquiryList:[]
+        inquiryList:[],
       }
     },
     filters:{
@@ -68,15 +67,34 @@
       top
     },
     mounted(){
-      Api('nethos.consult.info.list',{
-        token:this.token
-      }).then(req=>{
-        console.log(req,66666);
-        if(req.succ){
-          this.$set(this.$data,'inquiryList',req.list)
-        }
-
-      })
+      console.log(sessionStorage.getItem('sign'),222222);
+      var sign = sessionStorage.getItem('sign')
+      if(sign){
+        this.$set(this.$data,'current',sign);
+       switch (sign){
+         case 'all':
+           this.all()
+           break;
+         case 'wait':
+           this.wait()
+           break;
+         case 'going':
+           this.going()
+           break;
+         case 'evaluate':
+           this.evaluate()
+           break;
+         case 'yetEvaluate':
+           this.yetEvaluate()
+           break;
+         case 'cancel':
+           this.cancel()
+           break;
+       }
+      }else {
+        this.$set(this.$data,'current','all')
+        this.all();
+      }
     },
     methods:{
       goMessage(consultId,name,state){
@@ -115,7 +133,8 @@
         }).then(req=>{
           console.log(req,66666)
           if(req.succ){
-            this.$set(this.$data,'inquiryList',req.list)
+            this.$set(this.$data,'inquiryList',req.list);
+            sessionStorage.setItem('sign','all')
           }
         })
       },
@@ -127,6 +146,7 @@
         }).then(req=>{
           if(req.succ){
             this.$set(this.$data,'inquiryList',req.list)
+            sessionStorage.setItem('sign','wait')
           }
         })
       },
@@ -138,6 +158,7 @@
         }).then(req=>{
           if(req.succ){
             this.$set(this.$data,'inquiryList',req.list)
+            sessionStorage.setItem('sign','going')
           }
         })
       },
@@ -149,6 +170,7 @@
         }).then(req=>{
           if(req.succ){
             this.$set(this.$data,'inquiryList',req.list)
+            sessionStorage.setItem('sign','evaluate')
           }
         })
       },
@@ -160,6 +182,8 @@
         }).then(req=>{
           if(req.succ){
             this.$set(this.$data,'inquiryList',req.list)
+            sessionStorage.setItem('sign','yetEvaluate')
+
           }
         })
       },
@@ -172,6 +196,7 @@
           console.log(req,66666)
           if(req.succ){
             this.$set(this.$data,'inquiryList',req.list)
+            sessionStorage.setItem('sign','cancel')
           }
         })
       }
@@ -183,6 +208,7 @@
 </script>
 
 <style scoped lang="scss">
+
   #onlinepage{
     flex: 1;
     overflow: auto;
